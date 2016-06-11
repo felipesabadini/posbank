@@ -1,0 +1,14 @@
+C:\pessoal\cesumar\pos-java-ee\jee-blank\src\main\java\br\com\rp\rest\LogRest.java
+C:\pessoal\cesumar\pos-java-ee\jee-blank\src\main\java\br\com\rp\services\LogService.java
+C:\pessoal\cesumar\pos-java-ee\jee-blank\src\main\java\br\com\rp\repository\TestEntityRepository.java
+C:\pessoal\cesumar\pos-java-ee\jee-blank\src\main\java\br\com\rp\domain\BaseEntity.java
+C:\pessoal\cesumar\pos-java-ee\jee-blank\src\main\java\br\com\rp\repository\LogRepository.java
+C:\pessoal\cesumar\pos-java-ee\jee-blank\src\main\java\br\com\rp\repository\impl\TestEntityRepositoryImpl.java
+C:\pessoal\cesumar\pos-java-ee\jee-blank\src\main\java\br\com\rp\repository\impl\AbstractRepositoryImpl.java
+C:\pessoal\cesumar\pos-java-ee\jee-blank\src\main\java\br\com\rp\repository\Repository.java
+C:\pessoal\cesumar\pos-java-ee\jee-blank\src\main\java\br\com\rp\rest\RootApplication.java
+C:\pessoal\cesumar\pos-java-ee\jee-blank\src\main\java\br\com\rp\domain\Log.java
+C:\pessoal\cesumar\pos-java-ee\jee-blank\src\main\java\br\com\rp\domain\TestEntity.java
+C:\pessoal\cesumar\pos-java-ee\jee-blank\src\main\java\br\com\rp\repository\impl\LogInterceptor.java
+C:\pessoal\cesumar\pos-java-ee\jee-blank\src\main\java\br\com\rp\domain\TipoOperacao.java
+C:\pessoal\cesumar\pos-java-ee\jee-blank\src\main\java\br\com\rp\repository\impl\LogRepositoryImpl.java

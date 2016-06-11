@@ -1,0 +1,14 @@
+br\com\rp\domain\BaseEntity.class
+br\com\rp\domain\TipoOperacao.class
+br\com\rp\repository\impl\LogRepositoryImpl.class
+br\com\rp\repository\impl\LogInterceptor.class
+br\com\rp\repository\impl\AbstractRepositoryImpl.class
+br\com\rp\repository\LogRepository.class
+br\com\rp\rest\RootApplication.class
+br\com\rp\domain\Log.class
+br\com\rp\repository\impl\TestEntityRepositoryImpl.class
+br\com\rp\rest\LogRest.class
+br\com\rp\repository\TestEntityRepository.class
+br\com\rp\domain\TestEntity.class
+br\com\rp\repository\Repository.class
+br\com\rp\services\LogService.class

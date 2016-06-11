@@ -1,0 +1,6 @@
+br\com\rp\repository\LogRepositoryTest.class
+br\com\rp\repository\TestEntityRepositoryTest.class
+br\com\rp\repository\service\LogServiceTest.class
+br\com\rp\rest\LogRestTest.class
+br\com\rp\AbstractTest.class
+br\com\rp\rest\AbstractRestTest.class
