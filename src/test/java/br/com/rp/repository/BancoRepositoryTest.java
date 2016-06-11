@@ -9,56 +9,49 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import br.com.rp.AbstractTest;
-import br.com.rp.domain.Cargo;
-import br.com.rp.domain.Cpf;
-import br.com.rp.domain.Funcionario;
+import br.com.rp.domain.Banco;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class BancoRepositoryTest extends AbstractTest {
 	
-	private final Long FUNCIONARIO_TESTE_ID = 1000l;
+	private final Long BANCO_TESTE_ID = 1000l;
 	
 	@EJB
-	private FuncionarioRepository dao;
+	private BancoRepository dao;
 	
 	@Test
 	public void testeA_consegueInserirNoBanco(){
-		Funcionario funcionario = new Funcionario();
+		Banco banco = new Banco();	
+		banco.setNome("TESTE");
+		dao.save(banco);	
+		Assert.assertNotNull(banco.getId());
 		
-		funcionario.setNome("TESTE");
-		funcionario.setCpf(new Cpf("06480549937"));
-		funcionario.setCargo(Cargo.GERENTE);
-		
-		dao.save(funcionario);
-		
-		Assert.assertNotNull(funcionario.getId());
 	}
 	
 	@Test
-	@UsingDataSet("db/funcionario.xml")
+	@UsingDataSet("db/banco.xml")
 	public void testeB_consegueAtualizarRegistro(){
-		Funcionario funcionario = dao.findById(FUNCIONARIO_TESTE_ID);
-		Assert.assertNotNull(funcionario);
+		Banco banco = dao.findById(BANCO_TESTE_ID);
+		Assert.assertNotNull(banco);	
+		banco.setNome("TESTE EDITAR");
+		dao.save(banco);
 		
-		funcionario.setNome("TESTE EDITAR");
-		dao.save(funcionario);
+		Banco result = dao.findById(BANCO_TESTE_ID);
 		
-		Funcionario result = dao.findById(FUNCIONARIO_TESTE_ID);
-		
-		Assert.assertEquals(funcionario.getNome(), result.getNome());
+		Assert.assertEquals(banco.getNome(), result.getNome());
 	}
 	
 	@Test
-	@UsingDataSet("db/funcionario.xml")
+	@UsingDataSet("db/banco.xml")
 	public void testeC_consegueDeletarRegistro(){
-		dao.remove(FUNCIONARIO_TESTE_ID);
+		dao.remove(BANCO_TESTE_ID);
 		Assert.assertEquals(0, dao.getAll().size());
 	}
 	
 	@Test
-	@UsingDataSet("db/funcionario.xml")
+	@UsingDataSet("db/banco.xml")
 	public void testeD_consegueRecuperarRegistro(){
-		Funcionario funcionario = dao.findById(FUNCIONARIO_TESTE_ID);
-		Assert.assertNotNull(funcionario);
+		Banco banco = dao.findById(BANCO_TESTE_ID);
+		Assert.assertNotNull(banco);
 	}
 }
