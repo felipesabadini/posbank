@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.com.rp.repository.LogRepositoryTest" time="1.658" tests="6" errors="0" skipped="0" failures="0">
+<testsuite name="br.com.rp.repository.LogRepositoryTest" time="9.611" tests="6" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
-    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_91\jre\bin"/>
-    <property name="java.vm.version" value="25.91-b14"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_71\jre\bin"/>
+    <property name="java.vm.version" value="25.71-b15"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="maven.multiModuleProjectDirectory" value="C:\java\workspace\posbank"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\java\posbank"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=";"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -14,46 +14,46 @@
     <property name="user.script" value=""/>
     <property name="user.country" value="BR"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="sun.os.patch.level" value="Service Pack 1"/>
+    <property name="sun.os.patch.level" value=""/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\java\workspace\posbank"/>
-    <property name="java.runtime.version" value="1.8.0_91-b14"/>
+    <property name="user.dir" value="C:\java\posbank"/>
+    <property name="java.runtime.version" value="1.8.0_71-b15"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_91\jre\lib\endorsed"/>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_71\jre\lib\endorsed"/>
     <property name="os.arch" value="amd64"/>
-    <property name="java.io.tmpdir" value="C:\Users\WILLIA~1\AppData\Local\Temp\"/>
+    <property name="java.io.tmpdir" value="C:\Users\Douglas\AppData\Local\Temp\"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
-    <property name="os.name" value="Windows 7"/>
-    <property name="classworlds.conf" value="C:\Maven\bin\..\bin\m2.conf"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="classworlds.conf" value="C:\mave\bin\..\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_91\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\tomcat-7.0.69;C:\Program Files\Java\jdk1.8.0_91\bin\;C:\Maven\bin\; C:\ProgramData\Oracle\Java\javapath;C:\Windows\SYSTEM32;C:\Windows;C:\Windows\SYSTEM32\WBEM;C:\Windows\SYSTEM32\WINDOWSPOWERSHELL\V1.0\;C:\PROGRAM FILES (X86)\INTEL\OPENCL SDK\2.0\BIN\X86;C:\PROGRAM FILES (X86)\INTEL\OPENCL SDK\2.0\BIN\X64;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files (x86)\Heroku\bin;C:\Program Files (x86)\git\cmd;C:\Program Files (x86)\Git\cmd;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v1.0\;C:\Program Files (x86)\Windows Kits\8.0\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\Windows Live\Shared;C:\Users\William Maximo\.dnx\bin;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_71\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\nodejs\;C:\Program Files\Sublime Text 3;C:\cmder;C:\mongoDB\bin\;C:\Program Files\Git\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\Heroku\bin;C:\Program Files (x86)\git\cmd;C:\Program Files (x86)\Git\cmd;C:\mave\bin;C:\Program Files\Java\jdk1.8.0_71\bin\ ;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Users\Douglas\AppData\Roaming\npm;C:\Users\Douglas\AppData\Local\atom\bin;C:\Program Files (x86)\Microsoft VS Code\bin;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="os.version" value="6.1"/>
-    <property name="user.home" value="C:\Users\William Maximo"/>
+    <property name="os.version" value="10.0"/>
+    <property name="user.home" value="C:\Users\Douglas"/>
     <property name="user.timezone" value="America/Sao_Paulo"/>
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
     <property name="java.specification.version" value="1.8"/>
     <property name="file.encoding" value="Cp1252"/>
-    <property name="user.name" value="William Maximo"/>
-    <property name="java.class.path" value="C:\Maven\bin\..\boot\plexus-classworlds-2.5.2.jar"/>
+    <property name="user.name" value="Douglas"/>
+    <property name="java.class.path" value="C:\mave\bin\..\boot\plexus-classworlds-2.5.2.jar"/>
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_91\jre"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_71\jre"/>
     <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean install"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="pt"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
     <property name="java.vm.info" value="mixed mode"/>
-    <property name="java.version" value="1.8.0_91"/>
-    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_91\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
-    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_91\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_91\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_91\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_91\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_91\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_91\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_91\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_91\jre\classes"/>
+    <property name="java.version" value="1.8.0_71"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_71\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_71\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_71\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_71\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_71\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_71\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_71\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_71\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_71\jre\classes"/>
     <property name="sun.stderr.encoding" value="cp850"/>
     <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="maven.home" value="C:\Maven\bin\.."/>
+    <property name="maven.home" value="C:\mave\bin\.."/>
     <property name="file.separator" value="\"/>
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -62,10 +62,10 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="deveInserirLogComSucesso" classname="br.com.rp.repository.LogRepositoryTest" time="0.63"/>
-  <testcase name="deveNaoInserirLogPorFaltaDeUsuario" classname="br.com.rp.repository.LogRepositoryTest" time="0.508"/>
-  <testcase name="deveFalharPoisNaoUsuarioNaoTem3Digitos" classname="br.com.rp.repository.LogRepositoryTest" time="0.232"/>
-  <testcase name="deveRecuperar2LogsExistentes" classname="br.com.rp.repository.LogRepositoryTest" time="0.138"/>
-  <testcase name="deveRemoverLogComSucesso" classname="br.com.rp.repository.LogRepositoryTest" time="0.105"/>
-  <testcase name="deveExistirDataAlteracao" classname="br.com.rp.repository.LogRepositoryTest" time="0.045"/>
+  <testcase name="deveInserirLogComSucesso" classname="br.com.rp.repository.LogRepositoryTest" time="0.284"/>
+  <testcase name="deveNaoInserirLogPorFaltaDeUsuario" classname="br.com.rp.repository.LogRepositoryTest" time="5.63"/>
+  <testcase name="deveFalharPoisNaoUsuarioNaoTem3Digitos" classname="br.com.rp.repository.LogRepositoryTest" time="3.627"/>
+  <testcase name="deveRecuperar2LogsExistentes" classname="br.com.rp.repository.LogRepositoryTest" time="0.036"/>
+  <testcase name="deveRemoverLogComSucesso" classname="br.com.rp.repository.LogRepositoryTest" time="0.034"/>
+  <testcase name="deveExistirDataAlteracao" classname="br.com.rp.repository.LogRepositoryTest" time="0"/>
 </testsuite>

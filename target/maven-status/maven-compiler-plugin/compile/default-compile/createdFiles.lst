@@ -1,5 +1,7 @@
+br\com\rp\repository\FuncionarioRepository.class
 br\com\rp\domain\Endereco.class
 br\com\rp\domain\BaseEntity.class
+br\com\rp\repository\impl\FuncionarioRepositoryImpl.class
 br\com\rp\repository\impl\AbstractRepositoryImpl.class
 br\com\rp\repository\LogRepository.class
 br\com\rp\rest\RootApplication.class

@@ -1,3 +1,4 @@
+br\com\rp\repository\FuncionarioRepositoryTest.class
 br\com\rp\repository\LogRepositoryTest.class
 br\com\rp\repository\TestEntityRepositoryTest.class
 br\com\rp\repository\service\LogServiceTest.class

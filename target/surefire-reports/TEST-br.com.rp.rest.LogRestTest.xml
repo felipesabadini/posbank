@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.com.rp.rest.LogRestTest" time="1.455" tests="1" errors="1" skipped="0" failures="0">
+<testsuite name="br.com.rp.rest.LogRestTest" time="0.075" tests="1" errors="1" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
-    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_91\jre\bin"/>
-    <property name="java.vm.version" value="25.91-b14"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_71\jre\bin"/>
+    <property name="java.vm.version" value="25.71-b15"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="maven.multiModuleProjectDirectory" value="C:\java\workspace\posbank"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\java\posbank"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=";"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -14,46 +14,46 @@
     <property name="user.script" value=""/>
     <property name="user.country" value="BR"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="sun.os.patch.level" value="Service Pack 1"/>
+    <property name="sun.os.patch.level" value=""/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\java\workspace\posbank"/>
-    <property name="java.runtime.version" value="1.8.0_91-b14"/>
+    <property name="user.dir" value="C:\java\posbank"/>
+    <property name="java.runtime.version" value="1.8.0_71-b15"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_91\jre\lib\endorsed"/>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_71\jre\lib\endorsed"/>
     <property name="os.arch" value="amd64"/>
-    <property name="java.io.tmpdir" value="C:\Users\WILLIA~1\AppData\Local\Temp\"/>
+    <property name="java.io.tmpdir" value="C:\Users\Douglas\AppData\Local\Temp\"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
-    <property name="os.name" value="Windows 7"/>
-    <property name="classworlds.conf" value="C:\Maven\bin\..\bin\m2.conf"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="classworlds.conf" value="C:\mave\bin\..\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_91\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\tomcat-7.0.69;C:\Program Files\Java\jdk1.8.0_91\bin\;C:\Maven\bin\; C:\ProgramData\Oracle\Java\javapath;C:\Windows\SYSTEM32;C:\Windows;C:\Windows\SYSTEM32\WBEM;C:\Windows\SYSTEM32\WINDOWSPOWERSHELL\V1.0\;C:\PROGRAM FILES (X86)\INTEL\OPENCL SDK\2.0\BIN\X86;C:\PROGRAM FILES (X86)\INTEL\OPENCL SDK\2.0\BIN\X64;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files (x86)\Heroku\bin;C:\Program Files (x86)\git\cmd;C:\Program Files (x86)\Git\cmd;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v1.0\;C:\Program Files (x86)\Windows Kits\8.0\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\Windows Live\Shared;C:\Users\William Maximo\.dnx\bin;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_71\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\nodejs\;C:\Program Files\Sublime Text 3;C:\cmder;C:\mongoDB\bin\;C:\Program Files\Git\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\Heroku\bin;C:\Program Files (x86)\git\cmd;C:\Program Files (x86)\Git\cmd;C:\mave\bin;C:\Program Files\Java\jdk1.8.0_71\bin\ ;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Users\Douglas\AppData\Roaming\npm;C:\Users\Douglas\AppData\Local\atom\bin;C:\Program Files (x86)\Microsoft VS Code\bin;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="os.version" value="6.1"/>
-    <property name="user.home" value="C:\Users\William Maximo"/>
+    <property name="os.version" value="10.0"/>
+    <property name="user.home" value="C:\Users\Douglas"/>
     <property name="user.timezone" value="America/Sao_Paulo"/>
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
     <property name="java.specification.version" value="1.8"/>
     <property name="file.encoding" value="Cp1252"/>
-    <property name="user.name" value="William Maximo"/>
-    <property name="java.class.path" value="C:\Maven\bin\..\boot\plexus-classworlds-2.5.2.jar"/>
+    <property name="user.name" value="Douglas"/>
+    <property name="java.class.path" value="C:\mave\bin\..\boot\plexus-classworlds-2.5.2.jar"/>
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_91\jre"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_71\jre"/>
     <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean install"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="pt"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
     <property name="java.vm.info" value="mixed mode"/>
-    <property name="java.version" value="1.8.0_91"/>
-    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_91\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
-    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_91\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_91\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_91\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_91\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_91\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_91\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_91\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_91\jre\classes"/>
+    <property name="java.version" value="1.8.0_71"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_71\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_71\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_71\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_71\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_71\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_71\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_71\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_71\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_71\jre\classes"/>
     <property name="sun.stderr.encoding" value="cp850"/>
     <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="maven.home" value="C:\Maven\bin\.."/>
+    <property name="maven.home" value="C:\mave\bin\.."/>
     <property name="file.separator" value="\"/>
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -62,169 +62,91 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="br.com.rp.rest.LogRestTest" classname="br.com.rp.rest.LogRestTest" time="1.455">
-    <error message="Could not invoke deployment method: public static org.jboss.shrinkwrap.api.spec.WebArchive br.com.rp.rest.AbstractRestTest.createTestArchive()" type="java.lang.RuntimeException">java.lang.RuntimeException: Could not invoke deployment method: public static org.jboss.shrinkwrap.api.spec.WebArchive br.com.rp.rest.AbstractRestTest.createTestArchive()
-	at org.jboss.arquillian.container.test.impl.client.deployment.AnnotationDeploymentScenarioGenerator.invoke(AnnotationDeploymentScenarioGenerator.java:181)
-	at org.jboss.arquillian.container.test.impl.client.deployment.AnnotationDeploymentScenarioGenerator.generateDeployment(AnnotationDeploymentScenarioGenerator.java:103)
-	at org.jboss.arquillian.container.test.impl.client.deployment.AnnotationDeploymentScenarioGenerator.generate(AnnotationDeploymentScenarioGenerator.java:64)
-	at org.jboss.arquillian.container.test.impl.client.deployment.DeploymentGenerator.generateDeployment(DeploymentGenerator.java:79)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.jboss.arquillian.core.impl.ObserverImpl.invoke(ObserverImpl.java:94)
-	at org.jboss.arquillian.core.impl.EventContextImpl.invokeObservers(EventContextImpl.java:99)
-	at org.jboss.arquillian.core.impl.EventContextImpl.proceed(EventContextImpl.java:81)
-	at org.jboss.arquillian.core.impl.ManagerImpl.fire(ManagerImpl.java:135)
-	at org.jboss.arquillian.core.impl.ManagerImpl.fire(ManagerImpl.java:115)
-	at org.jboss.arquillian.core.impl.EventImpl.fire(EventImpl.java:67)
-	at org.jboss.arquillian.container.test.impl.client.ContainerEventController.execute(ContainerEventController.java:100)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.jboss.arquillian.core.impl.ObserverImpl.invoke(ObserverImpl.java:94)
-	at org.jboss.arquillian.core.impl.EventContextImpl.invokeObservers(EventContextImpl.java:99)
-	at org.jboss.arquillian.core.impl.EventContextImpl.proceed(EventContextImpl.java:81)
-	at org.jboss.arquillian.test.impl.TestContextHandler.createClassContext(TestContextHandler.java:84)
-	at sun.reflect.GeneratedMethodAccessor13.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.jboss.arquillian.core.impl.ObserverImpl.invoke(ObserverImpl.java:94)
-	at org.jboss.arquillian.core.impl.EventContextImpl.proceed(EventContextImpl.java:88)
-	at org.jboss.arquillian.test.impl.TestContextHandler.createSuiteContext(TestContextHandler.java:65)
-	at sun.reflect.GeneratedMethodAccessor12.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.jboss.arquillian.core.impl.ObserverImpl.invoke(ObserverImpl.java:94)
-	at org.jboss.arquillian.core.impl.EventContextImpl.proceed(EventContextImpl.java:88)
-	at org.jboss.arquillian.core.impl.ManagerImpl.fire(ManagerImpl.java:135)
-	at org.jboss.arquillian.core.impl.ManagerImpl.fire(ManagerImpl.java:115)
-	at org.jboss.arquillian.test.impl.EventTestRunnerAdaptor.beforeClass(EventTestRunnerAdaptor.java:80)
-	at org.jboss.arquillian.junit.Arquillian$2.evaluate(Arquillian.java:182)
-	at org.jboss.arquillian.junit.Arquillian.multiExecute(Arquillian.java:314)
-	at org.jboss.arquillian.junit.Arquillian.access$100(Arquillian.java:46)
-	at org.jboss.arquillian.junit.Arquillian$3.evaluate(Arquillian.java:199)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
-	at org.jboss.arquillian.junit.Arquillian.run(Arquillian.java:147)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
-	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:200)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
-Caused by: java.lang.reflect.InvocationTargetException: null
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.jboss.arquillian.container.test.impl.client.deployment.AnnotationDeploymentScenarioGenerator.invoke(AnnotationDeploymentScenarioGenerator.java:177)
-	at org.jboss.arquillian.container.test.impl.client.deployment.AnnotationDeploymentScenarioGenerator.generateDeployment(AnnotationDeploymentScenarioGenerator.java:103)
-	at org.jboss.arquillian.container.test.impl.client.deployment.AnnotationDeploymentScenarioGenerator.generate(AnnotationDeploymentScenarioGenerator.java:64)
-	at org.jboss.arquillian.container.test.impl.client.deployment.DeploymentGenerator.generateDeployment(DeploymentGenerator.java:79)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.jboss.arquillian.core.impl.ObserverImpl.invoke(ObserverImpl.java:94)
-	at org.jboss.arquillian.core.impl.EventContextImpl.invokeObservers(EventContextImpl.java:99)
-	at org.jboss.arquillian.core.impl.EventContextImpl.proceed(EventContextImpl.java:81)
-	at org.jboss.arquillian.core.impl.ManagerImpl.fire(ManagerImpl.java:135)
-	at org.jboss.arquillian.core.impl.ManagerImpl.fire(ManagerImpl.java:115)
-	at org.jboss.arquillian.core.impl.EventImpl.fire(EventImpl.java:67)
-	at org.jboss.arquillian.container.test.impl.client.ContainerEventController.execute(ContainerEventController.java:100)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.jboss.arquillian.core.impl.ObserverImpl.invoke(ObserverImpl.java:94)
-	at org.jboss.arquillian.core.impl.EventContextImpl.invokeObservers(EventContextImpl.java:99)
-	at org.jboss.arquillian.core.impl.EventContextImpl.proceed(EventContextImpl.java:81)
-	at org.jboss.arquillian.test.impl.TestContextHandler.createClassContext(TestContextHandler.java:84)
-	at sun.reflect.GeneratedMethodAccessor13.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.jboss.arquillian.core.impl.ObserverImpl.invoke(ObserverImpl.java:94)
-	at org.jboss.arquillian.core.impl.EventContextImpl.proceed(EventContextImpl.java:88)
-	at org.jboss.arquillian.test.impl.TestContextHandler.createSuiteContext(TestContextHandler.java:65)
-	at sun.reflect.GeneratedMethodAccessor12.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.jboss.arquillian.core.impl.ObserverImpl.invoke(ObserverImpl.java:94)
-	at org.jboss.arquillian.core.impl.EventContextImpl.proceed(EventContextImpl.java:88)
-	at org.jboss.arquillian.core.impl.ManagerImpl.fire(ManagerImpl.java:135)
-	at org.jboss.arquillian.core.impl.ManagerImpl.fire(ManagerImpl.java:115)
-	at org.jboss.arquillian.test.impl.EventTestRunnerAdaptor.beforeClass(EventTestRunnerAdaptor.java:80)
-	at org.jboss.arquillian.junit.Arquillian$2.evaluate(Arquillian.java:182)
-	at org.jboss.arquillian.junit.Arquillian.multiExecute(Arquillian.java:314)
-	at org.jboss.arquillian.junit.Arquillian.access$100(Arquillian.java:46)
-	at org.jboss.arquillian.junit.Arquillian$3.evaluate(Arquillian.java:199)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
-	at org.jboss.arquillian.junit.Arquillian.run(Arquillian.java:147)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
-	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:200)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
-Caused by: java.lang.IllegalArgumentException: test-persistence.xml doesn't exist or can't be accessed
-	at org.jboss.shrinkwrap.impl.base.Validate.notNull(Validate.java:43)
-	at org.jboss.shrinkwrap.impl.base.container.ContainerBase.fileFromResource(ContainerBase.java:1966)
-	at org.jboss.shrinkwrap.impl.base.container.ContainerBase.addAsResource(ContainerBase.java:1032)
-	at br.com.rp.rest.AbstractRestTest.createTestArchive(AbstractRestTest.java:52)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.jboss.arquillian.container.test.impl.client.deployment.AnnotationDeploymentScenarioGenerator.invoke(AnnotationDeploymentScenarioGenerator.java:177)
-	at org.jboss.arquillian.container.test.impl.client.deployment.AnnotationDeploymentScenarioGenerator.generateDeployment(AnnotationDeploymentScenarioGenerator.java:103)
-	at org.jboss.arquillian.container.test.impl.client.deployment.AnnotationDeploymentScenarioGenerator.generate(AnnotationDeploymentScenarioGenerator.java:64)
-	at org.jboss.arquillian.container.test.impl.client.deployment.DeploymentGenerator.generateDeployment(DeploymentGenerator.java:79)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.jboss.arquillian.core.impl.ObserverImpl.invoke(ObserverImpl.java:94)
-	at org.jboss.arquillian.core.impl.EventContextImpl.invokeObservers(EventContextImpl.java:99)
-	at org.jboss.arquillian.core.impl.EventContextImpl.proceed(EventContextImpl.java:81)
-	at org.jboss.arquillian.core.impl.ManagerImpl.fire(ManagerImpl.java:135)
-	at org.jboss.arquillian.core.impl.ManagerImpl.fire(ManagerImpl.java:115)
-	at org.jboss.arquillian.core.impl.EventImpl.fire(EventImpl.java:67)
-	at org.jboss.arquillian.container.test.impl.client.ContainerEventController.execute(ContainerEventController.java:100)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.jboss.arquillian.core.impl.ObserverImpl.invoke(ObserverImpl.java:94)
-	at org.jboss.arquillian.core.impl.EventContextImpl.invokeObservers(EventContextImpl.java:99)
-	at org.jboss.arquillian.core.impl.EventContextImpl.proceed(EventContextImpl.java:81)
-	at org.jboss.arquillian.test.impl.TestContextHandler.createClassContext(TestContextHandler.java:84)
-	at sun.reflect.GeneratedMethodAccessor13.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.jboss.arquillian.core.impl.ObserverImpl.invoke(ObserverImpl.java:94)
-	at org.jboss.arquillian.core.impl.EventContextImpl.proceed(EventContextImpl.java:88)
-	at org.jboss.arquillian.test.impl.TestContextHandler.createSuiteContext(TestContextHandler.java:65)
-	at sun.reflect.GeneratedMethodAccessor12.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.jboss.arquillian.core.impl.ObserverImpl.invoke(ObserverImpl.java:94)
-	at org.jboss.arquillian.core.impl.EventContextImpl.proceed(EventContextImpl.java:88)
-	at org.jboss.arquillian.core.impl.ManagerImpl.fire(ManagerImpl.java:135)
-	at org.jboss.arquillian.core.impl.ManagerImpl.fire(ManagerImpl.java:115)
-	at org.jboss.arquillian.test.impl.EventTestRunnerAdaptor.beforeClass(EventTestRunnerAdaptor.java:80)
-	at org.jboss.arquillian.junit.Arquillian$2.evaluate(Arquillian.java:182)
-	at org.jboss.arquillian.junit.Arquillian.multiExecute(Arquillian.java:314)
-	at org.jboss.arquillian.junit.Arquillian.access$100(Arquillian.java:46)
-	at org.jboss.arquillian.junit.Arquillian$3.evaluate(Arquillian.java:199)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
-	at org.jboss.arquillian.junit.Arquillian.run(Arquillian.java:147)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
-	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:200)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+  <testcase name="deveRetornar2LogsPeloRest" classname="br.com.rp.rest.LogRestTest" time="0.075">
+    <error message="java.lang.ClassNotFoundException: org.glassfish.jersey.client.JerseyClientBuilder" type="java.lang.RuntimeException">java.lang.RuntimeException: java.lang.ClassNotFoundException: org.glassfish.jersey.client.JerseyClientBuilder
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:331)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at javax.ws.rs.client.FactoryFinder.newInstance(FactoryFinder.java:113)
+	at javax.ws.rs.client.FactoryFinder.find(FactoryFinder.java:206)
+	at javax.ws.rs.client.ClientBuilder.newBuilder(ClientBuilder.java:86)
+	at javax.ws.rs.client.ClientBuilder.newClient(ClientBuilder.java:114)
+	at br.com.rp.rest.LogRestTest.deveRetornar2LogsPeloRest(LogRestTest.java:26)
 </error>
+    <system-out><![CDATA[14:55:10,566 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-6) JBAS010418: Stopped Driver service with driver-name = vbank.war_org.h2.Driver_1_4
+14:55:10,568 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-6) JBAS017535: Unregistered web context: /vbank
+14:55:10,590 INFO  [org.jboss.as.jpa] (ServerService Thread Pool -- 101) JBAS011410: Stopping Persistence Unit (phase 2 of 2) Service 'vbank.war#vbankpu'
+14:55:10,590 INFO  [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 101) HHH000227: Running hbm2ddl schema export
+14:55:10,593 INFO  [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 101) HHH000230: Schema export complete
+14:55:10,595 INFO  [org.jboss.weld.deployer] (MSC service thread 1-8) JBAS016009: Stopping weld service for deployment vbank.war
+14:55:10,607 INFO  [org.jboss.as.jpa] (ServerService Thread Pool -- 101) JBAS011410: Stopping Persistence Unit (phase 1 of 2) Service 'vbank.war#vbankpu'
+14:55:10,608 INFO  [org.jboss.as.connector.subsystems.datasources] (MSC service thread 1-6) JBAS010409: Unbound data source [java:jboss/datasources/vbank]
+14:55:11,368 INFO  [org.jboss.as.server.deployment] (MSC service thread 1-7) JBAS015877: Stopped deployment vbank.war (runtime-name: vbank.war) in 804ms
+14:55:11,489 INFO  [org.jboss.as.repository] (management-handler-thread - 3) JBAS014901: Content removed from location C:\Users\Douglas\Desktop\tools\wildfly-8.1.0.Final\standalone\data\content\7d\f714fa502f9a691a03ef15ad5f74d0d2804543\content
+14:55:11,489 INFO  [org.jboss.as.server] (management-handler-thread - 3) JBAS018558: Undeployed "vbank.war" (runtime-name: "vbank.war")
+14:55:18,537 INFO  [org.jboss.as.repository] (management-handler-thread - 4) JBAS014900: Content added at location C:\Users\Douglas\Desktop\tools\wildfly-8.1.0.Final\standalone\data\content\61\6910a0ad8eeb42d4c446c1306e1d9049b3a142\content
+14:55:18,543 INFO  [org.jboss.as.server.deployment] (MSC service thread 1-6) JBAS015876: Starting deployment of "vbank.war" (runtime-name: "vbank.war")
+14:55:30,454 INFO  [org.jboss.as.jpa] (MSC service thread 1-2) JBAS011401: Read persistence.xml for vbankpu
+14:55:30,572 INFO  [org.jboss.as.connector.subsystems.datasources] (MSC service thread 1-4) JBAS010400: Bound data source [java:jboss/datasources/vbank]
+14:55:30,573 INFO  [org.jboss.as.jpa] (ServerService Thread Pool -- 101) JBAS011409: Starting Persistence Unit (phase 1 of 2) Service 'vbank.war#vbankpu'
+14:55:30,573 INFO  [org.hibernate.jpa.internal.util.LogHelper] (ServerService Thread Pool -- 101) HHH000204: Processing PersistenceUnitInfo [
+	name: vbankpu
+	...]
+14:55:30,661 INFO  [org.jboss.weld.deployer] (MSC service thread 1-8) JBAS016002: Processing weld deployment vbank.war
+14:55:30,672 INFO  [org.jboss.as.ejb3.deployment.processors.EjbJndiBindingsDeploymentUnitProcessor] (MSC service thread 1-8) JNDI bindings for session bean named TestEntityRepositoryImpl in deployment unit deployment "vbank.war" are as follows:
+
+	java:global/vbank/TestEntityRepositoryImpl!br.com.rp.repository.TestEntityRepository
+	java:app/vbank/TestEntityRepositoryImpl!br.com.rp.repository.TestEntityRepository
+	java:module/TestEntityRepositoryImpl!br.com.rp.repository.TestEntityRepository
+	java:global/vbank/TestEntityRepositoryImpl
+	java:app/vbank/TestEntityRepositoryImpl
+	java:module/TestEntityRepositoryImpl
+
+14:55:30,672 INFO  [org.jboss.as.ejb3.deployment.processors.EjbJndiBindingsDeploymentUnitProcessor] (MSC service thread 1-8) JNDI bindings for session bean named FuncionarioRepositoryImpl in deployment unit deployment "vbank.war" are as follows:
+
+	java:global/vbank/FuncionarioRepositoryImpl!br.com.rp.repository.FuncionarioRepository
+	java:app/vbank/FuncionarioRepositoryImpl!br.com.rp.repository.FuncionarioRepository
+	java:module/FuncionarioRepositoryImpl!br.com.rp.repository.FuncionarioRepository
+	java:global/vbank/FuncionarioRepositoryImpl
+	java:app/vbank/FuncionarioRepositoryImpl
+	java:module/FuncionarioRepositoryImpl
+
+14:55:30,673 INFO  [org.jboss.as.ejb3.deployment.processors.EjbJndiBindingsDeploymentUnitProcessor] (MSC service thread 1-8) JNDI bindings for session bean named LogRepositoryImpl in deployment unit deployment "vbank.war" are as follows:
+
+	java:global/vbank/LogRepositoryImpl!br.com.rp.repository.LogRepository
+	java:app/vbank/LogRepositoryImpl!br.com.rp.repository.LogRepository
+	java:module/LogRepositoryImpl!br.com.rp.repository.LogRepository
+	java:global/vbank/LogRepositoryImpl
+	java:app/vbank/LogRepositoryImpl
+	java:module/LogRepositoryImpl
+
+14:55:30,709 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-6) JBAS010403: Deploying JDBC-compliant driver class org.h2.Driver (version 1.4)
+14:55:30,710 INFO  [org.jboss.weld.deployer] (MSC service thread 1-6) JBAS016005: Starting Services for CDI deployment: vbank.war
+14:55:30,715 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-1) JBAS010417: Started Driver service with driver-name = vbank.war_org.h2.Driver_1_4
+14:55:30,717 INFO  [org.jboss.weld.deployer] (MSC service thread 1-6) JBAS016008: Starting weld service for deployment vbank.war
+14:55:30,723 INFO  [org.jboss.as.jpa] (ServerService Thread Pool -- 101) JBAS011409: Starting Persistence Unit (phase 2 of 2) Service 'vbank.war#vbankpu'
+14:55:30,736 INFO  [org.hibernate.dialect.Dialect] (ServerService Thread Pool -- 101) HHH000400: Using dialect: org.hibernate.dialect.HSQLDialect
+14:55:30,772 INFO  [org.hibernate.tuple.PojoInstantiator] (ServerService Thread Pool -- 101) HHH000182: No default (no-argument) constructor for class: br.com.rp.domain.Email (class must be instantiated by Interceptor)
+14:55:30,774 INFO  [org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory] (ServerService Thread Pool -- 101) HHH000397: Using ASTQueryTranslatorFactory
+14:55:30,810 INFO  [org.hibernate.tuple.PojoInstantiator] (ServerService Thread Pool -- 101) HHH000182: No default (no-argument) constructor for class: br.com.rp.domain.Email (class must be instantiated by Interceptor)
+14:55:30,810 INFO  [org.hibernate.tuple.PojoInstantiator] (ServerService Thread Pool -- 101) HHH000182: No default (no-argument) constructor for class: br.com.rp.domain.Email (class must be instantiated by Interceptor)
+14:55:30,812 INFO  [org.hibernate.tuple.PojoInstantiator] (ServerService Thread Pool -- 101) HHH000182: No default (no-argument) constructor for class: br.com.rp.domain.Email (class must be instantiated by Interceptor)
+14:55:30,813 INFO  [org.hibernate.tuple.PojoInstantiator] (ServerService Thread Pool -- 101) HHH000182: No default (no-argument) constructor for class: br.com.rp.domain.Email (class must be instantiated by Interceptor)
+14:55:30,857 INFO  [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 101) HHH000227: Running hbm2ddl schema export
+14:55:30,859 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 101) HHH000389: Unsuccessful: drop sequence hibernate_sequence
+14:55:30,860 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 101) Sequence "HIBERNATE_SEQUENCE" not found; SQL statement:
+drop sequence hibernate_sequence [90036-173]
+14:55:30,865 INFO  [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 101) HHH000230: Schema export complete
+14:55:30,870 INFO  [org.hibernate.tuple.PojoInstantiator] (ServerService Thread Pool -- 101) HHH000182: No default (no-argument) constructor for class: br.com.rp.domain.Email (class must be instantiated by Interceptor)
+14:55:30,871 INFO  [org.hibernate.tuple.PojoInstantiator] (ServerService Thread Pool -- 101) HHH000182: No default (no-argument) constructor for class: br.com.rp.domain.Email (class must be instantiated by Interceptor)
+14:55:30,871 INFO  [org.hibernate.tuple.PojoInstantiator] (ServerService Thread Pool -- 101) HHH000182: No default (no-argument) constructor for class: br.com.rp.domain.Email (class must be instantiated by Interceptor)
+14:55:31,784 INFO  [org.jboss.resteasy.spi.ResteasyDeployment] (MSC service thread 1-5) Deploying javax.ws.rs.core.Application: class br.com.rp.rest.RootApplication
+14:55:32,044 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-5) JBAS017534: Registered web context: /vbank
+14:55:32,150 INFO  [org.jboss.as.server] (management-handler-thread - 4) JBAS018559: Deployed "vbank.war" (runtime-name : "vbank.war")
+/vbank//api/log
+]]></system-out>
   </testcase>
 </testsuite>
