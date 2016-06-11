@@ -6,8 +6,14 @@ import javax.persistence.Embeddable;
 public class Email {
 	private String value;
 	
+	public Email() {}
+	
 	public Email(String value) {
 		this.value = value;
+	}
+	
+	public String getValue() {
+		return this.value;
 	}
 	
 	public String toString() {

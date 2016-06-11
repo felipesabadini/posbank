@@ -11,13 +11,15 @@ public class Cliente extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
 
+	@Column(name = "nome")
 	private String nome;
 	
 	@AttributeOverride(name="value", column=@Column(name="cpf"))
 	private Cpf cpf;
 	
-	private Endereco endereco;;
+	private Endereco endereco;
 	
+	@AttributeOverride(name="value", column=@Column(name="email"))
 	private Email email;
 
 	public String getNome() {
