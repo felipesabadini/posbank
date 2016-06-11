@@ -4,19 +4,22 @@ import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name="funcionario")
+@Table(name = "funcionario")
 public class Funcionario extends BaseEntity {
-	
+
+	@Column(name = "nome", nullable = false, length = 200)
+	@Size(min = 2, max = 200)
 	private String nome;
-	
-	@AttributeOverride(name="value", column=@Column(name="cpf"))
+
+	@AttributeOverride(name = "value", column = @Column(name = "cpf"))
 	private Cpf cpf;
-	
+
 	private Endereco endereco;
-	
+
 	private Cargo cargo;
 
 	public String getNome() {

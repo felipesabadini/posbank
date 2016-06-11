@@ -17,6 +17,7 @@ import org.junit.Before;
 import org.junit.runner.RunWith;
 
 import br.com.rp.domain.Log;
+import br.com.rp.repository.FuncionarioRepositoryTest;
 import br.com.rp.repository.LogRepositoryTest;
 import br.com.rp.repository.Repository;
 import br.com.rp.repository.impl.AbstractRepositoryImpl;
@@ -52,6 +53,7 @@ public abstract class AbstractTest {
 				.addPackage(LogRepositoryTest.class.getPackage())
 				.addPackage(LogService.class.getPackage())
 				.addPackage(LogServiceTest.class.getPackage())
+				.addPackage(FuncionarioRepositoryTest.class.getPackage())
 				.addAsResource("test-persistence.xml", "META-INF/persistence.xml")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml").addAsWebInfResource("cesumar-ds.xml")
 				.addAsLibraries(deps);
