@@ -2,7 +2,11 @@ package br.com.rp.domain;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="cliente")
 public class Cliente extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;

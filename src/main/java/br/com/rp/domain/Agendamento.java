@@ -3,7 +3,12 @@ package br.com.rp.domain;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 @SuppressWarnings("serial")
+@Entity
+@Table(name="agendamento")
 public class Agendamento extends  BaseEntity {
 	
 	private Timestamp dataCadastro;

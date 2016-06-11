@@ -2,7 +2,12 @@ package br.com.rp.domain;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 @SuppressWarnings("serial")
+@Entity
+@Table(name="conta")
 public class Conta extends BaseEntity {
 	
 	private Agencia agencia;

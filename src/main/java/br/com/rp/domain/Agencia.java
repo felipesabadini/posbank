@@ -1,6 +1,11 @@
 package br.com.rp.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 @SuppressWarnings("serial")
+@Entity
+@Table(name="agencia")
 public class Agencia extends BaseEntity {
 	
 	private String nome;

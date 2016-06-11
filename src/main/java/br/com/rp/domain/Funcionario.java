@@ -2,8 +2,12 @@ package br.com.rp.domain;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @SuppressWarnings("serial")
+@Entity
+@Table(name="funcionario")
 public class Funcionario extends BaseEntity {
 	
 	private String nome;

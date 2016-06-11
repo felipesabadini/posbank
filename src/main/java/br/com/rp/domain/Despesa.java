@@ -3,6 +3,11 @@ package br.com.rp.domain;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="despesa")
 public class Despesa extends BaseEntity {
 	
 	private Cartao cartao;

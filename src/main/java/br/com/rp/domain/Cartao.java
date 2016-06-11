@@ -3,7 +3,12 @@ package br.com.rp.domain;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 @SuppressWarnings("serial")
+@Entity
+@Table(name="cartao")
 public class Cartao extends BaseEntity {
 	
 	private Conta conta;
