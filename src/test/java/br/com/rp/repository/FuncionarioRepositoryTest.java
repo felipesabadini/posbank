@@ -49,11 +49,9 @@ public class FuncionarioRepositoryTest extends AbstractTest {
 	}
 	
 	@Test
+	@UsingDataSet("db/funcionario.xml")
 	public void testeC_consegueDeletarRegistro(){
-		Funcionario funcionario = dao.findById(FUNCIONARIO_TESTE_ID);
-		Assert.assertNotNull(funcionario);
-		
-		dao.remove(funcionario.getId());
+		dao.remove(FUNCIONARIO_TESTE_ID);
 		Assert.assertEquals(0, dao.getAll().size());
 	}
 	
