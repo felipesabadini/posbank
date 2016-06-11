@@ -1,18 +1,24 @@
 package br.com.rp.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 public class Endereco {
 	
+	@Column(name="endereco", length=100)
 	private String endereco;
 	
+	@Column(name="numero", length=10)
 	private String numero;
 	
+	@Column(name="bairro", length=100)
 	private String bairro;
 	
+	@Column(name="cidade")
 	private String cidade; 
 	
+	@Column(name="uf", length=2)
 	private String uf;
 
 	public String getEndereco() {

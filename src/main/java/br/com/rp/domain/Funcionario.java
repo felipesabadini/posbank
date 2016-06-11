@@ -20,6 +20,7 @@ public class Funcionario extends BaseEntity {
 
 	private Endereco endereco;
 
+	@Column(name="cargo")
 	private Cargo cargo;
 
 	public String getNome() {
