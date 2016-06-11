@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @SuppressWarnings("serial")
@@ -11,6 +13,8 @@ import javax.persistence.Table;
 @Table(name="cartao")
 public class Cartao extends BaseEntity {
 	
+	@ManyToOne
+	@JoinColumn(name="conta_id")
 	private Conta conta;
 	
 	private BigDecimal limite;

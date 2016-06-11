@@ -3,6 +3,8 @@ package br.com.rp.domain;
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @SuppressWarnings("serial")
@@ -10,6 +12,8 @@ import javax.persistence.Table;
 @Table(name="conta")
 public class Conta extends BaseEntity {
 	
+	@ManyToOne
+	@JoinColumn(name="agencia_id")
 	private Agencia agencia;
 	
 	private Integer numero;

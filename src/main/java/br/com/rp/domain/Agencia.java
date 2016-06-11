@@ -1,6 +1,8 @@
 package br.com.rp.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @SuppressWarnings("serial")
@@ -10,6 +12,8 @@ public class Agencia extends BaseEntity {
 	
 	private String nome;
 	
+	@ManyToOne()
+	@JoinColumn(name="banco_id")
 	private Banco banco;
 
 	public String getNome() {
