@@ -1,3 +1,6 @@
 target/
 targer/**
 src/test/resources/arquillian.xml
+.classpath
+.project
+.settings/

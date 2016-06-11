@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: br.com.rp.repository.service.LogServiceTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 30.692 sec - in br.com.rp.repository.service.LogServiceTest
