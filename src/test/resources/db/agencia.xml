@@ -1,4 +1,3 @@
 <dataset>
-	<banco id="1000" nome="BANCO_TESTE" />
-	<agencia id="1000" nome="AGENCIA TESTE" />
+	<agencia id="1000" nome="AGENCIA TESTE" banco_id="1000" />
 </dataset>

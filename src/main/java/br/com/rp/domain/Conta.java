@@ -2,6 +2,7 @@ package br.com.rp.domain;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,12 +17,16 @@ public class Conta extends BaseEntity {
 	@JoinColumn(name="agencia_id")
 	private Agencia agencia;
 	
+	@Column(name="numero", nullable=false)
 	private Integer numero;
 	
+	@Column(name="tipo_conta", nullable=false)
 	private TipoConta tipoConta;
 	
+	@Column(name="saldo", nullable=false)
 	private BigDecimal saldo;
 	
+	@Column(name="limite", nullable=false)
 	private BigDecimal limite;
 
 	public Agencia getAgencia() {

@@ -1,5 +1,7 @@
 package br.com.rp.repository;
 
+import java.math.BigDecimal;
+
 import javax.ejb.EJB;
 
 import org.jboss.arquillian.persistence.CleanupUsingScript;
@@ -12,34 +14,39 @@ import org.junit.runners.MethodSorters;
 
 import br.com.rp.AbstractTest;
 import br.com.rp.domain.Agencia;
-import br.com.rp.domain.Banco;
+import br.com.rp.domain.Conta;
+import br.com.rp.domain.TipoConta;
+import br.com.rp.repository.impl.ContaRepository;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-@CleanupUsingScript(phase = TestExecutionPhase.AFTER, value={"db/banco_delete.sql"})
-public class AgenciaRepositoryTest extends AbstractTest {
+@CleanupUsingScript(phase = TestExecutionPhase.AFTER, value={"db/conta_delete.sql"})
+public class ContaRepositoryTest extends AbstractTest {
 	
 	private final Long AGENCIA_TESTE_ID = 1000l;
-	private final Long BANCO_TESTE_ID = 1000l;
 	
 	@EJB
-	private AgenciaRepository dao;
+	private ContaRepository dao;
 	@EJB
-	private BancoRepository daoBanco;
+	private AgenciaRepository daoAgencia;
 	
 	@Test
-	@UsingDataSet({"db/banco.xml"})
+	@UsingDataSet({"db/banco.xml", "db/agencia.xml"})
 	public void testeA_consegueInserirNoBanco(){
-		Banco banco = daoBanco.findById(BANCO_TESTE_ID);
-		Assert.assertNotNull(banco);
+		Agencia agencia = daoAgencia.findById(AGENCIA_TESTE_ID);
+		Assert.assertNotNull(agencia);
 		
-		Agencia agencia = new Agencia();
-		agencia.setNome("856-7");
-		agencia.setBanco(banco);
-		dao.save(agencia);	
+		Conta conta = new Conta();
+		conta.setAgencia(agencia);
+		conta.setLimite(new BigDecimal("1000.00"));
+		conta.setNumero(12345);
+		conta.setSaldo(new BigDecimal("150.00"));
+		conta.setTipoConta(TipoConta.CONTA_CORRENTE);
+		
+		dao.save(conta);	
 		Assert.assertNotNull(agencia.getId());
 	}
 	
-	@Test
+	/*@Test
 	@UsingDataSet({"db/banco.xml", "db/agencia.xml"})
 	public void testeB_consegueAtualizarRegistro(){
 		Agencia agencia = dao.findById(AGENCIA_TESTE_ID);
@@ -64,5 +71,5 @@ public class AgenciaRepositoryTest extends AbstractTest {
 	public void testeD_consegueRecuperarRegistro(){
 		Agencia agencia = dao.findById(AGENCIA_TESTE_ID);
 		Assert.assertNotNull(agencia);
-	}
+	}*/
 }

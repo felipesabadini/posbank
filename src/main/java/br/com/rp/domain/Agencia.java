@@ -1,5 +1,6 @@
 package br.com.rp.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -12,7 +13,7 @@ public class Agencia extends BaseEntity {
 	
 	private String nome;
 	
-	@ManyToOne()
+	@ManyToOne(cascade={CascadeType.ALL})
 	@JoinColumn(name="banco_id")
 	private Banco banco;
 
