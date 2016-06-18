@@ -2,6 +2,7 @@ package br.com.rp.domain;
 
 import java.math.BigDecimal;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -31,6 +32,10 @@ public class Conta extends BaseEntity {
 	
 	@Column(name="limite", nullable=false)
 	private BigDecimal limite;
+	
+	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinColumn(name="cliente_id", nullable=false)
+	private Cliente cliente;
 
 	public Agencia getAgencia() {
 		return agencia;
@@ -70,5 +75,13 @@ public class Conta extends BaseEntity {
 
 	public void setLimite(BigDecimal limite) {
 		this.limite = limite;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 }

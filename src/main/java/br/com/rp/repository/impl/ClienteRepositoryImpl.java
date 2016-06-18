@@ -1,6 +1,7 @@
 package br.com.rp.repository.impl;
 
 import javax.ejb.Stateless;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import br.com.rp.domain.Cliente;
@@ -19,7 +20,14 @@ public class ClienteRepositoryImpl extends AbstractRepositoryImpl<Cliente> imple
 		
 		Query query = em.createQuery("select c from Cliente c where c.cpf = :cpf", Cliente.class);
 		query.setParameter("cpf", cpf);
-
-		return (Cliente) query.getSingleResult();
+		Object objeto; 
+		
+		try {
+			objeto = query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+		
+		return (Cliente) objeto;
 	}
 }

@@ -20,9 +20,9 @@ public class ClienteServiceImpl implements ClienteService{
 	@Override
 	public boolean realizarTransferencia(Long clienteId, Long contaOrigemId, Long contaDestinoId, BigDecimal valor) {
 		
+		MovimentacaoServiceImpl movimentacaoServiceImpl = new MovimentacaoServiceImpl();
 		
-		
-		return false;
+		return movimentacaoServiceImpl.realizarTransferencia(contaOrigemId, contaDestinoId, valor);
 	}
 
 	@Override
@@ -33,9 +33,13 @@ public class ClienteServiceImpl implements ClienteService{
 		clienteBanco.setEndereco(cliente.getEndereco());
 		clienteBanco.setEmail(cliente.getEmail());
 		
-		clienteRepository.save(clienteBanco);
-				
-		return false;
+		try {
+			clienteRepository.save(clienteBanco);
+		} catch (Exception e) {
+			return false;
+		}
+		
+		return true;
 	}
 
 	@Override

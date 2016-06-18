@@ -14,6 +14,7 @@ import org.junit.runners.MethodSorters;
 
 import br.com.rp.AbstractTest;
 import br.com.rp.domain.Agencia;
+import br.com.rp.domain.Cliente;
 import br.com.rp.domain.Conta;
 import br.com.rp.domain.TipoConta;
 
@@ -25,16 +26,24 @@ public class ContaRepositoryTest extends AbstractTest {
 	
 	private final Long CONTA_TESTE_ID = 1000L;
 	
+	private final Long CLIENTE_TESTE_ID = 100L;
+	
 	@EJB
 	private ContaRepository dao;
 	@EJB
 	private AgenciaRepository daoAgencia;
+	@EJB
+	private ClienteRepository clienteRepository;
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml"})
+	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml"})
 	public void testeA_consegueInserirNoBanco(){
 		Agencia agencia = daoAgencia.findById(AGENCIA_TESTE_ID);
+		Cliente cliente = clienteRepository.findById(CLIENTE_TESTE_ID);
+		
+		
 		Assert.assertNotNull(agencia);
+		Assert.assertNotNull(cliente);
 		
 		Conta conta = new Conta();
 		conta.setAgencia(agencia);
@@ -42,7 +51,7 @@ public class ContaRepositoryTest extends AbstractTest {
 		conta.setNumero(12345);
 		conta.setSaldo(new BigDecimal("150.00"));
 		conta.setTipoConta(TipoConta.CC);
-		
+		conta.setCliente(cliente);
 		
 		dao.save(conta);	
 		Assert.assertNotNull(agencia.getId());
@@ -65,7 +74,7 @@ public class ContaRepositoryTest extends AbstractTest {
 	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/conta.xml"})
 	public void testeC_consegueDeletarRegistro(){
 		dao.remove(CONTA_TESTE_ID);
-		Assert.assertEquals(0, dao.getAll().size());
+		Assert.assertEquals(1, dao.getAll().size());
 	}
 	
 	@Test
