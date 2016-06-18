@@ -18,6 +18,8 @@ import br.com.rp.repository.LogRepositoryTest;
 import br.com.rp.repository.Repository;
 import br.com.rp.repository.impl.AbstractRepositoryImpl;
 import br.com.rp.repository.service.LogServiceTest;
+import br.com.rp.rest.LogRest;
+import br.com.rp.rest.LogRestTest;
 import br.com.rp.service.ClienteServiceTest;
 import br.com.rp.service.MovimentacaoServiceTest;
 import br.com.rp.services.LogService;
@@ -57,6 +59,9 @@ public abstract class AbstractTest {
 				.addPackages(false, SaldoInsuficienteException.class.getPackage())
 				.addPackages(false, ClienteServiceImpl.class.getPackage())
 				.addPackages(false, LogServiceTest.class.getPackage())
+				.addPackages(false, LogRest.class.getPackage())
+				.addPackages(false, LogRestTest.class.getPackage())
+				
 				.addAsResource("test-persistence.xml", "META-INF/persistence.xml")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml").addAsWebInfResource("cesumar-ds.xml")
 				.addAsLibraries(deps);
