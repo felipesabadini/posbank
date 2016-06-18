@@ -6,6 +6,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import br.com.rp.domain.Banco;
+import br.com.rp.domain.BaseEntity;
+
 @SuppressWarnings("serial")
 @Entity
 @Table(name="agencia")

@@ -68,7 +68,14 @@
 				<version>2.2.0-alpha-2</version>
 			</dependency>
 			<!-- arquillian -->
-
+			
+			<dependency>
+				<groupId>sun.jdk</groupId>
+				<artifactId>jconsole</artifactId>
+				<version>1.8</version>
+				<scope>system</scope>
+				<systemPath>C:\Program Files\Java\jdk1.8.0_71\lib\jconsole.jar</systemPath>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -174,12 +181,8 @@
 			<scope>test</scope>
 		</dependency>
 
-<!-- 		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-client</artifactId>
-			<version>3.0.2.Final</version>
-			<scope>test</scope>
-		</dependency> -->
+		<!-- <dependency> <groupId>org.jboss.resteasy</groupId> <artifactId>resteasy-client</artifactId> 
+			<version>3.0.2.Final</version> <scope>test</scope> </dependency> -->
 
 	</dependencies>
 
