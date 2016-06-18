@@ -31,7 +31,7 @@ public class Movimentacao extends BaseEntity {
 	@Column(name="data_movimentacao", nullable=false)
 	private Timestamp dataMovimentacao;
 	
-	@Column(name="descricao", nullable=false)
+	@Column(name="descricao", nullable=true)
 	private String descricao;
 	
 	@Enumerated(EnumType.STRING)
