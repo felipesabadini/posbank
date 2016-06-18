@@ -67,15 +67,7 @@
 				<scope>test</scope>
 				<version>2.2.0-alpha-2</version>
 			</dependency>
-			<!-- arquillian -->
-			
-			<dependency>
-				<groupId>sun.jdk</groupId>
-				<artifactId>jconsole</artifactId>
-				<version>1.8</version>
-				<scope>system</scope>
-				<systemPath>C:\Program Files\Java\jdk1.8.0_71\lib\jconsole.jar</systemPath>
-			</dependency>
+			<!-- arquillian -->			
 		</dependencies>
 	</dependencyManagement>
 
