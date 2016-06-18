@@ -13,20 +13,21 @@ import org.jboss.arquillian.test.api.ArquillianResource;
 import org.junit.Assert;
 import org.junit.Test;
 
+import br.com.rp.AbstractTest;
 import br.com.rp.domain.Log;
 
-public class LogRestTest extends AbstractRestTest {
+public class LogRestTest extends AbstractTest {
 
 	private static final String URL = "http://localhost:8080/vbank/api/log";
 
 	@Test
 	@UsingDataSet("db/log.xml")
-	public void deveRetornar2LogsPeloRest(@ArquillianResource URL baseURI) {
+	public void deveRetornar2LogsPeloRest() {
 		Client client = ClientBuilder.newClient();
 		WebTarget target = client.target(URL);
 		Response response = target.request().get();
-		List<Log> logs = response.readEntity(List.class);
-		
+		Assert.assertEquals(Integer.valueOf(200), Integer.valueOf(response.getStatus()));
+		List<Log> logs = (List<Log>) response.readEntity(List.class);
 		Assert.assertEquals(2, logs.size());
 	}
 

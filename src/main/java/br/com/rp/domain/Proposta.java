@@ -3,6 +3,7 @@ package br.com.rp.domain;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,6 +11,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import br.com.rp.util.Util;
 
 @SuppressWarnings("serial")
 @Entity
@@ -19,13 +22,12 @@ public class Proposta extends BaseEntity {
 	@Column(name = "dataCadastro")
 	private Timestamp dataCadastro;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 	
 	@Column(name = "rendimento")
 	private BigDecimal rendimento;
-	
 	
 	@ManyToOne
 	@JoinColumn(name = "funcionario_id")
@@ -39,7 +41,12 @@ public class Proposta extends BaseEntity {
 
 	@Enumerated(EnumType.STRING)
 	private SituacaoProposta situacao;
-
+	
+	public Proposta() {
+		this.dataCadastro = Util.getDataHoraAtual();
+		this.situacao = SituacaoProposta.REC;
+	}
+	
 	public Timestamp getDataCadastro() {
 		return dataCadastro;
 	}
