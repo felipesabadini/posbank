@@ -56,7 +56,7 @@ public class MovimentacaoServiceImpl implements MovimentacaoService {
 		Movimentacao movimentacao = new Movimentacao();
 		movimentacao.setConta(conta);
 		movimentacao.setDataMovimentacao(Util.getDataHoraAtual());
-		movimentacao.setTipoOperaacao(tipoOperacao);
+		movimentacao.setTipoOperacao(tipoOperacao);
 		movimentacao.setValor(valor);
 		movimentacao.setTipoMovimentacao(tipoMovimentacao);
 		

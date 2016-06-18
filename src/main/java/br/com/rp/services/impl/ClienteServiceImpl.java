@@ -3,12 +3,14 @@ package br.com.rp.services.impl;
 import java.math.BigDecimal;
 
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 
 import br.com.rp.domain.Cliente;
 import br.com.rp.domain.Cpf;
 import br.com.rp.repository.ClienteRepository;
 import br.com.rp.services.ClienteService;
 
+@Stateless
 public class ClienteServiceImpl implements ClienteService{
 	
 	@EJB
