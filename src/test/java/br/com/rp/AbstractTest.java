@@ -19,7 +19,10 @@ import br.com.rp.repository.Repository;
 import br.com.rp.repository.impl.AbstractRepositoryImpl;
 import br.com.rp.repository.service.LogServiceTest;
 import br.com.rp.service.ClienteServiceTest;
+import br.com.rp.service.MovimentacaoServiceTest;
 import br.com.rp.services.LogService;
+import br.com.rp.services.exception.SaldoInsuficienteException;
+import br.com.rp.services.impl.ClienteServiceImpl;
 
 @RunWith(Arquillian.class)
 public abstract class AbstractTest {
@@ -49,9 +52,11 @@ public abstract class AbstractTest {
 				.addPackages(false, AbstractRepositoryImpl.class.getPackage())
 				.addPackages(false, AbstractTest.class.getPackage())
 				.addPackages(false, ClienteServiceTest.class.getPackage())
-				.addPackage(LogRepositoryTest.class.getPackage())
-				.addPackage(LogService.class.getPackage())
-				.addPackage(LogServiceTest.class.getPackage())
+				.addPackages(false, LogRepositoryTest.class.getPackage())
+				.addPackages(false, LogService.class.getPackage())
+				.addPackages(false, SaldoInsuficienteException.class.getPackage())
+				.addPackages(false, ClienteServiceImpl.class.getPackage())
+				.addPackages(false, LogServiceTest.class.getPackage())
 				.addAsResource("test-persistence.xml", "META-INF/persistence.xml")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml").addAsWebInfResource("cesumar-ds.xml")
 				.addAsLibraries(deps);
