@@ -1,4 +1,4 @@
-package br.com.rp.services;
+package br.com.rp.service;
 
 import javax.ejb.EJB;
 
@@ -30,7 +30,6 @@ public class ClienteServiceTest extends AbstractTest {
 	}
 	
 	@Test
-	@UsingDataSet("db/cliente.xml")
 	public void testaCpfInesistente() {
 		
 		Cliente clienteResult = this.clientereposiroy.findClienteByCpf(new Cpf("05972184125"));
