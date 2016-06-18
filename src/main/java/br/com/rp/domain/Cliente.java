@@ -3,6 +3,8 @@ package br.com.rp.domain;
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +23,13 @@ public class Cliente extends BaseEntity {
 	
 	@AttributeOverride(name="value", column=@Column(name="email"))
 	private Email email;
+	
+	@Enumerated(EnumType.STRING)
+	private SituacaoCliente situacao;
+	
+	public Cliente() {
+		this.situacao = SituacaoCliente.INATIVO;
+	}
 
 	public String getNome() {
 		return nome;

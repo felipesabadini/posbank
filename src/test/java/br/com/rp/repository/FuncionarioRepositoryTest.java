@@ -12,6 +12,7 @@ import br.com.rp.AbstractTest;
 import br.com.rp.domain.Cargo;
 import br.com.rp.domain.Cpf;
 import br.com.rp.domain.Funcionario;
+import br.com.rp.repository.FuncionarioRepository;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FuncionarioRepositoryTest extends AbstractTest {

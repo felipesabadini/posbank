@@ -10,4 +10,6 @@ import br.com.rp.domain.Proposta;
 public interface PropostaRepository extends Repository<Proposta> {
 	
 	List<Proposta> procurarPorPropostasComMenosDe30DiasDoCliente(Cliente cliente);
+
+	Boolean verificarSeOClienteJaEstaAtivo(Cliente cliente);
 }
