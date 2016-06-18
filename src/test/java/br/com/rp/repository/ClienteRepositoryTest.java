@@ -2,6 +2,7 @@ package br.com.rp.repository;
 
 import javax.ejb.EJB;
 
+import org.jboss.arquillian.persistence.UsingDataSet;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -31,5 +32,23 @@ public class ClienteRepositoryTest extends AbstractTest {
 		
 		clienteRepository.save(cliente);
 		Assert.assertNotNull(cliente.getId());
+	}
+	
+	@Test
+	@UsingDataSet("db/cliente.xml")
+	public void deveRemoverUmCliente() {
+		this.clienteRepository.remove(100L);
+		Cliente cliente = this.clienteRepository.findById(100L);
+		Assert.assertNull(cliente);
+	}
+	
+	@Test
+	@UsingDataSet("db/cliente.xml")
+	public void deveAtualizarONome() {
+		Cliente cliente = this.clienteRepository.findById(100L);
+		cliente.setNome("Joao");
+		this.clienteRepository.save(cliente);
+		
+		Assert.assertEquals("Joao", cliente.getNome());
 	}
 }

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<cliente id="100" nome="Cliente TESTE" cpf="38803672303" endereco="RUA X" numero="123" bairro="VILA" cidade="MARINGA" uf="PR"/>
+</dataset>
