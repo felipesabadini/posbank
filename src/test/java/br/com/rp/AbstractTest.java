@@ -19,6 +19,10 @@ import br.com.rp.repository.Repository;
 import br.com.rp.repository.impl.AbstractRepositoryImpl;
 import br.com.rp.repository.service.LogServiceTest;
 import br.com.rp.services.LogService;
+import br.com.rp.services.PropostaService;
+import br.com.rp.services.exception.ClienteComPropostaComMenosDe30DiasException;
+import br.com.rp.services.exception.SaldoInsuficienteException;
+import br.com.rp.services.impl.PropostaServiceImpl;
 
 @RunWith(Arquillian.class)
 public abstract class AbstractTest {
@@ -47,6 +51,9 @@ public abstract class AbstractTest {
 				.addPackages(false, Repository.class.getPackage())
 				.addPackages(false, AbstractRepositoryImpl.class.getPackage())
 				.addPackages(false, AbstractTest.class.getPackage())
+				.addPackages(false, PropostaServiceImpl.class.getPackage())
+				.addPackages(false, PropostaService.class.getPackage())
+				.addPackages(false, SaldoInsuficienteException.class.getPackage())
 				.addPackage(LogRepositoryTest.class.getPackage())
 				.addPackage(LogService.class.getPackage())
 				.addPackage(LogServiceTest.class.getPackage())

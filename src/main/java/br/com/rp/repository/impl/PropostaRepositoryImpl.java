@@ -1,9 +1,14 @@
 package br.com.rp.repository.impl;
 
-import javax.ejb.Stateless;
+import java.util.List;
 
+import javax.ejb.Stateless;
+import javax.persistence.Query;
+
+import br.com.rp.domain.Cliente;
 import br.com.rp.domain.Proposta;
 import br.com.rp.repository.PropostaRepository;
+import br.com.rp.util.Util;
 
 @Stateless
 public class PropostaRepositoryImpl extends AbstractRepositoryImpl<Proposta> implements PropostaRepository {
@@ -12,6 +17,13 @@ public class PropostaRepositoryImpl extends AbstractRepositoryImpl<Proposta> imp
 		super(Proposta.class);
 	}
 
-
+	@Override
+	public List<Proposta> procurarPorPropostasComMenosDe30DiasDoCliente(Cliente cliente) {			
+		Query query = em.createQuery("from Proposta p where p.cliente = :cliente and p.dataCadastro >= :data", Proposta.class);
+		query.setParameter("cliente", cliente);
+		query.setParameter("data", Util.addData(-30, Util.getDataAtual()));
+		
+		return query.getResultList();
+	}
 
 }
