@@ -18,7 +18,7 @@ import br.com.rp.repository.LogRepositoryTest;
 import br.com.rp.repository.Repository;
 import br.com.rp.repository.impl.AbstractRepositoryImpl;
 import br.com.rp.repository.service.LogServiceTest;
-import br.com.rp.services.ClienteServiceTest;
+import br.com.rp.service.ClienteServiceTest;
 import br.com.rp.services.LogService;
 
 @RunWith(Arquillian.class)
