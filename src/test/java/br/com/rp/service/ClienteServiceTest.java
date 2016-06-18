@@ -84,11 +84,11 @@ public class ClienteServiceTest extends AbstractTest {
 	
 	
 	//Teste de Transferencia
-	@Test
-	public void testaTransferencia() {
-		
-		clienteServiceImpl.realizarTransferencia(ID_CLIENTE, contaOrigemId, contaDestinoId, valor)
-		
-	}
+//	@Test
+//	public void testaTransferencia() {
+//		
+//		clienteServiceImpl.realizarTransferencia(ID_CLIENTE, contaOrigemId, contaDestinoId, valor)
+//		
+//	}
 	//Teste de Transferencia
 }
