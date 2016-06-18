@@ -3,6 +3,8 @@ package br.com.rp.domain;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,12 +15,14 @@ import javax.persistence.Table;
 @Table(name="cartao")
 public class Cartao extends BaseEntity {
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="conta_id")
 	private Conta conta;
 	
+	@Column(name="limite")
 	private BigDecimal limite;
 
+	@Column(name="data_vencimento")
 	private Date dataVencimento;
 	
 	public Conta getConta() {

@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -19,8 +21,9 @@ public class Conta extends BaseEntity {
 	
 	@Column(name="numero", nullable=false)
 	private Integer numero;
-	
-	@Column(name="tipo_conta", nullable=false)
+
+	@Enumerated(EnumType.STRING)
+	@Column(name="tipo_conta")
 	private TipoConta tipoConta;
 	
 	@Column(name="saldo", nullable=false)

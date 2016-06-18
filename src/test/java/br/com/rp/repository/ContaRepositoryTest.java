@@ -16,13 +16,14 @@ import br.com.rp.AbstractTest;
 import br.com.rp.domain.Agencia;
 import br.com.rp.domain.Conta;
 import br.com.rp.domain.TipoConta;
-import br.com.rp.repository.impl.ContaRepository;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @CleanupUsingScript(phase = TestExecutionPhase.AFTER, value={"db/conta_delete.sql"})
 public class ContaRepositoryTest extends AbstractTest {
 	
 	private final Long AGENCIA_TESTE_ID = 1000l;
+	
+	private final Long CONTA_TESTE_ID = 1000L;
 	
 	@EJB
 	private ContaRepository dao;
@@ -40,36 +41,36 @@ public class ContaRepositoryTest extends AbstractTest {
 		conta.setLimite(new BigDecimal("1000.00"));
 		conta.setNumero(12345);
 		conta.setSaldo(new BigDecimal("150.00"));
-		conta.setTipoConta(TipoConta.CONTA_CORRENTE);
+		conta.setTipoConta(TipoConta.CC);
 		
 		dao.save(conta);	
 		Assert.assertNotNull(agencia.getId());
 	}
 	
-	/*@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml"})
+	@Test
+	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/conta.xml"})
 	public void testeB_consegueAtualizarRegistro(){
-		Agencia agencia = dao.findById(AGENCIA_TESTE_ID);
-		Assert.assertNotNull(agencia);	
-		agencia.setNome("12345");
-		dao.save(agencia);
+		Conta conta = dao.findById(CONTA_TESTE_ID);
+		Assert.assertNotNull(conta);	
+		conta.setNumero(98765);
+		dao.save(conta);
 		
-		Agencia result = dao.findById(AGENCIA_TESTE_ID);
+		Conta result = dao.findById(CONTA_TESTE_ID);
 		
-		Assert.assertEquals(agencia.getNome(), result.getNome());
+		Assert.assertEquals(conta.getNumero(), result.getNumero());
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml"})
+	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/conta.xml"})
 	public void testeC_consegueDeletarRegistro(){
-		dao.remove(AGENCIA_TESTE_ID);
+		dao.remove(CONTA_TESTE_ID);
 		Assert.assertEquals(0, dao.getAll().size());
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml"})
+	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/conta.xml"})
 	public void testeD_consegueRecuperarRegistro(){
-		Agencia agencia = dao.findById(AGENCIA_TESTE_ID);
-		Assert.assertNotNull(agencia);
-	}*/
+		Conta conta = dao.findById(CONTA_TESTE_ID);
+		Assert.assertNotNull(conta);
+	}
 }

@@ -1,7 +1,6 @@
-package br.com.rp.repository.impl;
+package br.com.rp.repository;
 
 import br.com.rp.domain.Conta;
-import br.com.rp.repository.Repository;
 
 public interface ContaRepository extends Repository<Conta> {
 	
