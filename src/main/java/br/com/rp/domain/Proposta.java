@@ -3,7 +3,12 @@ package br.com.rp.domain;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @SuppressWarnings("serial")
@@ -11,18 +16,28 @@ import javax.persistence.Table;
 @Table(name="proposta")
 public class Proposta extends BaseEntity {
 	
+	@Column(name = "dataCadastro")
 	private Timestamp dataCadastro;
 	
+	@ManyToOne
+	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 	
+	@Column(name = "rendimento")
 	private BigDecimal rendimento;
 	
+	
+	@ManyToOne
+	@JoinColumn(name = "funcionario_id")
 	private Funcionario funcionario;
 	
+	@Column(name = "mensagem")
 	private String mensagem;
 	
+	@Column(name = "dataAvaliacao")
 	private Timestamp dataAvaliacao;
-	
+
+	@Enumerated(EnumType.STRING)
 	private SituacaoProposta situacao;
 
 	public Timestamp getDataCadastro() {

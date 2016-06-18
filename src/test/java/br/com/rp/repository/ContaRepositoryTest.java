@@ -43,6 +43,7 @@ public class ContaRepositoryTest extends AbstractTest {
 		conta.setSaldo(new BigDecimal("150.00"));
 		conta.setTipoConta(TipoConta.CC);
 		
+		
 		dao.save(conta);	
 		Assert.assertNotNull(agencia.getId());
 	}
