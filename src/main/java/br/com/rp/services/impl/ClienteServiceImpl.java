@@ -1,7 +1,5 @@
 package br.com.rp.services.impl;
 
-import java.math.BigDecimal;
-
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -16,15 +14,6 @@ public class ClienteServiceImpl implements ClienteService{
 	@EJB
 	private ClienteRepository clienteRepository;
 	
-	
-	@Override
-	public boolean realizarTransferencia(Long clienteId, Long contaOrigemId, Long contaDestinoId, BigDecimal valor) {
-		
-		MovimentacaoServiceImpl movimentacaoServiceImpl = new MovimentacaoServiceImpl();
-		
-		return movimentacaoServiceImpl.realizarTransferencia(contaOrigemId, contaDestinoId, valor);
-	}
-
 	@Override
 	public boolean atualizarDados(Cliente cliente) {
 

@@ -18,8 +18,9 @@ public class ClienteServiceTest extends AbstractTest {
 	
 	private final String ID_CONTA_ORIGEN = "1000";
 	private final String ID_CONTA_DESTINO = "1001";
-	private final String ID_CLIENTE = "100";
-
+	private final Long CONTA_ORIGEM_ID = 1000L;
+	private final Long CONTA_DESTINO_ID = 1001L;
+	
 	@EJB
 	private ClienteService clienteServiceImpl;
 	@EJB
@@ -76,19 +77,6 @@ public class ClienteServiceTest extends AbstractTest {
 		
 		Assert.assertEquals(clienteBanco.getCpf().toString(), cpf.toString());
 		
-		
-		
-		
 	}	
 	//Tede de atualização de dados
-	
-	
-	//Teste de Transferencia
-	@Test
-	public void testaTransferencia() {
-		
-		clienteServiceImpl.realizarTransferencia(ID_CLIENTE, contaOrigemId, contaDestinoId, valor)
-		
-	}
-	//Teste de Transferencia
 }
