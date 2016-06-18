@@ -1,15 +1,26 @@
 package br.com.rp.repository.impl;
 
-import javax.ejb.Stateless;
+import java.util.List;
 
-import br.com.rp.domain.MovimentacaoResumo;
-import br.com.rp.repository.MovimentacaoResumoRepository;
+import javax.ejb.Stateless;
+import javax.persistence.Query;
+
+import br.com.rp.domain.Movimentacao;
+import br.com.rp.repository.MovimentacaoRepository;
 
 @Stateless
-public class MovimentacaoRepositoryImpl extends AbstractRepositoryImpl<MovimentacaoResumo> implements MovimentacaoResumoRepository {
+public class MovimentacaoRepositoryImpl extends AbstractRepositoryImpl<Movimentacao> implements MovimentacaoRepository {
 
 	public MovimentacaoRepositoryImpl() {
-		super(MovimentacaoResumo.class);
+		super(Movimentacao.class);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Movimentacao> consultarMovimentacaoPorContaId(Long contaId) {
+		Query query = em.createQuery("select m from Movimentacao m where m.conta.id = :contaId", Movimentacao.class);
+		query.setParameter("contaId", contaId);
+		
+		return query.getResultList();
 	}
 
 }
