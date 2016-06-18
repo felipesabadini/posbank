@@ -25,6 +25,7 @@ import br.com.rp.service.MovimentacaoServiceTest;
 import br.com.rp.services.LogService;
 import br.com.rp.services.exception.SaldoInsuficienteException;
 import br.com.rp.services.impl.ClienteServiceImpl;
+import br.com.rp.util.Util;
 
 @RunWith(Arquillian.class)
 public abstract class AbstractTest {
@@ -61,7 +62,7 @@ public abstract class AbstractTest {
 				.addPackages(false, LogServiceTest.class.getPackage())
 				.addPackages(false, LogRest.class.getPackage())
 				.addPackages(false, LogRestTest.class.getPackage())
-				
+				.addPackages(false, Util.class.getPackage())
 				.addAsResource("test-persistence.xml", "META-INF/persistence.xml")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml").addAsWebInfResource("cesumar-ds.xml")
 				.addAsLibraries(deps);

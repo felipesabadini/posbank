@@ -31,7 +31,7 @@ public class Movimentacao extends BaseEntity {
 	@Column(name="data_movimentacao", nullable=false)
 	private Timestamp dataMovimentacao;
 	
-	@Column(name="descricao", nullable=true)
+	@Column(name="descricao")
 	private String descricao;
 	
 	@Enumerated(EnumType.STRING)
@@ -50,7 +50,7 @@ public class Movimentacao extends BaseEntity {
 		return tipoOperacao;
 	}
 
-	public void setTipoOperaacao (TipoOperacao tipoOperacao) {
+	public void setTipoOperacao (TipoOperacao tipoOperacao) {
 		this.tipoOperacao = tipoOperacao;
 	}
 

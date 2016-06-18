@@ -17,9 +17,10 @@ public class MovimentacaoRepositoryImpl extends AbstractRepositoryImpl<Movimenta
 
 	@SuppressWarnings("unchecked")
 	public List<Movimentacao> consultarMovimentacaoPorContaId(Long contaId) {
-		Query query = em.createQuery("select m from Movimentacao m where m.Conta.id = :contaId", Movimentacao.class);
+		Query query = em.createQuery("select m from Movimentacao m where m.conta.id = :contaId", Movimentacao.class);
 		query.setParameter("contaId", contaId);
 		
 		return query.getResultList();
 	}
+
 }

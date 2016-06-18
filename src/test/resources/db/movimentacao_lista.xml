@@ -4,10 +4,9 @@
 	<conta id="1000" agencia_id="1000" numero="12345" tipo_conta="CC" saldo="1500" limite="2000" />
 	<conta id="2000" agencia_id="1000" numero="56789" tipo_conta="CC" saldo="2000" limite="2000" />
 	
-	<movimentacao id="1000" tipo_operacao="TRANSFERENCIA" valor="100" data_movimentacao="2016-06-18 10:00:20" descricao="" tipo_movimentacao="CREDITO" />
-	<movimentacao id="1001" tipo_operacao="SAQUE" valor="200" data_movimentacao="2016-06-18 12:00:20" descricao="" tipo_movimentacao="DEBITO" />
-	<movimentacao id="1002" tipo_operacao="TRANSFERENCIA" valor="300" data_movimentacao="2016-06-14 10:00:20" descricao="" tipo_movimentacao="DEBITO" />
-	<movimentacao id="1003" tipo_operacao="TRANSFERENCIA" valor="400" data_movimentacao="2016-06-15 10:00:20" descricao="" tipo_movimentacao="DEBITO" />
-	<movimentacao id="1004" tipo_operacao="TRANSFERENCIA" valor="500" data_movimentacao="2016-06-16 10:00:20" descricao="" tipo_movimentacao="CREDITO" />
-	<movimentacao id="1005" tipo_operacao="TRANSFERENCIA" valor="600" data_movimentacao="2016-06-18 10:00:20" descricao="" tipo_movimentacao="CREDITO" />
+	<movimentacao id="1000" conta_id="1000" tipo_operacao="TRANSFERENCIA" valor="100" data_movimentacao="2016-06-18 10:00:20"  tipo_movimentacao="CREDITO" />
+	<movimentacao id="1001" conta_id="1000" tipo_operacao="TRANSFERENCIA" valor="200" data_movimentacao="2016-06-18 12:00:20"  tipo_movimentacao="DEBITO" />
+	<movimentacao id="1002" conta_id="1000" tipo_operacao="TRANSFERENCIA" valor="300" data_movimentacao="2016-06-14 10:00:20" tipo_movimentacao="DEBITO" />
+	<movimentacao id="1003" conta_id="1000" tipo_operacao="TRANSFERENCIA" valor="400" data_movimentacao="2016-06-15 10:00:20" tipo_movimentacao="DEBITO" />
+	<movimentacao id="1004" conta_id="1000" tipo_operacao="TRANSFERENCIA" valor="500" data_movimentacao="2016-06-16 10:00:20" tipo_movimentacao="CREDITO" />
 </dataset>

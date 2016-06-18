@@ -16,6 +16,7 @@ import org.junit.runners.MethodSorters;
 import br.com.rp.AbstractTest;
 import br.com.rp.domain.Movimentacao;
 import br.com.rp.services.MovimentacaoService;
+import br.com.rp.services.exception.SaldoInsuficienteException;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @CleanupUsingScript(phase = TestExecutionPhase.AFTER, value={"db/movimentacao_service_delete.sql"})
@@ -38,9 +39,9 @@ public class MovimentacaoServiceTest extends AbstractTest {
 		Assert.assertEquals(quantidadeRegistrosEncontrados, QUANTIDADE_REGISTROS);
 	}
 	
-	@Test
+	@Test(expected=SaldoInsuficienteException.class)
 	@UsingDataSet("db/movimentacao_lista.xml")
-	public void testeB_consegueRealizarTransferencia(){
+	public void testeB_consegueRealizarTransferencia() throws SaldoInsuficienteException{
 		service.realizarTransferencia(CONTA_ORIGEM_ID, CONTA_DESTINO_ID, new BigDecimal("2000.00"));
 	}
 }

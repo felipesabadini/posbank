@@ -3,13 +3,19 @@ package br.com.rp.domain;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name="despesa")
 public class Despesa extends BaseEntity {
 	
+	@ManyToOne(cascade={CascadeType.PERSIST,CascadeType.MERGE})
+	@JoinColumn(name = "cartao_id")
 	private Cartao cartao;
 	
 	private Timestamp dataLancamento;
