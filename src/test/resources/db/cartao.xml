@@ -1,3 +1,3 @@
 <dataset>
-	<cartao id="1000" conta_id="1000" limite="1000" data_vencimento="2016-08-01" />
+	<cartao id="1000" conta_id="1000" limite="1000" dia_vencimento="10" />
 </dataset>

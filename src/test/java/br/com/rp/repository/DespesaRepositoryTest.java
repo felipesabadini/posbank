@@ -1,7 +1,6 @@
 package br.com.rp.repository;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 
 import javax.ejb.EJB;
 
@@ -14,75 +13,67 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import br.com.rp.AbstractTest;
-import br.com.rp.domain.Agencia;
-import br.com.rp.domain.Banco;
 import br.com.rp.domain.Cartao;
-import br.com.rp.domain.Cliente;
-import br.com.rp.domain.Conta;
 import br.com.rp.domain.Despesa;
-import br.com.rp.domain.Funcionario;
-import br.com.rp.domain.Proposta;
-import br.com.rp.domain.SituacaoProposta;
-import br.com.rp.domain.TipoConta;
+import br.com.rp.util.Util;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @CleanupUsingScript(phase = TestExecutionPhase.AFTER, value={"db/despesa_delete.sql"})
 public class DespesaRepositoryTest extends AbstractTest {
 
-
-
+	private final static Long CARTAO_TESTE_ID = 1000L;
+	
+	private final static Long DESPESA_CARTAO_TESTE_ID = 1000L;
+	
+	@EJB
+	private DespesaRepository dao;
+	
 	@EJB
 	private CartaoRepository cartaoRepository;
 	
-	@EJB
-	private DespesaRepository despesaRepository;
-	
-
-	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/conta.xml", "db/cartao.xml" , "db/despesa.xml"}) 
-	public void deveInserirUmaNovaDespesa(){
+	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/cartao.xml" , "db/despesa.xml"}) 
+	public void testeA_deveInserirUmaNovaDespesa(){
+		Cartao cartao = cartaoRepository.findById(CARTAO_TESTE_ID);
+		
 		Despesa despesa = new Despesa();
-		Cartao cartao = cartaoRepository.findById(1000l);
 		despesa.setCartao(cartao);
-		despesa.setDataLancamento(new Timestamp(System.currentTimeMillis()));
+		despesa.setDataLancamento(Util.getDataHoraAtual());
 		despesa.setDescricao("Descricao da despesa");
 		despesa.setValor(new BigDecimal("1000.00"));
 		
-		despesaRepository.save(despesa);
+		dao.save(despesa);
 		Assert.assertNotNull(despesa.getId());
 	}
 	
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/conta.xml", "db/cartao.xml" , "db/despesa.xml" })
-	public void deveAtualizarProposta(){
-		Despesa despesa = this.despesaRepository.findById(1000l);
-		despesa.setDescricao("teste");
-		this.despesaRepository.save(despesa);
-		Assert.assertEquals("teste", despesa.getDescricao());
-
-	}
-	
-	
-	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/conta.xml", "db/cartao.xml" , "db/despesa.xml"})
-	public void deveRemoverUmaDespesa(){
-		this.despesaRepository.remove(1000l);
-		Despesa despesa = this.despesaRepository.findById(1000l);
-		Assert.assertNull(despesa);
+	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/cartao.xml" , "db/despesa.xml" })
+	public void testeB_deveAtualizarUmaDespesa(){
+		Despesa despesa = this.dao.findById(DESPESA_CARTAO_TESTE_ID);
+		Assert.assertNotNull(despesa);
 		
+		despesa.setValor(new BigDecimal("1750.00"));
+		
+		dao.save(despesa);
+		
+		Despesa result = dao.findById(DESPESA_CARTAO_TESTE_ID);
+		
+		Assert.assertEquals(result.getValor().doubleValue(), despesa.getValor().doubleValue(), 0000001);
+	}
+	
+	
+	@Test
+	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/cartao.xml" , "db/despesa.xml"})
+	public void testeC_deveRemoverUmaDespesa(){
+		dao.remove(DESPESA_CARTAO_TESTE_ID);
+		Assert.assertEquals(0, dao.getAll().size());
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/conta.xml", "db/cartao.xml" , "db/despesa.xml"})
+	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/cartao.xml" , "db/despesa.xml"})
 	public void testeD_consegueRecuperarRegistro(){
-		Despesa despesa = this.despesaRepository.findById(1000l);
+		Despesa despesa = dao.findById(DESPESA_CARTAO_TESTE_ID);
 		Assert.assertNotNull(despesa);
 	}
-	
-
-
-	
-
 }

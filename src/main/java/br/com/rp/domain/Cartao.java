@@ -1,7 +1,6 @@
 package br.com.rp.domain;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -22,8 +21,8 @@ public class Cartao extends BaseEntity {
 	@Column(name="limite")
 	private BigDecimal limite;
 
-	@Column(name="data_vencimento")
-	private Date dataVencimento;
+	@Column(name="dia_vencimento")
+	private Integer diaVencimento;
 	
 	public Conta getConta() {
 		return conta;
@@ -41,11 +40,11 @@ public class Cartao extends BaseEntity {
 		this.limite = limite;
 	}
 
-	public Date getDataVencimento() {
-		return dataVencimento;
+	public Integer getDiaVencimento() {
+		return diaVencimento;
 	}
 
-	public void setDataVencimento(Date dataVencimento) {
-		this.dataVencimento = dataVencimento;
+	public void setDiaVencimento(Integer diaVencimento) {
+		this.diaVencimento = diaVencimento;
 	}
 }
