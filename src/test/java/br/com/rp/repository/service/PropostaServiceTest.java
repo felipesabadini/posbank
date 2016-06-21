@@ -1,6 +1,7 @@
 package br.com.rp.repository.service;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.ejb.EJB;
 
@@ -14,6 +15,7 @@ import br.com.rp.domain.Cpf;
 import br.com.rp.domain.Email;
 import br.com.rp.domain.Proposta;
 import br.com.rp.repository.ClienteRepository;
+import br.com.rp.repository.PropostaRepository;
 import br.com.rp.services.PropostaService;
 import br.com.rp.services.exception.ClienteComPropostaComMenosDe30DiasException;
 import br.com.rp.services.exception.ClienteJaAtivoTentandoRegistrarUmaNovaPropostaException;
@@ -24,7 +26,15 @@ public class PropostaServiceTest extends AbstractTest {
 	@EJB
 	private PropostaService propostaService;
 	@EJB
-	private ClienteRepository clienteRepository;		
+	private ClienteRepository clienteRepository;
+	private final String ESTADO_CLIENTE = "PR";
+	
+	
+	
+	
+	@EJB
+	PropostaRepository propostaRepository;
+	
 	
 	@Test(expected = ClienteComPropostaComMenosDe30DiasException.class)
 	@UsingDataSet({"db/cliente.xml", "db/funcionario.xml", "db/propostas.xml"})
@@ -57,4 +67,22 @@ public class PropostaServiceTest extends AbstractTest {
 		Assert.assertNotNull(cliente.getId());
 		Assert.assertNotNull(proposta.getId());
 	}
+	
+	@Test
+	@UsingDataSet({"db/cliente.xml", "db/funcionario.xml",
+		"db/propostas.xml"})
+	public void deveRetornarProspostarPorEstado() {
+
+		List<Proposta> propostas =  propostaService.pesquisarPropostasPorEstado(ESTADO_CLIENTE);
+		
+//		Proposta prop = propostaRepository.findById(1000L);
+//		
+//		System.out.println("HERE");
+//		System.out.println(prop.toString());
+//		System.out.println("HERE");
+		
+		
+		Assert.assertEquals(2, propostas.size());
+		
+	}	
 }

@@ -12,4 +12,6 @@ public interface PropostaRepository extends Repository<Proposta> {
 	List<Proposta> procurarPorPropostasComMenosDe30DiasDoCliente(Cliente cliente);
 
 	Boolean verificarSeOClienteJaEstaAtivo(Cliente cliente);
+	
+	List<Proposta> procurarProspostasPorEstado(String estado);
 }

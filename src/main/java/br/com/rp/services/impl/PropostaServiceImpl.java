@@ -42,5 +42,19 @@ public class PropostaServiceImpl implements PropostaService {
 	public void registrarProposta(Proposta proposta) {
 		this.propostaRepository.save(proposta);
 	}
+	
+	public List<Proposta> pesquisarPropostasPorEstado(String estado) {
+
+		List<Proposta> propostas = propostaRepository.procurarProspostasPorEstado(estado);
+
+		return propostas;
+	}
 
 }
+//Preciso implementar o teste do methodo procurarProspostasPorEstado da class PropostaRepositoryImpl
+
+
+//pesquisarporposta por estado que estão com situações recebidas usar a enum
+//acietar proposta(ID da proposta)  ===>  mudar o status de cleinte para ativo ===>  criar conta corrente numero da conta random inserir o cliente ativado====> enviar email
+//rejeitar proposta(ID da proposta, string motivo rejeição) ===> informar o motivo da rejeição ===> enviar e-mail
+//enviar e-mail

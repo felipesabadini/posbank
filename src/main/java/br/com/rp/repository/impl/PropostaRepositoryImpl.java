@@ -39,4 +39,17 @@ public class PropostaRepositoryImpl extends AbstractRepositoryImpl<Proposta> imp
 		return Boolean.FALSE;
 	}
 
+	@Override
+	public List<Proposta> procurarProspostasPorEstado(String estado) {
+		
+		
+
+		Query query = em.createQuery("select Proposta from Proposta left outer join Proposta.id = Cliente.id where Cliente.uf = :estado", Proposta.class);
+//		Query query = em.createQuery("select Proposta from Proposta left outer join Cliente on Proposta.id=Cliente.id where Cliente.uf = :estado", Proposta.class);
+//		Query query = em.createQuery("from Proposta p, Cliente c where p.cliente_id = c.id and c.uf = :estado", Proposta.class);
+		query.setParameter("estado", estado);
+		
+		return query.getResultList();
+	}
+
 }
