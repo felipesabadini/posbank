@@ -11,11 +11,15 @@ import org.junit.Test;
 
 import br.com.rp.AbstractTest;
 import br.com.rp.domain.Cliente;
+import br.com.rp.domain.Conta;
 import br.com.rp.domain.Cpf;
 import br.com.rp.domain.Email;
 import br.com.rp.domain.Proposta;
+import br.com.rp.domain.SituacaoCliente;
 import br.com.rp.domain.SituacaoProposta;
+import br.com.rp.domain.TipoConta;
 import br.com.rp.repository.ClienteRepository;
+import br.com.rp.repository.ContaRepository;
 import br.com.rp.repository.PropostaRepository;
 import br.com.rp.services.PropostaService;
 import br.com.rp.services.exception.ClienteComPropostaComMenosDe30DiasException;
@@ -24,6 +28,9 @@ import br.com.rp.services.exception.ClienteJaAtivoTentandoRegistrarUmaNovaPropos
 
 public class PropostaServiceTest extends AbstractTest {
 
+	private static final String TEXTO_EMAIL = "Parabéns sua proposta foi aceita! preencha o captcha só de zoa.";
+	private static final String VALOR_LIMETE_CONTA = "3000";
+	private static final long AGENCIA_ID = 1000L;
 	private static final Long ID_PROPOSTA = 1003L;
 	private static final int QUANTIDA_PROSPOSTA_PR = 4;
 	@EJB
@@ -31,9 +38,9 @@ public class PropostaServiceTest extends AbstractTest {
 	@EJB
 	private ClienteRepository clienteRepository;
 	private final String ESTADO_CLIENTE = "PR";
-	
-	
-	
+	 
+	@EJB
+	ContaRepository contaRepository;
 	
 	@EJB
 	PropostaRepository propostaRepository;
@@ -83,13 +90,20 @@ public class PropostaServiceTest extends AbstractTest {
 	}	
 	
 	@Test
-	@UsingDataSet({"db/cliente.xml", "db/funcionario.xml", "db/propostas.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/banco.xml","db/agencia.xml","db/conta.xml", "db/funcionario.xml", "db/propostas.xml"})
 	public void deveEnviarEmail() {
 		
-		boolean resultado = propostaService.aceitarProposta(ID_PROPOSTA);
+		boolean resultado = propostaService.aceitarProposta(ID_PROPOSTA, AGENCIA_ID, TipoConta.CC, new BigDecimal(VALOR_LIMETE_CONTA), TEXTO_EMAIL);
 		Proposta proposta = propostaRepository.findById(ID_PROPOSTA);
 		
+		Cliente cliente = clienteRepository.findById(proposta.getCliente().getId());
 		
+		List<Conta> contas = contaRepository.getAll();
+		
+		Assert.assertTrue(contas.size() == 2);
+		
+		
+		Assert.assertEquals(SituacaoCliente.ATIVO, cliente.getSituacao());		
 		
 		Assert.assertEquals(true, resultado);
 		

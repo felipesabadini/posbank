@@ -1,15 +1,23 @@
 package br.com.rp.services.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Random;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.mail.MessagingException;
 
+import br.com.rp.domain.Agencia;
 import br.com.rp.domain.Cliente;
+import br.com.rp.domain.Conta;
 import br.com.rp.domain.Proposta;
+import br.com.rp.domain.SituacaoCliente;
 import br.com.rp.domain.SituacaoProposta;
+import br.com.rp.domain.TipoConta;
+import br.com.rp.repository.AgenciaRepository;
 import br.com.rp.repository.ClienteRepository;
+import br.com.rp.repository.ContaRepository;
 import br.com.rp.repository.PropostaRepository;
 import br.com.rp.services.EmailService;
 import br.com.rp.services.PropostaService;
@@ -19,6 +27,8 @@ import br.com.rp.services.exception.ClienteJaAtivoTentandoRegistrarUmaNovaPropos
 @Stateless
 public class PropostaServiceImpl implements PropostaService {
 	
+	private static final String PROPOSTA_ACEITA = "proposta aceita! :D";
+
 	@EJB
 	private PropostaRepository propostaRepository;
 	
@@ -27,8 +37,12 @@ public class PropostaServiceImpl implements PropostaService {
 	
 	@EJB
 	ClienteRepository clienteRepository;
-
 	
+	@EJB
+	ContaRepository contaRepository;
+	
+	@EJB
+	AgenciaRepository agenciaRepository;
 	
 	@Override
 	public Proposta processoParaRegistrarUmaProposta(Proposta proposta) {
@@ -68,24 +82,33 @@ public class PropostaServiceImpl implements PropostaService {
 	}
 
 	@Override
-	public boolean aceitarProposta(Long propostaId) {
+	public boolean aceitarProposta(Long propostaId, Long agenciaId, TipoConta tipoConta, BigDecimal limiteDaConta, String textoEmail) {
 		
 		Proposta proposta = propostaRepository.findById(propostaId);
 		proposta.setSituacao(SituacaoProposta.AC);
 
-		propostaRepository.save(proposta);		
-
+		propostaRepository.save(proposta);	
+		
 		Cliente cliente = clienteRepository.findById(proposta.getCliente().getId());
 		
+		cliente.setSituacao(SituacaoCliente.ATIVO);
 		
+		clienteRepository.save(cliente);
 		
+		Agencia agencia = agenciaRepository.findById(agenciaId);
+		
+		Conta conta = new Conta();
+		conta.setAgencia(agencia);
+		conta.setCliente(cliente);
+		conta.setLimite(limiteDaConta);
+		conta.setNumero(100000 + new Random().nextInt() * 900000);
+		conta.setTipoConta(tipoConta);	
 		
 		try {
-			emailService.enviarEmail("douglas-da.silva.santos@hotmail.com", "Teste", "conteudo");
+			emailService.enviarEmail(cliente.getEmail().toString(), PROPOSTA_ACEITA, textoEmail);
 		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
+			//TODO criar uma error personalizado para erro d eenvio de e-mail.
 			e.printStackTrace();
-			return false;
 		}
 		return true;
 	}
