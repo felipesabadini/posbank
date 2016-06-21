@@ -1,6 +1,7 @@
 package br.com.rp.repository;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.ejb.EJB;
 
@@ -15,6 +16,7 @@ import org.junit.runners.MethodSorters;
 import br.com.rp.AbstractTest;
 import br.com.rp.domain.Agendamento;
 import br.com.rp.domain.Conta;
+import br.com.rp.domain.Pagamento;
 import br.com.rp.util.Util;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -38,9 +40,11 @@ public class AgendamentoRepositoryTest extends AbstractTest {
 		Agendamento agendamento = new Agendamento();
 		agendamento.setConta(conta);
 		agendamento.setDataAgendamento(Util.addData(1, Util.getDataAtual()));
-		agendamento.setDataCadastro(Util.getDataHoraAtual());
 		agendamento.setDescricao("CONTA DE LUZ");
-		agendamento.setValor(new BigDecimal("1500.00"));
+		Pagamento pagamento = new Pagamento();
+		pagamento.setValor(new BigDecimal("1000"));
+		pagamento.setVencimento(Util.addData(3,Util.getDataAtual()));
+		agendamento.setPagamento(pagamento);
 		
 		dao.save(agendamento);
 		
@@ -48,27 +52,27 @@ public class AgendamentoRepositoryTest extends AbstractTest {
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/agendamento.xml"})
+	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/pagamento.xml",  "db/agendamento.xml"})
 	public void testeB_consegueAtualizarRegistro(){
 		Agendamento agendamento = dao.findById(AGENDAMENTO_TESTE_ID);
 		Assert.assertNotNull(agendamento);	
-		
-		agendamento.setValor(new BigDecimal("1650.00"));
+		Date data = Util.addData(5, Util.getDataAtual());
+		agendamento.setDataAgendamento(data);
 		
 		Agendamento result = dao.findById(AGENDAMENTO_TESTE_ID);
 		
-		Assert.assertEquals(agendamento.getValor().doubleValue(), result.getValor().doubleValue(), 0000001);
+		Assert.assertEquals(data, result.getDataAgendamento());
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/agendamento.xml"})
+	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/pagamento.xml", "db/agendamento.xml"})
 	public void testeC_consegueDeletarRegistro(){
 		dao.remove(AGENDAMENTO_TESTE_ID);
 		Assert.assertEquals(0, dao.getAll().size());
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/agendamento.xml"})
+	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/pagamento.xml", "db/agendamento.xml"})
 	public void testeD_consegueRecuperarRegistro(){
 		Agendamento agendamento = dao.findById(AGENDAMENTO_TESTE_ID);
 		Assert.assertNotNull(agendamento);
