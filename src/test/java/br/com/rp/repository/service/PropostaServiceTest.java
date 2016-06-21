@@ -14,6 +14,7 @@ import br.com.rp.domain.Cliente;
 import br.com.rp.domain.Cpf;
 import br.com.rp.domain.Email;
 import br.com.rp.domain.Proposta;
+import br.com.rp.domain.SituacaoProposta;
 import br.com.rp.repository.ClienteRepository;
 import br.com.rp.repository.PropostaRepository;
 import br.com.rp.services.PropostaService;
@@ -23,6 +24,8 @@ import br.com.rp.services.exception.ClienteJaAtivoTentandoRegistrarUmaNovaPropos
 
 public class PropostaServiceTest extends AbstractTest {
 
+	private static final Long ID_PROPOSTA = 1003L;
+	private static final int QUANTIDA_PROSPOSTA_PR = 4;
 	@EJB
 	private PropostaService propostaService;
 	@EJB
@@ -75,14 +78,21 @@ public class PropostaServiceTest extends AbstractTest {
 
 		List<Proposta> propostas =  propostaService.pesquisarPropostasPorEstado(ESTADO_CLIENTE);
 		
-//		Proposta prop = propostaRepository.findById(1000L);
-//		
-//		System.out.println("HERE");
-//		System.out.println(prop.toString());
-//		System.out.println("HERE");
-		
-		
-		Assert.assertEquals(2, propostas.size());
+		Assert.assertEquals(QUANTIDA_PROSPOSTA_PR, propostas.size());
 		
 	}	
+	
+	@Test
+	@UsingDataSet({"db/cliente.xml", "db/funcionario.xml", "db/propostas.xml"})
+	public void deveEnviarEmail() {
+		
+		boolean resultado = propostaService.aceitarProposta(ID_PROPOSTA);
+		Proposta proposta = propostaRepository.findById(ID_PROPOSTA);
+		
+		
+		
+		Assert.assertEquals(true, resultado);
+		
+		Assert.assertEquals(SituacaoProposta.AC, proposta.getSituacao());
+	}
 }
