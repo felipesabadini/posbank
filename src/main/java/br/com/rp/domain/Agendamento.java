@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
@@ -32,17 +34,23 @@ public class Agendamento extends  BaseEntity {
 	private String descricao;
 	
 	@Column(name="data_agendamento", nullable=false)
+	@Temporal(TemporalType.DATE)
 	private Date dataAgendamento;
 	
 	@OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	private Pagamento pagamento;
 
 	@JsonIgnore
+	@Column(name = "cancelado")
 	private Boolean cancelado;
+
+	@Column(name = "pago")
+	private Boolean pago;
 	
 	public Agendamento() {
 		this.dataCadastro = Util.getDataHoraAtual();
 		this.setCancelado(Boolean.FALSE);
+		this.setPago(Boolean.FALSE);
 	}
 	
 	public Boolean isAgendamentoValido() {
@@ -91,5 +99,13 @@ public class Agendamento extends  BaseEntity {
 
 	public void setCancelado(Boolean cancelado) {
 		this.cancelado = cancelado;
+	}
+
+	public Boolean getPago() {
+		return pago;
+	}
+
+	public void setPago(Boolean pago) {
+		this.pago = pago;
 	}	
 }

@@ -2,6 +2,6 @@ package br.com.rp.domain;
 
 public enum TipoOperacao {
 
-	TRANSFERENCIA, SAQUE, SALDO, EXTRATO, DEPOSITO
+	TRANSFERENCIA, SAQUE, SALDO, EXTRATO, DEPOSITO, PAGAMENTO;
 
 }
