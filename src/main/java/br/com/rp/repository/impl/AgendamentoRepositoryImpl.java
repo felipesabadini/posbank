@@ -1,6 +1,5 @@
 package br.com.rp.repository.impl;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -30,8 +29,8 @@ public class AgendamentoRepositoryImpl extends AbstractRepositoryImpl<Agendament
 
 	@Override
 	public List<Agendamento> encontrarAgendamentosPara(Date data) {
-		Query query = em.createQuery("from Agendamento a where a.dataAgendamento = cast(:data as date) and a.pago = false and a.cancelado = false", Agendamento.class);
-		query.setParameter("data", new SimpleDateFormat("yyyy-mm-dd").format(data));	
+		Query query = em.createQuery("from Agendamento a where a.dataAgendamento = :data and a.pago = false and a.cancelado = false", Agendamento.class);
+		query.setParameter("data", data);	
 		return query.getResultList();
 	}
 
