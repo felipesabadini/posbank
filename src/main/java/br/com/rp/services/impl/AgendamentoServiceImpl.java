@@ -7,8 +7,6 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import br.com.rp.domain.Agendamento;
-import br.com.rp.domain.TipoMovimentacao;
-import br.com.rp.domain.TipoOperacao;
 import br.com.rp.repository.AgendamentoRepository;
 import br.com.rp.services.AgendamentoService;
 import br.com.rp.services.MovimentacaoService;
@@ -47,7 +45,7 @@ public class AgendamentoServiceImpl implements AgendamentoService {
 		List<Agendamento> agendamentos = this.agendamentoRepository.encontrarAgendamentosPara(data);
 		
 		agendamentos.forEach(ag -> {			
-			this.movimentacaoService.registrarMovimentacao(ag.getConta().getId(), ag.getPagamento().getValor(), TipoOperacao.PAGAMENTO, TipoMovimentacao.DEBITO);
+			this.movimentacaoService.realizarSaque(ag.getConta().getId(), ag.getPagamento().getValor());
 			ag.setPago(Boolean.TRUE);
 			this.agendamentoRepository.save(ag);
 		});

@@ -26,7 +26,10 @@ public class DespesaRepositoryImpl extends AbstractRepositoryImpl<Despesa> imple
 	}
 
 	public BigDecimal consultarTotalDespesaPorCartaoIdAPartirDataInformada(Long cartaoId, Date data) {
-		Query query = em.createQuery("select coalesce(sum(d.valor), 0) from Despesa d where cast(d.dataLancamento as date) >= :data");
+		Query query = em.createQuery("select coalesce(sum(d.valor), 0) from Despesa d where d.cartao.id = :cartaoId and cast(d.dataLancamento as date) >= :data");
+		query.setParameter("cartaoId", cartaoId);
+		query.setParameter("data", data);
+		
 		return (BigDecimal) query.getSingleResult();
 	}
 

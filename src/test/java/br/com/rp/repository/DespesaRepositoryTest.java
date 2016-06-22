@@ -1,6 +1,7 @@
 package br.com.rp.repository;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
 
 import javax.ejb.EJB;
 
@@ -24,6 +25,8 @@ public class DespesaRepositoryTest extends AbstractTest {
 	private final static Long CARTAO_TESTE_ID = 1000L;
 	
 	private final static Long DESPESA_CARTAO_TESTE_ID = 1000L;
+	
+	private static BigDecimal VALOR_TOTAL = new BigDecimal("825.00");
 	
 	@EJB
 	private DespesaRepository dao;
@@ -75,5 +78,18 @@ public class DespesaRepositoryTest extends AbstractTest {
 	public void testeD_consegueRecuperarRegistro(){
 		Despesa despesa = dao.findById(DESPESA_CARTAO_TESTE_ID);
 		Assert.assertNotNull(despesa);
+	}
+	
+	@Test
+	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/cartao.xml" , "db/despesa_lista.xml"}) 
+	public void testeE_consegueRetornarTotalDespesaCartaoPorDataInformada(){
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.MONTH, Calendar.JUNE);
+		calendar.set(Calendar.DATE, 13);
+		
+		BigDecimal valorTotal = dao.consultarTotalDespesaPorCartaoIdAPartirDataInformada(CARTAO_TESTE_ID, calendar.getTime());
+		System.out.println("Valor total: " + valorTotal);
+		
+		Assert.assertTrue(valorTotal.compareTo(VALOR_TOTAL) == 0);
 	}
 }
