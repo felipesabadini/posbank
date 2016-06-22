@@ -19,7 +19,7 @@ public class LogMovimentacao extends BaseEntity {
 	
 	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name="conta_id", nullable=false)
-	private Conta contaOrigem;
+	private Conta conta;
 	
 	@Column(name="valor", nullable=false)
 	private BigDecimal valor;
@@ -39,12 +39,12 @@ public class LogMovimentacao extends BaseEntity {
 	@JoinColumn(name="conta_destino_id", nullable=true)
 	private Conta contaDestino;
 
-	public Conta getContaOrigem() {
-		return contaOrigem;
+	public Conta getConta() {
+		return conta;
 	}
 
-	public void setContaOrigem(Conta contaOrigem) {
-		this.contaOrigem = contaOrigem;
+	public void setConta(Conta conta) {
+		this.conta = conta;
 	}
 
 	public BigDecimal getValor() {

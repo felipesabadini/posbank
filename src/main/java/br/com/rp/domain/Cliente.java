@@ -28,7 +28,7 @@ public class Cliente extends BaseEntity {
 	private SituacaoCliente situacao;
 	
 	public Cliente() {
-		this.situacao = SituacaoCliente.INATIVO;
+		this.setSituacao(SituacaoCliente.INATIVO);
 	}
 
 	public String getNome() {
@@ -61,5 +61,13 @@ public class Cliente extends BaseEntity {
 
 	public void setEmail(Email email) {
 		this.email = email;
+	}
+
+	public SituacaoCliente getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(SituacaoCliente situacao) {
+		this.situacao = situacao;
 	}
 }

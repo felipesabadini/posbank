@@ -1,0 +1,7 @@
+<dataset>
+	<despesa id="1000" cartao_id="1000" dataLancamento="2016-08-01 12:12:12" descricao="RESTAURANTE"  valor="200.00" />
+	<despesa id="1001" cartao_id="1000" dataLancamento="2016-08-02 12:12:12" descricao="LANCHONETE"  valor="75.00" />
+	<despesa id="1002" cartao_id="1000" dataLancamento="2016-08-03 12:12:12" descricao="BAR"  valor="125" />
+	<despesa id="1003" cartao_id="1000" dataLancamento="2016-08-04 12:12:12" descricao="RESTAURANTE"  valor="250.00" />
+	<despesa id="1004" cartao_id="1000" dataLancamento="2016-08-05 12:12:12" descricao="POSTO DE GASOLINA"  valor="175.00" />
+</dataset>

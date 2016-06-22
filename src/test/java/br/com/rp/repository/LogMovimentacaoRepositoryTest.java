@@ -39,7 +39,7 @@ public class LogMovimentacaoRepositoryTest extends AbstractTest {
 		Assert.assertNotNull(conta);
 		
 		LogMovimentacao logMovimentacao = new LogMovimentacao();
-		logMovimentacao.setContaOrigem(conta);
+		logMovimentacao.setConta(conta);
 		logMovimentacao.setDataCadastro(Util.getDataHoraAtual());
 		logMovimentacao.setValor(new BigDecimal("2000.00"));
 		logMovimentacao.setTipoOperacao(TipoOperacao.SAQUE);

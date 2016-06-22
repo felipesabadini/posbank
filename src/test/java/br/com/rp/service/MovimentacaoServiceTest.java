@@ -42,6 +42,6 @@ public class MovimentacaoServiceTest extends AbstractTest {
 	@Test(expected=SaldoInsuficienteException.class)
 	@UsingDataSet("db/movimentacao_lista.xml")
 	public void testeB_consegueRealizarTransferencia() throws SaldoInsuficienteException{
-		service.realizarTransferencia(CONTA_ORIGEM_ID, CONTA_DESTINO_ID, new BigDecimal("2000.00"));
+		service.realizarTransferencia(CONTA_ORIGEM_ID, new BigDecimal("2000.00"), CONTA_DESTINO_ID);
 	}
 }
