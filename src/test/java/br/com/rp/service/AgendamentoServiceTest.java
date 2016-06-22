@@ -81,7 +81,7 @@ public class AgendamentoServiceTest extends AbstractTest {
 			"db/pagamento.xml",
 			"db/agendamento.xml" })
 	public void devePagarPagamentosAgendados() {
-		this.agendamentoService.processarPagamentosAgendadosPara(new Calendar.Builder().setDate(2016, 6, 18).build().getTime());
+		this.agendamentoService.processarPagamentosAgendadosPara(new Calendar.Builder().setDate(2016, 5, 18).build().getTime());
 		List<Agendamento> agendamentos = this.agendamentoService.encontrarAgendamentosPagos();
 		Assert.assertEquals(agendamentos.get(0).getPago(), Boolean.TRUE);
 	}
