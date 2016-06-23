@@ -39,6 +39,7 @@ public class LogMovimentacaoService {
 			logMovimentacao.setDataCadastro(Util.getDataHoraAtual());
 			logMovimentacao.setTipoMovimentacao(tipoMovimentacao);
 			logMovimentacao.setTipoOperacao(tipoOperacao);
+			logMovimentacao.setValor(valor);
 			if (contaDestinoId != null){
 				logMovimentacao.setContaDestino(contaRepository.findById(contaDestinoId));
 			}

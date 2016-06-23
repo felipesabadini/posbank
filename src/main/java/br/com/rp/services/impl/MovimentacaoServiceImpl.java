@@ -8,10 +8,12 @@ import javax.ejb.Stateless;
 
 import br.com.rp.domain.Conta;
 import br.com.rp.domain.Movimentacao;
+import br.com.rp.domain.MovimentacaoResumo;
 import br.com.rp.domain.TipoMovimentacao;
 import br.com.rp.domain.TipoOperacao;
 import br.com.rp.repository.ContaRepository;
 import br.com.rp.repository.MovimentacaoRepository;
+import br.com.rp.repository.MovimentacaoResumoRepository;
 import br.com.rp.services.LogMovimentacaoService;
 import br.com.rp.services.MovimentacaoService;
 import br.com.rp.services.exception.SaldoInsuficienteException;
@@ -26,6 +28,8 @@ public class MovimentacaoServiceImpl implements MovimentacaoService {
 	private ContaRepository contaRepository;
 	@EJB
 	private LogMovimentacaoService logMovimentacaoService;
+	@EJB
+	private MovimentacaoResumoRepository movimentacaoResumoRepository;
 
 	public List<Movimentacao> consultarMovimentacaoPorContaId(Long contaId) {
 		return movimentacaoRepository.consultarMovimentacaoPorContaId(contaId);
@@ -70,6 +74,13 @@ public class MovimentacaoServiceImpl implements MovimentacaoService {
 		movimentacao.setTipoMovimentacao(tipoMovimentacao);
 
 		movimentacaoRepository.save(movimentacao);
+		
+		MovimentacaoResumo movimentacaoResumo = new MovimentacaoResumo();
+		movimentacaoResumo.setMovimentacao(movimentacao);
+		movimentacaoResumo.setEnviadoBacen(Boolean.FALSE);
+		movimentacaoResumo.setEnviadoEUA(Boolean.FALSE);
+		
+		movimentacaoResumoRepository.save(movimentacaoResumo);
 	}
 
 	private void validarSaldo(Conta conta, BigDecimal valor){
