@@ -7,6 +7,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
+import org.eclipse.persistence.jpa.jpql.parser.DateTime;
+
 @Entity
 @Table(name="cliente")
 public class Cliente extends BaseEntity {
@@ -20,6 +22,12 @@ public class Cliente extends BaseEntity {
 	private Cpf cpf;
 	
 	private Endereco endereco;
+	
+	@Column(name = "nome", nullable=true)
+	private String senha;
+	
+	@Column(name="nascimento")
+	private DateTime nascimento;
 	
 	@AttributeOverride(name="value", column=@Column(name="email"))
 	private Email email;
@@ -69,5 +77,21 @@ public class Cliente extends BaseEntity {
 
 	public void setSituacao(SituacaoCliente situacao) {
 		this.situacao = situacao;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public DateTime getNascimento() {
+		return nascimento;
+	}
+
+	public void setNascimento(DateTime nascimento) {
+		this.nascimento = nascimento;
 	}
 }

@@ -28,6 +28,7 @@ import br.com.rp.services.exception.ClienteJaAtivoTentandoRegistrarUmaNovaPropos
 public class PropostaServiceImpl implements PropostaService {
 	
 	private static final String PROPOSTA_ACEITA = "proposta aceita! :D";
+	private static final String PROPOSTA_REJEITADA = "proposta rejeitada! :'(";
 
 	@EJB
 	private PropostaRepository propostaRepository;
@@ -92,6 +93,7 @@ public class PropostaServiceImpl implements PropostaService {
 		Cliente cliente = clienteRepository.findById(proposta.getCliente().getId());
 		
 		cliente.setSituacao(SituacaoCliente.ATIVO);
+		cliente.setSenha(cliente.getNascimento().getText() + cliente.getNome().substring(0, 1));
 		
 		clienteRepository.save(cliente);
 		
@@ -112,10 +114,24 @@ public class PropostaServiceImpl implements PropostaService {
 		}
 		return true;
 	}
-	
-	
-	
 
+	@Override
+	public void rejeitarProposta(Long propostaId, String textoEmail) {
+
+		Proposta proposta = propostaRepository.findById(propostaId);
+		proposta.setSituacao(SituacaoProposta.REG);
+		
+		propostaRepository.save(proposta);
+		
+		Cliente cliente = clienteRepository.findById(proposta.getCliente().getId());
+		
+		try {
+			emailService.enviarEmail(cliente.getEmail().toString(), PROPOSTA_REJEITADA, textoEmail);
+		} catch (MessagingException e) {
+			//TODO criar uma error personalizado para erro d eenvio de e-mail.
+			e.printStackTrace();
+		}
+	}
 	
 }
 //Preciso implementar o teste do methodo procurarProspostasPorEstado da class PropostaRepositoryImpl

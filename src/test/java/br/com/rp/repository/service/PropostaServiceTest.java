@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.ejb.EJB;
 
+import org.jboss.arquillian.persistence.CleanupUsingScript;
+import org.jboss.arquillian.persistence.TestExecutionPhase;
 import org.jboss.arquillian.persistence.UsingDataSet;
 import org.junit.Assert;
 import org.junit.Test;
@@ -28,6 +30,7 @@ import br.com.rp.services.exception.ClienteJaAtivoTentandoRegistrarUmaNovaPropos
 
 public class PropostaServiceTest extends AbstractTest {
 
+	private static final String PROPOSTA_REJEITADA = "FOi MAL AI MAIS FOI REJEITADA";
 	private static final String TEXTO_EMAIL = "Parabéns sua proposta foi aceita! preencha o captcha só de zoa.";
 	private static final String VALOR_LIMETE_CONTA = "3000";
 	private static final long AGENCIA_ID = 1000L;
@@ -91,6 +94,7 @@ public class PropostaServiceTest extends AbstractTest {
 	
 	@Test
 	@UsingDataSet({"db/cliente.xml", "db/banco.xml","db/agencia.xml","db/conta.xml", "db/funcionario.xml", "db/propostas.xml"})
+	@CleanupUsingScript(phase = TestExecutionPhase.AFTER, value={"db/deveEnviarEmail.sql"})
 	public void deveEnviarEmail() {
 		
 		boolean resultado = propostaService.aceitarProposta(ID_PROPOSTA, AGENCIA_ID, TipoConta.CC, new BigDecimal(VALOR_LIMETE_CONTA), TEXTO_EMAIL);
@@ -102,6 +106,7 @@ public class PropostaServiceTest extends AbstractTest {
 		
 		Assert.assertTrue(contas.size() == 2);
 		
+		System.out.println(cliente.getSenha());		
 		
 		Assert.assertEquals(SituacaoCliente.ATIVO, cliente.getSituacao());		
 		
@@ -109,4 +114,11 @@ public class PropostaServiceTest extends AbstractTest {
 		
 		Assert.assertEquals(SituacaoProposta.AC, proposta.getSituacao());
 	}
+	
+	@Test
+	public void deveRejeitarProposta() {
+		
+		propostaService.rejeitarProposta(ID_PROPOSTA, PROPOSTA_REJEITADA);
+	}
+	
 }
