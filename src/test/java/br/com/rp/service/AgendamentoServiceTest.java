@@ -15,6 +15,7 @@ import org.junit.Test;
 
 import br.com.rp.AbstractTest;
 import br.com.rp.domain.Agendamento;
+import br.com.rp.domain.Conta;
 import br.com.rp.domain.Pagamento;
 import br.com.rp.repository.ContaRepository;
 import br.com.rp.services.AgendamentoService;
@@ -43,15 +44,17 @@ public class AgendamentoServiceTest extends AbstractTest {
 	@UsingDataSet({ "db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml" })
 	public void deveRegistrarUmAgendamento() {
 		Date data = Util.getDataAtual();
+		Conta conta = this.contaRepository.findById(1000L);
 		Pagamento pagamento = new Pagamento();
 		pagamento.setValor(new BigDecimal("100"));
 		pagamento.setVencimento(data);
+		pagamento.setConta(conta);
 
 		Agendamento agendamento = new Agendamento();
 		agendamento.setDescricao("Pagamento");
 		agendamento.setDataAgendamento(data);
 		agendamento.setPagamento(pagamento);
-		agendamento.setConta(this.contaRepository.findById(1000L));
+		agendamento.setConta(conta);
 
 		Boolean result = this.agendamentoService.agendarPagamento(agendamento);
 		Assert.assertEquals(Boolean.TRUE, result);
@@ -60,14 +63,16 @@ public class AgendamentoServiceTest extends AbstractTest {
 	@Test
 	@UsingDataSet({ "db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml" })
 	public void deveRecusarUmAgendamento() {
+		Conta conta = this.contaRepository.findById(1000L);
 		Pagamento pagamento = new Pagamento();
 		pagamento.setValor(new BigDecimal("10000.00"));
 		pagamento.setVencimento(Util.addData(-2, Util.getDataAtual()));
+		pagamento.setConta(conta);
 
 		Agendamento agendamento = new Agendamento();
 		agendamento.setDataAgendamento(Util.getDataAtual());
 		agendamento.setPagamento(pagamento);
-		agendamento.setConta(this.contaRepository.findById(1000L));
+		agendamento.setConta(conta);
 
 		Boolean result = this.agendamentoService.agendarPagamento(agendamento);
 		Assert.assertEquals(Boolean.FALSE, result);

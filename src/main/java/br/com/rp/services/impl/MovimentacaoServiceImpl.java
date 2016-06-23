@@ -57,12 +57,24 @@ public class MovimentacaoServiceImpl implements MovimentacaoService {
 		Conta conta = contaRepository.findById(contaId);
 		validarSaldo(conta, valor);
 		
-		//Reduzir o saldo da conta origem
-		conta.setSaldo(conta.getSaldo().subtract(valor));
-		contaRepository.save(conta);
+		processoParaDebitarValorDaConta(conta, valor);
 		registrarMovimentacao(contaId, valor, TipoOperacao.SAQUE, TipoMovimentacao.DEBITO);
 	}
+	
+	public void realizarPagamento(Long contaId, BigDecimal valor) {
+		logMovimentacaoService.registrarPagamento(contaId, valor);
+		Conta conta = contaRepository.findById(contaId);
+		validarSaldo(conta, valor);
+		
+		processoParaDebitarValorDaConta(conta, valor);
+		registrarMovimentacao(contaId, valor, TipoOperacao.PAGAMENTO, TipoMovimentacao.DEBITO);
+	}	
 
+	private void processoParaDebitarValorDaConta(Conta conta, BigDecimal valor) {
+		conta.setSaldo(conta.getSaldo().subtract(valor));
+		contaRepository.save(conta);		
+	}
+	
 	private void registrarMovimentacao(Long contaId, BigDecimal valor, TipoOperacao tipoOperacao, TipoMovimentacao tipoMovimentacao) {
 		Conta conta = contaRepository.findById(contaId);
 
