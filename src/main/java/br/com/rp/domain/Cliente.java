@@ -1,5 +1,7 @@
 package br.com.rp.domain;
 
+import java.util.Date;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,11 +25,11 @@ public class Cliente extends BaseEntity {
 	
 	private Endereco endereco;
 	
-	@Column(name = "nome", nullable=true)
+	@Column(name = "senha", nullable=true)
 	private String senha;
 	
 	@Column(name="nascimento")
-	private DateTime nascimento;
+	private Date nascimento;
 	
 	@AttributeOverride(name="value", column=@Column(name="email"))
 	private Email email;
@@ -87,11 +89,12 @@ public class Cliente extends BaseEntity {
 		this.senha = senha;
 	}
 
-	public DateTime getNascimento() {
+	public Date getNascimento() {
 		return nascimento;
 	}
 
-	public void setNascimento(DateTime nascimento) {
+	public void setNascimento(Date nascimento) {
 		this.nascimento = nascimento;
 	}
+
 }

@@ -83,7 +83,7 @@ public class PropostaServiceImpl implements PropostaService {
 	}
 
 	@Override
-	public boolean aceitarProposta(Long propostaId, Long agenciaId, TipoConta tipoConta, BigDecimal limiteDaConta, String textoEmail) {
+	public boolean aceitarProposta(Long propostaId, Long agenciaId, TipoConta tipoConta, BigDecimal limiteDaConta) {
 		
 		Proposta proposta = propostaRepository.findById(propostaId);
 		proposta.setSituacao(SituacaoProposta.AC);
@@ -93,7 +93,8 @@ public class PropostaServiceImpl implements PropostaService {
 		Cliente cliente = clienteRepository.findById(proposta.getCliente().getId());
 		
 		cliente.setSituacao(SituacaoCliente.ATIVO);
-		cliente.setSenha(cliente.getNascimento().getText() + cliente.getNome().substring(0, 1));
+		String senhaPrimeiroAcesso = cliente.getNascimento().getDay() +""+ cliente.getNascimento().getMonth() +""+ cliente.getNascimento().getYear() +""+ cliente.getNome().substring(0, 1);
+		cliente.setSenha(senhaPrimeiroAcesso);
 		
 		clienteRepository.save(cliente);
 		
@@ -103,8 +104,17 @@ public class PropostaServiceImpl implements PropostaService {
 		conta.setAgencia(agencia);
 		conta.setCliente(cliente);
 		conta.setLimite(limiteDaConta);
-		conta.setNumero(100000 + new Random().nextInt() * 900000);
-		conta.setTipoConta(tipoConta);	
+		int numeroDaConta = (100000 + new Random().nextInt() * 900000);
+		conta.setNumero(numeroDaConta);
+		conta.setTipoConta(tipoConta);
+		conta.setSaldo(new BigDecimal("0"));
+		
+		contaRepository.save(conta);
+		
+		//TODO Mudar o texto do e-mail para enviar senha para primeiro acesso e numero da conta que precisa ver com vou fazer pra retornar ele
+		
+		
+		String textoEmail = "Parabéns sua proposta foi aceita!! :D\nSegue número da conta e senha para primeiro acesso:\n\nconta: " + numeroDaConta + "\nsenha: " + senhaPrimeiroAcesso ;
 		
 		try {
 			emailService.enviarEmail(cliente.getEmail().toString(), PROPOSTA_ACEITA, textoEmail);
