@@ -12,4 +12,6 @@ public interface MovimentacaoService {
 	public void realizarTransferencia(Long contaId, BigDecimal valor, Long contaDestinoId);
 	
 	public void realizarSaque(Long contaId, BigDecimal valor);
+	
+	public void realizarPagamento(Long contaId, BigDecimal valor);
 }

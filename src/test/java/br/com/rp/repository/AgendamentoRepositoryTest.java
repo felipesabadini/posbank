@@ -17,6 +17,7 @@ import br.com.rp.AbstractTest;
 import br.com.rp.domain.Agendamento;
 import br.com.rp.domain.Conta;
 import br.com.rp.domain.Pagamento;
+import br.com.rp.domain.Tipo;
 import br.com.rp.util.Util;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -37,13 +38,16 @@ public class AgendamentoRepositoryTest extends AbstractTest {
 		Conta conta = daoConta.findById(CONTA_TESTE_ID);
 		Assert.assertNotNull(conta);
 		
+		Pagamento pagamento = new Pagamento();
+		pagamento.setValor(new BigDecimal("1000"));
+		pagamento.setVencimento(Util.addData(3,Util.getDataAtual()));
+		pagamento.setTipo(Tipo.BOLETO);
+		pagamento.setConta(conta);
+		
 		Agendamento agendamento = new Agendamento();
 		agendamento.setConta(conta);
 		agendamento.setDataAgendamento(Util.addData(1, Util.getDataAtual()));
 		agendamento.setDescricao("CONTA DE LUZ");
-		Pagamento pagamento = new Pagamento();
-		pagamento.setValor(new BigDecimal("1000"));
-		pagamento.setVencimento(Util.addData(3,Util.getDataAtual()));
 		agendamento.setPagamento(pagamento);
 		
 		dao.save(agendamento);

@@ -31,6 +31,10 @@ public class LogMovimentacaoService {
 		registrarLogMovimentacao(contaId, valor, TipoOperacao.SAQUE, TipoMovimentacao.DEBITO, null);
 	}
 	
+	public void registrarPagamento(Long contaId, BigDecimal valor){
+		registrarLogMovimentacao(contaId, valor, TipoOperacao.PAGAMENTO, TipoMovimentacao.DEBITO, null);
+	}	
+	
 	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	private void registrarLogMovimentacao(Long contaId, BigDecimal valor, TipoOperacao tipoOperacao, TipoMovimentacao tipoMovimentacao, Long contaDestinoId){
 		try {
