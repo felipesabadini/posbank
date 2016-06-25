@@ -22,11 +22,12 @@ public class AgendamentoServiceImpl implements AgendamentoService {
 	
 	@Override
 	public Boolean agendarPagamento(Agendamento agendamento) {
-		if(!agendamento.isAgendamentoValido())
+		if(!agendamento.isAgendamentoValido()){
 			return Boolean.FALSE;
+		}
 			
-			this.agendamentoRepository.save(agendamento);
-			return Boolean.TRUE;
+		agendamentoRepository.save(agendamento);
+		return Boolean.TRUE;
 	}
 
 	@Override

@@ -21,6 +21,7 @@ import br.com.rp.domain.Agendamento;
 import br.com.rp.domain.Conta;
 import br.com.rp.domain.Pagamento;
 import br.com.rp.repository.ContaRepository;
+import br.com.rp.repository.PagamentoRepository;
 import br.com.rp.util.Util;
 
 @CleanupUsingScript(phase = TestExecutionPhase.AFTER, value = { "db/agendamento_delete.sql" })
@@ -32,6 +33,9 @@ public class AgendamentoRestTest extends AbstractTest {
 	@EJB
 	private ContaRepository contaRepository;
 	
+	@EJB
+	private PagamentoRepository pagamentoRepository;
+	
 	@Test
 	@UsingDataSet({ 
 		"db/banco.xml", 
@@ -42,6 +46,7 @@ public class AgendamentoRestTest extends AbstractTest {
 	public void deveRegistrarUmAgendamento() {
 		Conta conta = this.contaRepository.findById(1000L);
 		Date data = Util.getDataAtual();
+		
 		Pagamento pagamento = new Pagamento();
 		pagamento.setValor(new BigDecimal("100.00"));
 		pagamento.setVencimento(data);

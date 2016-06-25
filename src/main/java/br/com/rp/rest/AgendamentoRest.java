@@ -1,6 +1,7 @@
 package br.com.rp.rest;
 
 import javax.ejb.EJB;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -19,6 +20,7 @@ public class AgendamentoRest {
 	private AgendamentoService agendamentoService;
 	
 	@POST
+	@Consumes("application/json")
 	public Response registrarAgendamento(Agendamento agendamento) {
 		Boolean result = this.agendamentoService.agendarPagamento(agendamento);
 		if(result)
