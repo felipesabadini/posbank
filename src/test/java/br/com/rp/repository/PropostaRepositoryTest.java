@@ -69,7 +69,8 @@ public class PropostaRepositoryTest extends AbstractTest {
 	public void devePesquisarPorEstado(){
 		List<Proposta> propostas = this.dao.procurarProspostasPorEstado("PR");
 		
-	Assert.assertEquals(propostas.get(0), "PR");		
+	Assert.assertEquals(propostas.get(0).getCliente().getEndereco()
+			.getUf(), "PR");		
 		
 	}
 
