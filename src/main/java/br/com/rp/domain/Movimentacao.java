@@ -31,12 +31,19 @@ public class Movimentacao extends BaseEntity {
 	@Column(name="data_movimentacao", nullable=false)
 	private Timestamp dataMovimentacao;
 	
-	@Column(name="descricao")
-	private String descricao;
-	
 	@Enumerated(EnumType.STRING)
 	@Column(name="tipo_movimentacao", nullable=false)
 	private TipoMovimentacao tipoMovimentacao;
+	
+	@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST})
+	@JoinColumn(name="pagamento_id")
+	private Pagamento pagamento;
+	
+	@Column(name="codigo_banco", nullable=true)
+	private String codigoBanco;
+	
+	@Column(name="numero_conta_destino", nullable=true)
+	private Long numeroContaDestino;
 
 	public Conta getConta() {
 		return conta;
@@ -70,19 +77,35 @@ public class Movimentacao extends BaseEntity {
 		this.dataMovimentacao = dataMovimentacao;
 	}
 
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
 	public TipoMovimentacao getTipoMovimentacao() {
 		return tipoMovimentacao;
 	}
 
 	public void setTipoMovimentacao(TipoMovimentacao tipoMovimentacao) {
 		this.tipoMovimentacao = tipoMovimentacao;
+	}
+
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
+
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
+	}
+
+	public String getCodigoBanco() {
+		return codigoBanco;
+	}
+
+	public void setCodigoBanco(String codigoBanco) {
+		this.codigoBanco = codigoBanco;
+	}
+
+	public Long getNumeroContaDestino() {
+		return numeroContaDestino;
+	}
+
+	public void setNumeroContaDestino(Long numeroContaDestino) {
+		this.numeroContaDestino = numeroContaDestino;
 	}
 }

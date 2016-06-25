@@ -27,7 +27,7 @@ public class FuncionarioRepositoryTest extends AbstractTest {
 		Funcionario funcionario = new Funcionario();
 		
 		funcionario.setNome("TESTE");
-		funcionario.setCpf(new Cpf("06480549937"));
+		funcionario.setCpf(new Cpf("78568965318"));
 		funcionario.setCargo(Cargo.GERENTE);
 		
 		dao.save(funcionario);

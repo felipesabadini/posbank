@@ -8,7 +8,6 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.mail.MessagingException;
 
-import br.com.rp.domain.Agencia;
 import br.com.rp.domain.Cliente;
 import br.com.rp.domain.Conta;
 import br.com.rp.domain.Proposta;
@@ -23,6 +22,7 @@ import br.com.rp.services.EmailService;
 import br.com.rp.services.PropostaService;
 import br.com.rp.services.exception.ClienteComPropostaComMenosDe30DiasException;
 import br.com.rp.services.exception.ClienteJaAtivoTentandoRegistrarUmaNovaPropostaException;
+import br.com.rp.util.Util;
 
 @Stateless
 public class PropostaServiceImpl implements PropostaService {
@@ -83,7 +83,7 @@ public class PropostaServiceImpl implements PropostaService {
 	}
 
 	@Override
-	public boolean aceitarProposta(Long propostaId, Long agenciaId, TipoConta tipoConta, BigDecimal limiteDaConta) {
+	public boolean aceitarProposta(Long propostaId, TipoConta tipoConta, BigDecimal limiteDaConta) {
 		
 		Proposta proposta = propostaRepository.findById(propostaId);
 		proposta.setSituacao(SituacaoProposta.AC);
@@ -93,18 +93,15 @@ public class PropostaServiceImpl implements PropostaService {
 		Cliente cliente = clienteRepository.findById(proposta.getCliente().getId());
 		
 		cliente.setSituacao(SituacaoCliente.ATIVO);
-		String senhaPrimeiroAcesso = cliente.getNascimento().getDay() +""+ cliente.getNascimento().getMonth() +""+ cliente.getNascimento().getYear() +""+ cliente.getNome().substring(0, 1);
+		String senhaPrimeiroAcesso = Util.formataData(cliente.getNascimento(), "dd/MM/yyyy").replace("/", "") + cliente.getNome().substring(0, 1);
 		cliente.setSenha(senhaPrimeiroAcesso);
 		
 		clienteRepository.save(cliente);
 		
-		Agencia agencia = agenciaRepository.findById(agenciaId);
-		
 		Conta conta = new Conta();
-		conta.setAgencia(agencia);
 		conta.setCliente(cliente);
 		conta.setLimite(limiteDaConta);
-		int numeroDaConta = Math.abs((100000 + new Random().nextInt() * 900000));
+		long numeroDaConta = Math.abs((100000 + new Random().nextInt() * 900000));
 		conta.setNumero(numeroDaConta);
 		conta.setTipoConta(tipoConta);
 		conta.setSaldo(new BigDecimal("0"));

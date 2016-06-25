@@ -17,11 +17,9 @@ public class PagamentoServiceImpl implements PagamentoService {
 	@EJB
 	private MovimentacaoService movimentacaoService;
 	
-	@Override
 	public Boolean registrarNovoPagamento(Pagamento pagamento) {
-		this.movimentacaoService.realizarPagamento(pagamento.getConta().getId(), pagamento.getValor());
-		this.pagamentoRepository.save(pagamento);
+		movimentacaoService.realizarPagamento(pagamento.getConta().getId(), pagamento.getId());
+		pagamentoRepository.save(pagamento);
 		return Boolean.TRUE;
 	}
-
 }

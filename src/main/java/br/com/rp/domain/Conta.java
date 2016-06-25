@@ -20,13 +20,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Conta extends BaseEntity {
-	
-	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE})
-	@JoinColumn(name="agencia_id")
-	private Agencia agencia;
-	
+		
 	@Column(name="numero", nullable=false)
-	private Integer numero;
+	private Long numero;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name="tipo_conta")
@@ -42,19 +38,11 @@ public class Conta extends BaseEntity {
 	@JoinColumn(name="cliente_id", nullable=false)
 	private Cliente cliente;
 
-	public Agencia getAgencia() {
-		return agencia;
-	}
-
-	public void setAgencia(Agencia agencia) {
-		this.agencia = agencia;
-	}
-
-	public Integer getNumero() {
+	public Long getNumero() {
 		return numero;
 	}
 
-	public void setNumero(Integer numero) {
+	public void setNumero(Long numero) {
 		this.numero = numero;
 	}
 
@@ -89,4 +77,5 @@ public class Conta extends BaseEntity {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+
 }

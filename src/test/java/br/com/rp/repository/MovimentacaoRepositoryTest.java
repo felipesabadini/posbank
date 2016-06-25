@@ -34,7 +34,7 @@ public class MovimentacaoRepositoryTest extends AbstractTest {
 	private ContaRepository contaDAO;
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml"})
 	public void testeA_consegueInserirNoBanco(){
 		Conta conta = contaDAO.findById(CONTA_TESTE_ID);
 		Assert.assertNotNull(conta);
@@ -42,7 +42,6 @@ public class MovimentacaoRepositoryTest extends AbstractTest {
 		Movimentacao movimentacao = new Movimentacao();
 		movimentacao.setConta(conta);
 		movimentacao.setDataMovimentacao(Util.getDataHoraAtual());
-		movimentacao.setDescricao(null);
 		movimentacao.setTipoMovimentacao(TipoMovimentacao.CREDITO);
 		movimentacao.setTipoOperacao(TipoOperacao.TRANSFERENCIA);
 		movimentacao.setValor(new BigDecimal("2500.00"));

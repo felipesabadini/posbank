@@ -3,6 +3,8 @@ package br.com.rp.domain;
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -20,6 +22,7 @@ public class Funcionario extends BaseEntity {
 
 	private Endereco endereco;
 
+	@Enumerated(EnumType.ORDINAL)
 	@Column(name="cargo")
 	private Cargo cargo;
 

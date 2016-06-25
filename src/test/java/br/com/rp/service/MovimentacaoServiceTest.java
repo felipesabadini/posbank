@@ -21,7 +21,7 @@ import br.com.rp.services.MovimentacaoService;
 import br.com.rp.services.exception.SaldoInsuficienteException;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-@CleanupUsingScript(phase = TestExecutionPhase.AFTER, value={"db/movimentacao_service_delete.sql"})
+@CleanupUsingScript(phase = TestExecutionPhase.AFTER, value={"db/movimentacaoService_delete.sql"})
 public class MovimentacaoServiceTest extends AbstractTest {
 	
 	private static final Long CONTA_ORIGEM_ID = 1000L;
@@ -44,15 +44,15 @@ public class MovimentacaoServiceTest extends AbstractTest {
 	}
 	
 	@Test(expected=SaldoInsuficienteException.class)
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/movimentacao_lista.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/movimentacao_lista.xml"})
 	public void testeB_naoConsegueRealizarTransferenciaSemSaldo() throws SaldoInsuficienteException{
-		service.realizarTransferencia(CONTA_ORIGEM_ID, new BigDecimal("2000.00"), CONTA_DESTINO_ID);
+		service.realizarTransferenciaEntreContasVBank(CONTA_ORIGEM_ID, new BigDecimal("2000.00"), CONTA_DESTINO_ID);
 	}
 	
 	@Test
 	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/movimentacao_lista.xml"})
-	public void testeC_deveConseguirRealizarTransferencia() throws SaldoInsuficienteException{
-		service.realizarTransferencia(CONTA_ORIGEM_ID, new BigDecimal("1000.00"), CONTA_DESTINO_ID);
+	public void testeC_deveConseguirRealizarTransferenciaEntreContasVBANK(){
+		service.realizarTransferenciaEntreContasVBank(CONTA_ORIGEM_ID, new BigDecimal("1000.00"), CONTA_DESTINO_ID);
 		
 		Conta contaOrigem = contaRepository.findById(CONTA_ORIGEM_ID);
 		Conta contaDestino = contaRepository.findById(CONTA_DESTINO_ID);

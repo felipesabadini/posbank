@@ -1,6 +1,7 @@
 package br.com.rp.util;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -20,5 +21,10 @@ public class Util {
 		calendar.add(Calendar.DATE, quantidade);
 		
 		return calendar.getTime();
+	}
+	
+	public static String formataData(Date date, String formato){
+		SimpleDateFormat sdf = new SimpleDateFormat(formato);
+		return sdf.format(date);
 	}
 }

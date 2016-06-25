@@ -1,3 +1,3 @@
 <dataset>
-	<funcionario id="1000" nome="FUNCIONARIO TESTE" cpf="12345678901" endereco="RUA X" numero="123" bairro="VILA" cidade="MARINGA" uf="PR" cargo="1"/>
+	<funcionario id="1000" nome="FUNCIONARIO TESTE" cpf="78568965318" endereco="RUA X" numero="123" bairro="VILA" cidade="MARINGA" uf="PR" cargo="1"/>
 </dataset>

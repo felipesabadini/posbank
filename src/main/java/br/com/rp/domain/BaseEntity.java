@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+@SuppressWarnings("serial")
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
 
@@ -23,5 +24,4 @@ public abstract class BaseEntity implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 }

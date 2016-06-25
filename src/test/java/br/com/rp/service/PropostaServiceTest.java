@@ -32,7 +32,6 @@ public class PropostaServiceTest extends AbstractTest {
 
 	private static final String PROPOSTA_REJEITADA = "FOi MAL AI MAS FOI REJEITADA. :-/";
 	private static final String VALOR_LIMETE_CONTA = "3000";
-	private static final long AGENCIA_ID = 1000L;
 	private static final Long ID_PROPOSTA = 1003L;
 	private static final int QUANTIDA_PROSPOSTA_PR = 4;
 	@EJB
@@ -92,11 +91,11 @@ public class PropostaServiceTest extends AbstractTest {
 	}	
 	
 	@Test
-	@UsingDataSet({"db/cliente.xml", "db/banco.xml","db/agencia.xml","db/conta.xml", "db/funcionario.xml", "db/propostas.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/funcionario.xml", "db/propostas.xml"})
 	@CleanupUsingScript(phase = TestExecutionPhase.AFTER, value={"db/deveEnviarEmail.sql"})
 	public void deveEnviarEmail() {
 		
-		boolean resultado = propostaService.aceitarProposta(ID_PROPOSTA, AGENCIA_ID, TipoConta.CC, new BigDecimal(VALOR_LIMETE_CONTA));
+		boolean resultado = propostaService.aceitarProposta(ID_PROPOSTA, TipoConta.CC, new BigDecimal(VALOR_LIMETE_CONTA));
 		Proposta proposta = propostaRepository.findById(ID_PROPOSTA);
 		
 		Cliente cliente = clienteRepository.findById(proposta.getCliente().getId());
