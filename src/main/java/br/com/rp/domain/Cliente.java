@@ -1,11 +1,15 @@
 package br.com.rp.domain;
 
+import java.util.Date;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
+
+import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 
 @Entity
 @Table(name="cliente")
@@ -20,6 +24,12 @@ public class Cliente extends BaseEntity {
 	private Cpf cpf;
 	
 	private Endereco endereco;
+	
+	@Column(name = "senha", nullable=true)
+	private String senha;
+	
+	@Column(name="nascimento")
+	private Date nascimento;
 	
 	@AttributeOverride(name="value", column=@Column(name="email"))
 	private Email email;
@@ -70,4 +80,21 @@ public class Cliente extends BaseEntity {
 	public void setSituacao(SituacaoCliente situacao) {
 		this.situacao = situacao;
 	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public Date getNascimento() {
+		return nascimento;
+	}
+
+	public void setNascimento(Date nascimento) {
+		this.nascimento = nascimento;
+	}
+
 }
