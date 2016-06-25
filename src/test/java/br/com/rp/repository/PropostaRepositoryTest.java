@@ -2,6 +2,7 @@ package br.com.rp.repository;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.ejb.EJB;
 
@@ -63,6 +64,13 @@ public class PropostaRepositoryTest extends AbstractTest {
 		Assert.assertEquals("teste", proposta.getMensagem());
 	}
 	
-	
+	@Test
+	@UsingDataSet({"db/funcionario.xml", "db/cliente.xml", "db/proposta.xml" })
+	public void devePesquisarPorEstado(){
+		List<Proposta> propostas = this.dao.procurarProspostasPorEstado("PR");
+		
+	Assert.assertEquals(propostas.get(0), "PR");		
+		
+	}
 
 }
