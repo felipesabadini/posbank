@@ -14,7 +14,9 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import br.com.rp.AbstractTest;
+import br.com.rp.domain.Conta;
 import br.com.rp.domain.Movimentacao;
+import br.com.rp.repository.ContaRepository;
 import br.com.rp.services.MovimentacaoService;
 import br.com.rp.services.exception.SaldoInsuficienteException;
 
@@ -23,16 +25,18 @@ import br.com.rp.services.exception.SaldoInsuficienteException;
 public class MovimentacaoServiceTest extends AbstractTest {
 	
 	private static final Long CONTA_ORIGEM_ID = 1000L;
-	private static final Long CONTA_DESTINO_ID = 2000L;
+	private static final Long CONTA_DESTINO_ID = 1001L;
 	private static final Integer QUANTIDADE_REGISTROS = 5;
 	
 	@EJB
 	private MovimentacaoService service;
 	
+	@EJB 
+	private ContaRepository contaRepository;
+	
 	@Test
-	@UsingDataSet("db/movimentacao_lista.xml")
+	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/movimentacao_lista.xml"})
 	public void testeA_consegueRetornarListaMovimentacoesPorConta(){
-		
 		List<Movimentacao> lstMovimentacao = service.consultarMovimentacaoPorContaId(CONTA_ORIGEM_ID);
 		
 		Integer quantidadeRegistrosEncontrados = lstMovimentacao.size();
@@ -40,8 +44,20 @@ public class MovimentacaoServiceTest extends AbstractTest {
 	}
 	
 	@Test(expected=SaldoInsuficienteException.class)
-	@UsingDataSet("db/movimentacao_lista.xml")
-	public void testeB_consegueRealizarTransferencia() throws SaldoInsuficienteException{
+	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/movimentacao_lista.xml"})
+	public void testeB_naoConsegueRealizarTransferenciaSemSaldo() throws SaldoInsuficienteException{
 		service.realizarTransferencia(CONTA_ORIGEM_ID, new BigDecimal("2000.00"), CONTA_DESTINO_ID);
+	}
+	
+	@Test
+	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/movimentacao_lista.xml"})
+	public void testeC_deveConseguirRealizarTransferencia() throws SaldoInsuficienteException{
+		service.realizarTransferencia(CONTA_ORIGEM_ID, new BigDecimal("1000.00"), CONTA_DESTINO_ID);
+		
+		Conta contaOrigem = contaRepository.findById(CONTA_ORIGEM_ID);
+		Conta contaDestino = contaRepository.findById(CONTA_DESTINO_ID);
+		
+		Assert.assertEquals(contaOrigem.getSaldo().doubleValue(), BigDecimal.ZERO.doubleValue(), 000001);
+		Assert.assertEquals(contaDestino.getSaldo(), new BigDecimal("2000.00"));
 	}
 }

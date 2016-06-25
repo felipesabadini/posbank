@@ -21,7 +21,7 @@ public class Agencia extends BaseEntity {
 	
 	private String nome;
 	
-	@ManyToOne(cascade={CascadeType.ALL})
+	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name="banco_id")
 	private Banco banco;
 

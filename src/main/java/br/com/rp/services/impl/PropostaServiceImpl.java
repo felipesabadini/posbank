@@ -27,7 +27,8 @@ import br.com.rp.services.exception.ClienteJaAtivoTentandoRegistrarUmaNovaPropos
 @Stateless
 public class PropostaServiceImpl implements PropostaService {
 	
-	private static final String PROPOSTA_ACEITA = "proposta aceita! :D";
+	private static final String PROPOSTA_ACEITA = "Proposta aceita!";
+	private static final String PROPOSTA_REJEITADA = "Proposta rejeitada.";
 
 	@EJB
 	private PropostaRepository propostaRepository;
@@ -82,7 +83,7 @@ public class PropostaServiceImpl implements PropostaService {
 	}
 
 	@Override
-	public boolean aceitarProposta(Long propostaId, Long agenciaId, TipoConta tipoConta, BigDecimal limiteDaConta, String textoEmail) {
+	public boolean aceitarProposta(Long propostaId, TipoConta tipoConta, BigDecimal limiteDaConta) {
 		
 		Proposta proposta = propostaRepository.findById(propostaId);
 		proposta.setSituacao(SituacaoProposta.AC);
@@ -92,17 +93,22 @@ public class PropostaServiceImpl implements PropostaService {
 		Cliente cliente = clienteRepository.findById(proposta.getCliente().getId());
 		
 		cliente.setSituacao(SituacaoCliente.ATIVO);
+		String senhaPrimeiroAcesso = cliente.getNascimento().getDay() +""+ cliente.getNascimento().getMonth() +""+ cliente.getNascimento().getYear() +""+ cliente.getNome().substring(0, 1);
+		cliente.setSenha(senhaPrimeiroAcesso);
 		
 		clienteRepository.save(cliente);
 		
-		Agencia agencia = agenciaRepository.findById(agenciaId);
-		
 		Conta conta = new Conta();
-		conta.setAgencia(agencia);
 		conta.setCliente(cliente);
 		conta.setLimite(limiteDaConta);
-		conta.setNumero(100000 + new Random().nextInt() * 900000);
-		conta.setTipoConta(tipoConta);	
+		int numeroDaConta = Math.abs((100000 + new Random().nextInt() * 900000));
+		conta.setNumero(numeroDaConta);
+		conta.setTipoConta(tipoConta);
+		conta.setSaldo(new BigDecimal("0"));
+		
+		contaRepository.save(conta);
+		
+		String textoEmail = "Parabéns sua proposta foi aceita!! \nSegue número da conta e senha para primeiro acesso:\n\nconta: " + numeroDaConta + "\nsenha: " + senhaPrimeiroAcesso ;
 		
 		try {
 			emailService.enviarEmail(cliente.getEmail().toString(), PROPOSTA_ACEITA, textoEmail);
@@ -112,16 +118,23 @@ public class PropostaServiceImpl implements PropostaService {
 		}
 		return true;
 	}
-	
-	
-	
 
+	@Override
+	public void rejeitarProposta(Long propostaId, String textoEmail) {
+
+		Proposta proposta = propostaRepository.findById(propostaId);
+		proposta.setSituacao(SituacaoProposta.REG);
+		
+		propostaRepository.save(proposta);
+		
+		Cliente cliente = clienteRepository.findById(proposta.getCliente().getId());
+		
+		try {
+			emailService.enviarEmail(cliente.getEmail().toString(), PROPOSTA_REJEITADA, textoEmail);
+		} catch (MessagingException e) {
+			//TODO criar uma error personalizado para erro d eenvio de e-mail.
+			e.printStackTrace();
+		}
+	}
 	
 }
-//Preciso implementar o teste do methodo procurarProspostasPorEstado da class PropostaRepositoryImpl
-
-
-//pesquisarporposta por estado que estão com situações recebidas usar a enum
-//acietar proposta(ID da proposta)  ===>  mudar o status de cleinte para ativo ===>  criar conta corrente numero da conta random inserir o cliente ativado====> enviar email
-//rejeitar proposta(ID da proposta, string motivo rejeição) ===> informar o motivo da rejeição ===> enviar e-mail
-//enviar e-mail

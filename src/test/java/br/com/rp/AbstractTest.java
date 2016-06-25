@@ -15,17 +15,26 @@ import org.junit.runner.RunWith;
 
 import br.com.rp.domain.Log;
 import br.com.rp.repository.LogRepositoryTest;
+import br.com.rp.repository.PropostaRepository;
+import br.com.rp.repository.PropostaRepositoryTest;
 import br.com.rp.repository.Repository;
 import br.com.rp.repository.impl.AbstractRepositoryImpl;
+import br.com.rp.repository.impl.PropostaRepositoryImpl;
 import br.com.rp.repository.service.LogServiceTest;
-import br.com.rp.repository.service.PropostaServiceTest;
 import br.com.rp.rest.LogRest;
 import br.com.rp.rest.LogRestTest;
 import br.com.rp.service.ClienteServiceTest;
+import br.com.rp.service.FuncionarioServiceTest;
+import br.com.rp.service.GerenteServiceTest;
+import br.com.rp.service.PropostaServiceTest;
+import br.com.rp.services.FuncionarioService;
+import br.com.rp.services.GerenteService;
 import br.com.rp.services.LogService;
 import br.com.rp.services.PropostaService;
 import br.com.rp.services.exception.SaldoInsuficienteException;
 import br.com.rp.services.impl.ClienteServiceImpl;
+import br.com.rp.services.impl.FuncionarioServiceImpl;
+import br.com.rp.services.impl.GerenteServiceImpl;
 import br.com.rp.services.impl.PropostaServiceImpl;
 import br.com.rp.util.Util;
 
@@ -61,10 +70,19 @@ public abstract class AbstractTest {
 				.addPackages(false, LogService.class.getPackage())
 				.addPackages(false, LogServiceTest.class.getPackage())
 				.addPackages(false, ClienteServiceImpl.class.getPackage())
-				.addPackages(false, SaldoInsuficienteException.class.getPackage())	
+				.addPackages(false, SaldoInsuficienteException.class.getPackage())
+				.addPackages(false, PropostaRepositoryTest.class.getPackage())
+				.addPackages(false, PropostaRepository.class.getPackage())
+				.addPackages(false, PropostaRepositoryImpl.class.getPackage())
 				.addPackages(false, PropostaServiceTest.class.getPackage())
 				.addPackages(false, PropostaService.class.getPackage())
-				.addPackages(false, PropostaServiceImpl.class.getPackage())				
+				.addPackages(false, PropostaServiceImpl.class.getPackage())	
+				.addPackages(false, FuncionarioServiceTest.class.getPackage())
+				.addPackages(false, FuncionarioService.class.getPackage())
+				.addPackages(false, FuncionarioServiceImpl.class.getPackage())
+				.addPackages(false, GerenteServiceTest.class.getPackage())
+				.addPackages(false, GerenteService.class.getPackage())
+				.addPackages(false, GerenteServiceImpl.class.getPackage())
 				.addPackages(false, LogRest.class.getPackage())
 				.addPackages(false, LogRestTest.class.getPackage())
 				.addPackages(false, Util.class.getPackage())

@@ -22,8 +22,6 @@ import br.com.rp.domain.TipoConta;
 @CleanupUsingScript(phase = TestExecutionPhase.AFTER, value={"db/conta_delete.sql"})
 public class ContaRepositoryTest extends AbstractTest {
 	
-	private final Long AGENCIA_TESTE_ID = 1000l;
-	
 	private final Long CONTA_TESTE_ID = 1000L;
 	
 	private final Long CLIENTE_TESTE_ID = 100L;
@@ -31,22 +29,16 @@ public class ContaRepositoryTest extends AbstractTest {
 	@EJB
 	private ContaRepository dao;
 	@EJB
-	private AgenciaRepository daoAgencia;
-	@EJB
 	private ClienteRepository clienteRepository;
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml"})
+	@UsingDataSet({"db/cliente.xml"})
 	public void testeA_consegueInserirNoBanco(){
-		Agencia agencia = daoAgencia.findById(AGENCIA_TESTE_ID);
 		Cliente cliente = clienteRepository.findById(CLIENTE_TESTE_ID);
 		
-		
-		Assert.assertNotNull(agencia);
 		Assert.assertNotNull(cliente);
 		
 		Conta conta = new Conta();
-		conta.setAgencia(agencia);
 		conta.setLimite(new BigDecimal("1000.00"));
 		conta.setNumero(12345);
 		conta.setSaldo(new BigDecimal("150.00"));
@@ -54,11 +46,10 @@ public class ContaRepositoryTest extends AbstractTest {
 		conta.setCliente(cliente);
 		
 		dao.save(conta);	
-		Assert.assertNotNull(agencia.getId());
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/conta.xml"})
+	@UsingDataSet({"db/conta.xml"})
 	public void testeB_consegueAtualizarRegistro(){
 		Conta conta = dao.findById(CONTA_TESTE_ID);
 		Assert.assertNotNull(conta);	
@@ -71,14 +62,14 @@ public class ContaRepositoryTest extends AbstractTest {
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/conta.xml"})
+	@UsingDataSet({"db/conta.xml"})
 	public void testeC_consegueDeletarRegistro(){
 		dao.remove(CONTA_TESTE_ID);
 		Assert.assertEquals(1, dao.getAll().size());
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/conta.xml"})
+	@UsingDataSet({"db/conta.xml"})
 	public void testeD_consegueRecuperarRegistro(){
 		Conta conta = dao.findById(CONTA_TESTE_ID);
 		Assert.assertNotNull(conta);

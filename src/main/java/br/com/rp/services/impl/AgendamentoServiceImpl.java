@@ -34,11 +34,10 @@ public class AgendamentoServiceImpl implements AgendamentoService {
 			Conta conta = this.contaRepository.findById(agendamento.getConta().getId());
 			agendamento.setConta(conta);
 			agendamento.getPagamento().setConta(conta);
-		}
+		}			
 			
-			
-			this.agendamentoRepository.save(agendamento);
-			return Boolean.TRUE;
+		agendamentoRepository.save(agendamento);
+		return Boolean.TRUE;		
 	}
 
 	@Override

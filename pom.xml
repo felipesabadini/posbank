@@ -67,7 +67,7 @@
 				<scope>test</scope>
 				<version>2.2.0-alpha-2</version>
 			</dependency>
-			<!-- arquillian -->			
+			<!-- arquillian -->	 			
 		</dependencies>
 	</dependencyManagement>
 
@@ -175,7 +175,6 @@
 
 		<!-- <dependency> <groupId>org.jboss.resteasy</groupId> <artifactId>resteasy-client</artifactId> 
 			<version>3.0.2.Final</version> <scope>test</scope> </dependency> -->
-
 	</dependencies>
 
 	<build>
