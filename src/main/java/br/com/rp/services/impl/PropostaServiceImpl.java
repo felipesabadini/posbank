@@ -27,8 +27,8 @@ import br.com.rp.services.exception.ClienteJaAtivoTentandoRegistrarUmaNovaPropos
 @Stateless
 public class PropostaServiceImpl implements PropostaService {
 	
-	private static final String PROPOSTA_ACEITA = "proposta aceita! :D";
-	private static final String PROPOSTA_REJEITADA = "proposta rejeitada! :'(";
+	private static final String PROPOSTA_ACEITA = "Proposta aceita!";
+	private static final String PROPOSTA_REJEITADA = "Proposta rejeitada.";
 
 	@EJB
 	private PropostaRepository propostaRepository;
@@ -104,17 +104,14 @@ public class PropostaServiceImpl implements PropostaService {
 		conta.setAgencia(agencia);
 		conta.setCliente(cliente);
 		conta.setLimite(limiteDaConta);
-		int numeroDaConta = (100000 + new Random().nextInt() * 900000);
+		int numeroDaConta = Math.abs((100000 + new Random().nextInt() * 900000));
 		conta.setNumero(numeroDaConta);
 		conta.setTipoConta(tipoConta);
 		conta.setSaldo(new BigDecimal("0"));
 		
 		contaRepository.save(conta);
 		
-		//TODO Mudar o texto do e-mail para enviar senha para primeiro acesso e numero da conta que precisa ver com vou fazer pra retornar ele
-		
-		
-		String textoEmail = "Parabéns sua proposta foi aceita!! :D\nSegue número da conta e senha para primeiro acesso:\n\nconta: " + numeroDaConta + "\nsenha: " + senhaPrimeiroAcesso ;
+		String textoEmail = "Parabéns sua proposta foi aceita!! \nSegue número da conta e senha para primeiro acesso:\n\nconta: " + numeroDaConta + "\nsenha: " + senhaPrimeiroAcesso ;
 		
 		try {
 			emailService.enviarEmail(cliente.getEmail().toString(), PROPOSTA_ACEITA, textoEmail);

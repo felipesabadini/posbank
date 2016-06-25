@@ -30,7 +30,7 @@ import br.com.rp.services.exception.ClienteJaAtivoTentandoRegistrarUmaNovaPropos
 
 public class PropostaServiceTest extends AbstractTest {
 
-	private static final String PROPOSTA_REJEITADA = "FOi MAL AI MAIS FOI REJEITADA";
+	private static final String PROPOSTA_REJEITADA = "FOi MAL AI MAS FOI REJEITADA. :-/";
 	private static final String VALOR_LIMETE_CONTA = "3000";
 	private static final long AGENCIA_ID = 1000L;
 	private static final Long ID_PROPOSTA = 1003L;
@@ -103,8 +103,6 @@ public class PropostaServiceTest extends AbstractTest {
 		
 		List<Conta> contas = contaRepository.getAll();
 		
-//		Assert.assertTrue(contas.size() == 2);
-		
 		System.out.println(cliente.getSenha());		
 		
 		Assert.assertEquals(SituacaoCliente.ATIVO, cliente.getSituacao());		
@@ -114,10 +112,16 @@ public class PropostaServiceTest extends AbstractTest {
 		Assert.assertEquals(SituacaoProposta.AC, proposta.getSituacao());
 	}
 	
-//	@Test
-//	public void deveRejeitarProposta() {
-//		
-//		propostaService.rejeitarProposta(ID_PROPOSTA, PROPOSTA_REJEITADA);
-//	}
+	@Test
+	@UsingDataSet({"db/cliente.xml", "db/funcionario.xml", "db/propostas.xml"})
+	@CleanupUsingScript(phase = TestExecutionPhase.AFTER, value={"db/deveRejeitarProposta.sql"})
+	public void deveRejeitarProposta() {
+		
+		propostaService.rejeitarProposta(ID_PROPOSTA, PROPOSTA_REJEITADA);
+		
+		Proposta propostaRejeitada = propostaRepository.findById(ID_PROPOSTA);
+		
+		Assert.assertEquals(propostaRejeitada.getSituacao(), SituacaoProposta.REG);
+	}
 	
 }
