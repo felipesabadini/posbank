@@ -83,7 +83,7 @@ public class PropostaServiceImpl implements PropostaService {
 	}
 
 	@Override
-	public boolean aceitarProposta(Long propostaId, Long agenciaId, TipoConta tipoConta, BigDecimal limiteDaConta) {
+	public boolean aceitarProposta(Long propostaId, TipoConta tipoConta, BigDecimal limiteDaConta) {
 		
 		Proposta proposta = propostaRepository.findById(propostaId);
 		proposta.setSituacao(SituacaoProposta.AC);
@@ -98,10 +98,7 @@ public class PropostaServiceImpl implements PropostaService {
 		
 		clienteRepository.save(cliente);
 		
-		Agencia agencia = agenciaRepository.findById(agenciaId);
-		
 		Conta conta = new Conta();
-		conta.setAgencia(agencia);
 		conta.setCliente(cliente);
 		conta.setLimite(limiteDaConta);
 		int numeroDaConta = Math.abs((100000 + new Random().nextInt() * 900000));
