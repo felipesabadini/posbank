@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-	<pagamento id="1000" valor="100.24" vencimento="2016-06-18"/>
+	<pagamento id="1000" valor="100.24" vencimento="2016-06-18" tipo="BOLETO" conta_id="1000"/>
 </dataset>

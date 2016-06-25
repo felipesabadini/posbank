@@ -4,3 +4,4 @@ src/test/resources/arquillian.xml
 .classpath
 .project
 .settings/
+pom.xml

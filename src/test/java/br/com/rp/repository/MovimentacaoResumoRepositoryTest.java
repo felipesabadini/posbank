@@ -15,7 +15,7 @@ import br.com.rp.domain.Movimentacao;
 import br.com.rp.domain.MovimentacaoResumo;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-@CleanupUsingScript(phase = TestExecutionPhase.AFTER, value={"db/movimentacao_resumo_delete.sql"})
+@CleanupUsingScript(phase = TestExecutionPhase.AFTER, value={"db/movimentacaoResumo_delete.sql"})
 public class MovimentacaoResumoRepositoryTest extends AbstractTest {
 	
 	private final Long MOVIMENTACAO_RESUMO_TESTE_ID = 1000L;
@@ -29,7 +29,7 @@ public class MovimentacaoResumoRepositoryTest extends AbstractTest {
 	private MovimentacaoRepository movimentacaoDAO;
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/conta.xml", "db/movimentacao.xml"})
+	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/movimentacao.xml"})
 	public void testeA_consegueInserirNoBanco(){
 		Movimentacao movimentacao = movimentacaoDAO.findById(MOVIMENTACAO_TESTE_ID);
 		Assert.assertNotNull(movimentacao);
@@ -45,7 +45,7 @@ public class MovimentacaoResumoRepositoryTest extends AbstractTest {
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/conta.xml", "db/movimentacao.xml", "db/movimentacao_resumo.xml"})
+	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/movimentacao.xml", "db/movimentacao_resumo.xml"})
 	public void testeB_consegueAtualizarRegistro(){
 		MovimentacaoResumo movimentacaoResumo = dao.findById(MOVIMENTACAO_RESUMO_TESTE_ID);
 		Assert.assertNotNull(movimentacaoResumo);	
@@ -61,14 +61,14 @@ public class MovimentacaoResumoRepositoryTest extends AbstractTest {
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/conta.xml", "db/movimentacao.xml", "db/movimentacao_resumo.xml"})
+	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/movimentacao.xml", "db/movimentacao_resumo.xml"})
 	public void testeC_consegueDeletarRegistro(){
 		dao.remove(MOVIMENTACAO_RESUMO_TESTE_ID);
 		Assert.assertEquals(0, dao.getAll().size());
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/conta.xml", "db/movimentacao.xml", "db/movimentacao_resumo.xml"})
+	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/movimentacao.xml", "db/movimentacao_resumo.xml"})
 	public void testeD_consegueRecuperarRegistro(){
 		MovimentacaoResumo movimentacaoResumo = dao.findById(MOVIMENTACAO_RESUMO_TESTE_ID);
 		Assert.assertNotNull(movimentacaoResumo);
