@@ -25,5 +25,11 @@ public class GerenteServiceImpl implements GerenteService{
 		return propostaRepository.procurarProspostasPorEstado(estado);
 		
 	}
+
+	@Override
+	public void aceitarProposta(Cargo cargo, Long propostaId, String textoEmail) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
