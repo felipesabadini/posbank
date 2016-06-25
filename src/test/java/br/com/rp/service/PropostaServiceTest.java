@@ -95,20 +95,18 @@ public class PropostaServiceTest extends AbstractTest {
 	@CleanupUsingScript(phase = TestExecutionPhase.AFTER, value={"db/deveEnviarEmail.sql"})
 	public void deveEnviarEmail() {
 		
-		boolean resultado = propostaService.aceitarProposta(ID_PROPOSTA, TipoConta.CC, new BigDecimal(VALOR_LIMETE_CONTA));
+		boolean resultado = propostaService.aceitarProposta(ID_PROPOSTA);
 		Proposta proposta = propostaRepository.findById(ID_PROPOSTA);
 		
 		Cliente cliente = clienteRepository.findById(proposta.getCliente().getId());
-		
-		List<Conta> contas = contaRepository.getAll();
-		
-		System.out.println(cliente.getSenha());		
 		
 		Assert.assertEquals(SituacaoCliente.ATIVO, cliente.getSituacao());		
 		
 		Assert.assertEquals(true, resultado);
 		
 		Assert.assertEquals(SituacaoProposta.AC, proposta.getSituacao());
+		
+		Assert.assertEquals(TipoConta.CC, proposta.getTipoConta());
 	}
 	
 	@Test

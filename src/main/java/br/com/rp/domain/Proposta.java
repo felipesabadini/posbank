@@ -42,6 +42,9 @@ public class Proposta extends BaseEntity {
 	@Enumerated(EnumType.STRING)
 	private SituacaoProposta situacao;
 	
+	@Enumerated(EnumType.STRING)	
+	private TipoConta tipoConta; 
+	
 	public Proposta() {
 		this.dataCadastro = Util.getDataHoraAtual();
 		this.situacao = SituacaoProposta.REC;
@@ -101,5 +104,13 @@ public class Proposta extends BaseEntity {
 
 	public void setSituacao(SituacaoProposta situacao) {
 		this.situacao = situacao;
+	}
+
+	public TipoConta getTipoConta() {
+		return tipoConta;
+	}
+
+	public void setTipoConta(TipoConta tipoConta) {
+		this.tipoConta = tipoConta;
 	}
 }

@@ -27,6 +27,9 @@ import br.com.rp.services.exception.ClienteJaAtivoTentandoRegistrarUmaNovaPropos
 @Stateless
 public class PropostaServiceImpl implements PropostaService {
 	
+	private static final double PORCENTAGEM_CALCULO_LIMITE = 0.80;
+	private static final int LIMITE_RENDA_MENOR_QUE_MIL = 500;
+	private static final int VALOR_BASE_CALCULO_LIMITE = 1000;
 	private static final String PROPOSTA_ACEITA = "Proposta aceita!";
 	private static final String PROPOSTA_REJEITADA = "Proposta rejeitada.";
 
@@ -83,12 +86,13 @@ public class PropostaServiceImpl implements PropostaService {
 	}
 
 	@Override
-	public boolean aceitarProposta(Long propostaId, TipoConta tipoConta, BigDecimal limiteDaConta) {
+	public boolean aceitarProposta(Long propostaId) {
 		
 		Proposta proposta = propostaRepository.findById(propostaId);
 		proposta.setSituacao(SituacaoProposta.AC);
 
 		propostaRepository.save(proposta);	
+		
 		
 		Cliente cliente = clienteRepository.findById(proposta.getCliente().getId());
 		
@@ -98,12 +102,13 @@ public class PropostaServiceImpl implements PropostaService {
 		
 		clienteRepository.save(cliente);
 		
+		
 		Conta conta = new Conta();
 		conta.setCliente(cliente);
-		conta.setLimite(limiteDaConta);
+		conta.setLimite(defineLimite(proposta.getRendimento()));
 		int numeroDaConta = Math.abs((100000 + new Random().nextInt() * 900000));
 		conta.setNumero(numeroDaConta);
-		conta.setTipoConta(tipoConta);
+		conta.setTipoConta(proposta.getTipoConta());
 		conta.setSaldo(new BigDecimal("0"));
 		
 		contaRepository.save(conta);
@@ -117,6 +122,14 @@ public class PropostaServiceImpl implements PropostaService {
 			e.printStackTrace();
 		}
 		return true;
+	}
+
+	private BigDecimal defineLimite(BigDecimal redimento) {
+		
+		if (redimento.compareTo(new BigDecimal(VALOR_BASE_CALCULO_LIMITE)) == -1) {
+			return new BigDecimal(LIMITE_RENDA_MENOR_QUE_MIL);
+		}
+		return redimento.multiply(new BigDecimal(PORCENTAGEM_CALCULO_LIMITE));
 	}
 
 	@Override

@@ -7,14 +7,14 @@ import javax.ejb.Stateless;
 
 import br.com.rp.domain.Cargo;
 import br.com.rp.domain.Proposta;
-import br.com.rp.repository.PropostaRepository;
 import br.com.rp.services.GerenteService;
+import br.com.rp.services.PropostaService;
 
 @Stateless
 public class GerenteServiceImpl implements GerenteService{
 	
 	@EJB
-	PropostaRepository propostaRepository;
+	PropostaService propostaServiceImpl;
 	
 	@Override
 	public List<Proposta> visualizarPropostasPorEstado(Cargo cargo, String estado) {
@@ -22,13 +22,17 @@ public class GerenteServiceImpl implements GerenteService{
 			return null;
 		}
 		
-		return propostaRepository.procurarProspostasPorEstado(estado);
+		return propostaServiceImpl.pesquisarPropostasPorEstado(estado);
 		
 	}
 
 	@Override
-	public void aceitarProposta(Cargo cargo, Long propostaId, String textoEmail) {
-		// TODO Auto-generated method stub
+	public void aceitarProposta(Cargo cargo, Long propostaId) {
+		if (cargo != Cargo.GERENTE) {
+			return;
+		}
+		
+		propostaServiceImpl.aceitarProposta(propostaId);
 		
 	}
 	
