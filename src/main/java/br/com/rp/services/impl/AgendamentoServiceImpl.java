@@ -7,7 +7,9 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import br.com.rp.domain.Agendamento;
+import br.com.rp.domain.Conta;
 import br.com.rp.repository.AgendamentoRepository;
+import br.com.rp.repository.ContaRepository;
 import br.com.rp.services.AgendamentoService;
 import br.com.rp.services.MovimentacaoService;
 
@@ -20,10 +22,20 @@ public class AgendamentoServiceImpl implements AgendamentoService {
 	@EJB
 	private MovimentacaoService movimentacaoService;
 	
-	@Override
+	@EJB
+	private ContaRepository contaRepository;
+	
+	@Override	
 	public Boolean agendarPagamento(Agendamento agendamento) {
 		if(!agendamento.isAgendamentoValido())
 			return Boolean.FALSE;
+		
+		if(agendamento.getConta().getId() != null) {
+			Conta conta = this.contaRepository.findById(agendamento.getConta().getId());
+			agendamento.setConta(conta);
+			agendamento.getPagamento().setConta(conta);
+		}
+			
 			
 			this.agendamentoRepository.save(agendamento);
 			return Boolean.TRUE;

@@ -13,6 +13,7 @@ import br.com.rp.services.AgendamentoService;
 
 @Path("/agendamentos")
 @Produces("application/json")
+//@Consumes("application/json")
 public class AgendamentoRest {
 
 	@EJB
@@ -20,6 +21,9 @@ public class AgendamentoRest {
 	
 	@POST
 	public Response registrarAgendamento(Agendamento agendamento) {
+//		this.agendamentoService.agendarPagamento(agendamento);
+//
+//		return Response.status(Status.CREATED).entity(agendamento).build();
 		Boolean result = this.agendamentoService.agendarPagamento(agendamento);
 		if(result)
 			return Response.status(Status.CREATED).entity(agendamento).build();

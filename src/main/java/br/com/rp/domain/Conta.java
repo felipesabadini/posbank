@@ -10,10 +10,15 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name="conta")
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Conta extends BaseEntity {
 	
 	@ManyToOne
@@ -33,7 +38,7 @@ public class Conta extends BaseEntity {
 	@Column(name="limite", nullable=false)
 	private BigDecimal limite;
 	
-	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="cliente_id", nullable=false)
 	private Cliente cliente;
 
