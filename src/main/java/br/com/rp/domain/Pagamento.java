@@ -11,9 +11,14 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "pagamento")
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Pagamento extends BaseEntity {
 
 	private static final long serialVersionUID = 8141262331072373417L;
@@ -21,7 +26,7 @@ public class Pagamento extends BaseEntity {
 	@Column(name="valor", nullable=false)
 	private BigDecimal valor;
 	
-	@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST})
+	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name="conta_id")
 	private Conta conta;
 	
@@ -29,6 +34,12 @@ public class Pagamento extends BaseEntity {
 	
 	@Enumerated(EnumType.STRING)
 	private Tipo tipo;
+	
+	@Column(name = "descricao")
+	private String descricao;
+	
+	@Column(name = "linhaDigitavel")
+	private String linhaDigitavel; 
 	
 	public BigDecimal getValor() {
 		return valor;
@@ -60,6 +71,22 @@ public class Pagamento extends BaseEntity {
 
 	public void setConta(Conta conta) {
 		this.conta = conta;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getLinhaDigitavel() {
+		return linhaDigitavel;
+	}
+
+	public void setLinhaDigitavel(String linhaDigitavel) {
+		this.linhaDigitavel = linhaDigitavel;
 	}
 	
 	

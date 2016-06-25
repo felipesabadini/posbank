@@ -34,7 +34,7 @@ public class Conta extends BaseEntity {
 	@Column(name="limite", nullable=false)
 	private BigDecimal limite;
 	
-	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="cliente_id", nullable=false)
 	private Cliente cliente;
 

@@ -14,6 +14,7 @@ import br.com.rp.services.AgendamentoService;
 
 @Path("/agendamentos")
 @Produces("application/json")
+//@Consumes("application/json")
 public class AgendamentoRest {
 
 	@EJB

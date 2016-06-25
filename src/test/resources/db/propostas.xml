@@ -3,5 +3,5 @@
 	<proposta id="1000" rendimento="1000" funcionario_id="1000" cliente_id="100" mensagem="Teste" dataCadastro="2016-04-01 12:12:12" situacao="REG" />
 	<proposta id="1001" rendimento="1000" funcionario_id="1000" cliente_id="100" mensagem="Teste" dataCadastro="2016-05-01 12:12:12" situacao="REG" />
 	<proposta id="1002" rendimento="1000" funcionario_id="1000" cliente_id="100" mensagem="Teste" dataCadastro="2016-06-01 12:12:12" situacao="AC" />
-	<proposta id="1003" rendimento="1000" funcionario_id="1000" cliente_id="100" mensagem="Teste" dataCadastro="2016-06-10 12:12:12" situacao="REC" />
+	<proposta id="1003" rendimento="1000" funcionario_id="1000" cliente_id="100" mensagem="Teste" dataCadastro="2016-06-10 12:12:12" situacao="REC" tipoConta="CC" />
 </dataset> 

@@ -17,6 +17,6 @@ public interface PropostaService {
 	public void oCPFDoClienteJaExisteEJaTemPropostaAceita(Cliente cliente);
 	public List<Proposta> pesquisarPropostasPorEstado(String estado);
 	public Proposta registrarProposta(Proposta proposta);
-	public boolean aceitarProposta(Long propostaId, TipoConta tipoConta, BigDecimal limiteDaConta);
+	public boolean aceitarProposta(Long propostaId);
 	public void rejeitarProposta(Long propostaId, String textoEmail);
 }
