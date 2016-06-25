@@ -8,11 +8,16 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 
 @Entity
 @Table(name="cliente")
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Cliente extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;

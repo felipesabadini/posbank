@@ -11,6 +11,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
@@ -19,10 +22,12 @@ import br.com.rp.util.Util;
 @SuppressWarnings("serial")
 @Entity
 @Table(name="agendamento")
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Agendamento extends  BaseEntity {
 	
-	@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST})
-	@JoinColumn(name="conta_id", nullable=false)
+	@ManyToOne(cascade= CascadeType.ALL)
+	@JoinColumn(name="conta_id")
 	private Conta conta;
 	
 	@JsonIgnore

@@ -20,6 +20,7 @@ import br.com.rp.AbstractTest;
 import br.com.rp.domain.Agendamento;
 import br.com.rp.domain.Conta;
 import br.com.rp.domain.Pagamento;
+import br.com.rp.domain.Tipo;
 import br.com.rp.repository.ContaRepository;
 import br.com.rp.repository.PagamentoRepository;
 import br.com.rp.util.Util;
@@ -45,11 +46,14 @@ public class AgendamentoRestTest extends AbstractTest {
 		})
 	public void deveRegistrarUmAgendamento() {
 		Conta conta = this.contaRepository.findById(1000L);
+
 		Date data = Util.getDataAtual();
 		
 		Pagamento pagamento = new Pagamento();
 		pagamento.setValor(new BigDecimal("100.00"));
 		pagamento.setVencimento(data);
+		pagamento.setTipo(Tipo.BOLETO);
+		pagamento.setConta(conta);
 		
 		Agendamento agendamento = new Agendamento();
 		agendamento.setConta(conta);
@@ -59,7 +63,7 @@ public class AgendamentoRestTest extends AbstractTest {
 
 		Client client = ClientBuilder.newClient();
 		WebTarget target = client.target(URL);
-		
+
 		Response response = target.request().post(Entity.json(agendamento));
 		Assert.assertEquals(Integer.valueOf(201), Integer.valueOf(response.getStatus()));		
 		Agendamento result = response.readEntity(Agendamento.class);
