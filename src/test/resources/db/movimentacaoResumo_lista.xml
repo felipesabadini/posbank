@@ -1,0 +1,7 @@
+<dataset>
+	<movimentacao_resumo id="1000" movimentacao_id="1000" enviado_bacen="false" enviado_eua="false" />
+	<movimentacao_resumo id="1001" movimentacao_id="1001" enviado_bacen="false" enviado_eua="false" />
+	<movimentacao_resumo id="1002" movimentacao_id="1002" enviado_bacen="false" enviado_eua="false" />
+	<movimentacao_resumo id="1003" movimentacao_id="1003" enviado_bacen="true" enviado_eua="false" />
+	<movimentacao_resumo id="1004" movimentacao_id="1004" enviado_bacen="true" enviado_eua="true" />
+</dataset>
