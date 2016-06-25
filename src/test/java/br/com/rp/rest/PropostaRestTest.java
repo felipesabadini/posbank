@@ -1,6 +1,7 @@
 package br.com.rp.rest;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ws.rs.client.Client;
@@ -9,6 +10,8 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
+import org.jboss.arquillian.persistence.CleanupUsingScript;
+import org.jboss.arquillian.persistence.TestExecutionPhase;
 import org.jboss.arquillian.persistence.UsingDataSet;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
@@ -23,17 +26,16 @@ import br.com.rp.domain.Proposta;
 import br.com.rp.repository.ClienteRepository;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
+@CleanupUsingScript(value="db/propostaRest_delete.sql", phase=TestExecutionPhase.AFTER)
 public class PropostaRestTest extends AbstractTest {
 
-	private static final Long CLIENTE_ID = 100L;
-	
 	private static final String URL = "http://localhost:8080/vbank/api/propostas";
 	
 	@EJB
 	private ClienteRepository clienteRepository;
 	
 	@Test
-	public void testeA_registrarUmaNovaPropostaParaClienteNaoCadastrado() {
+	public void testeA_consegueRegistrarUmaNovaPropostaParaClienteNaoCadastrado() {
 		Client client = ClientBuilder.newClient();
 		WebTarget target = client.target(URL);
 		
@@ -54,23 +56,15 @@ public class PropostaRestTest extends AbstractTest {
 		Assert.assertNotNull(result.getId());
 	}
 	
-	/*@Test
-	@UsingDataSet(value={"db/cliente.xml"})
-	public void testeB_registrarUmaNovaPropostaComClienteJaExistente() {
+	@SuppressWarnings("unchecked")
+	@Test
+	@UsingDataSet({"db/cliente_lista.xml", "db/proposta_lista.xml"})
+	public void testeB_consegueRecuperarPropostaRecebidaPorEstado() {
 		Client client = ClientBuilder.newClient();
-		WebTarget target = client.target(URL);
-		
-		Cliente cliente = clienteRepository.findById(CLIENTE_ID);
-		
-		Proposta proposta = new Proposta();
-		proposta.setCliente(cliente);
-		proposta.setMensagem("Quero muito ser cliente desse banco !");
-		proposta.setRendimento(new BigDecimal("1500.55"));			
-		
-		Response response = target.request().post(Entity.json(proposta));
-		
-		Assert.assertEquals(Integer.valueOf(201), Integer.valueOf(response.getStatus()));		
-		Proposta result = response.readEntity(Proposta.class);
-		Assert.assertNotNull(result.getId());
-	}*/
+		WebTarget target = client.target(URL + "/lista/PR");
+		Response response = target.request().get();
+		Assert.assertEquals(Integer.valueOf(200), Integer.valueOf(response.getStatus()));
+		List<Proposta> lstProposta = ((List<Proposta>) response.readEntity(List.class));
+		Assert.assertEquals(4, lstProposta.size());
+	}
 }

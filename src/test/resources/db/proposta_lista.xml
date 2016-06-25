@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<proposta id="1000" rendimento="1000" cliente_id="100" mensagem="Teste" dataCadastro="2016-04-01 12:12:12" situacao="REC" tipoConta="CP" />
+	<proposta id="1001" rendimento="1000" cliente_id="101" mensagem="Teste" dataCadastro="2016-05-01 12:12:12" situacao="REC" tipoConta="CP" />
+	<proposta id="1002" rendimento="1000" cliente_id="102" mensagem="Teste" dataCadastro="2016-06-01 12:12:12" situacao="REC" tipoConta="CC" />
+	<proposta id="1003" rendimento="1000" cliente_id="103" mensagem="Teste" dataCadastro="2016-06-10 12:12:12" situacao="REC" tipoConta="CC" />
+	<proposta id="1004" rendimento="1000" cliente_id="104" mensagem="Teste" dataCadastro="2016-06-10 12:12:12" situacao="REC" tipoConta="CC" />
+</dataset> 

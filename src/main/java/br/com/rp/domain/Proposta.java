@@ -11,12 +11,17 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import br.com.rp.util.Util;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name="proposta")
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Proposta extends BaseEntity {
 	
 	@Column(name = "dataCadastro")
