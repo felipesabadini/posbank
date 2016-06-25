@@ -1,4 +1,4 @@
-package br.com.rp.repository.service;
+package br.com.rp.service;
 
 import java.math.BigDecimal;
 import java.util.List;
