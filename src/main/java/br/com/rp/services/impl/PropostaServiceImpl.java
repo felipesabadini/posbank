@@ -16,6 +16,7 @@ import br.com.rp.domain.SituacaoProposta;
 import br.com.rp.repository.AgenciaRepository;
 import br.com.rp.repository.ClienteRepository;
 import br.com.rp.repository.ContaRepository;
+import br.com.rp.repository.FuncionarioRepository;
 import br.com.rp.repository.PropostaRepository;
 import br.com.rp.services.EmailService;
 import br.com.rp.services.PropostaService;
@@ -36,16 +37,19 @@ public class PropostaServiceImpl implements PropostaService {
 	private PropostaRepository propostaRepository;
 	
 	@EJB
-	EmailService emailService;
+	private EmailService emailService;
 	
 	@EJB
-	ClienteRepository clienteRepository;
+	private ClienteRepository clienteRepository;
 	
 	@EJB
-	ContaRepository contaRepository;
+	private ContaRepository contaRepository;
 	
 	@EJB
-	AgenciaRepository agenciaRepository;
+	private AgenciaRepository agenciaRepository;
+	
+	@EJB
+	private FuncionarioRepository funcionarioRepository;
 	
 	@Override
 	public Proposta processoParaRegistrarUmaProposta(Proposta proposta) {
@@ -117,7 +121,6 @@ public class PropostaServiceImpl implements PropostaService {
 		try {
 			emailService.enviarEmail(cliente.getEmail().toString(), PROPOSTA_ACEITA, textoEmail);
 		} catch (MessagingException e) {
-			//TODO criar uma error personalizado para erro d eenvio de e-mail.
 			e.printStackTrace();
 		}
 		return true;
@@ -132,9 +135,11 @@ public class PropostaServiceImpl implements PropostaService {
 	}
 
 	@Override
-	public void rejeitarProposta(Long propostaId, String textoEmail) {
+	public void rejeitarProposta(Long propostaId, Long funcionarioId, String motivoRejeicao) {
 
 		Proposta proposta = propostaRepository.findById(propostaId);
+		proposta.setFuncionario(funcionarioRepository.findById(funcionarioId));
+		proposta.setMotivoRejeicao(motivoRejeicao);
 		proposta.setSituacao(SituacaoProposta.REG);
 		
 		propostaRepository.save(proposta);
@@ -142,11 +147,9 @@ public class PropostaServiceImpl implements PropostaService {
 		Cliente cliente = clienteRepository.findById(proposta.getCliente().getId());
 		
 		try {
-			emailService.enviarEmail(cliente.getEmail().toString(), PROPOSTA_REJEITADA, textoEmail);
+			emailService.enviarEmail(cliente.getEmail().toString(), PROPOSTA_REJEITADA, motivoRejeicao);
 		} catch (MessagingException e) {
-			//TODO criar uma error personalizado para erro d eenvio de e-mail.
 			e.printStackTrace();
 		}
-	}
-	
+	}	
 }

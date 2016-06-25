@@ -32,4 +32,18 @@ public class PropostaRest {
 	public List<Proposta> procurarProposta(@PathParam(value="estado") String estado){
 		return propostaService.pesquisarPropostasPorEstado(estado.toUpperCase());
 	}
+	
+	@POST
+	@Path(value="/aceitar/{id}")
+	public Response aceitarProposta(@PathParam("id") Long id){
+		propostaService.aceitarProposta(id);
+		return Response.status(Status.OK).build();
+	}
+	
+	@POST
+	@Path(value="/rejeitar")
+	public Response recusarProposta(Proposta proposta){
+		propostaService.rejeitarProposta(proposta.getId(), proposta.getFuncionario().getId(), proposta.getMotivoRejeicao());
+		return Response.status(Status.OK).build();
+	}
 }

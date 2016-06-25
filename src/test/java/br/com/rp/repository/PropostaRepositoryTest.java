@@ -34,17 +34,16 @@ public class PropostaRepositoryTest extends AbstractTest {
 		proposta.setCliente(cliente);
 		proposta.setRendimento(new BigDecimal("1000.00"));
 		proposta.setFuncionario(funcionario);
-		proposta.setMensagem("quero ser aprovado");
+		proposta.setMensagem("Gostaria de crédito pessoal para pequenas compras.");
 		proposta.setDataAvaliacao(new Timestamp(System.currentTimeMillis()));
 		proposta.setSituacao(SituacaoProposta.REC);
 		proposta.setDataCadastro(new Timestamp(System.currentTimeMillis()));
+		proposta.setMotivoRejeicao(null);
 		dao.save(proposta);
 		
 		Assert.assertNotNull(proposta.getId());
 		
 	}
-	
-	
 	
 	@Test
 	@UsingDataSet({"db/funcionario.xml", "db/cliente.xml", "db/proposta.xml" })
@@ -73,5 +72,4 @@ public class PropostaRepositoryTest extends AbstractTest {
 			.getUf(), "PR");		
 		
 	}
-
 }

@@ -1,13 +1,11 @@
 package br.com.rp.services;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import javax.ejb.Local;
 
 import br.com.rp.domain.Cliente;
 import br.com.rp.domain.Proposta;
-import br.com.rp.domain.TipoConta;
 
 @Local
 public interface PropostaService {
@@ -18,5 +16,5 @@ public interface PropostaService {
 	public List<Proposta> pesquisarPropostasPorEstado(String estado);
 	public Proposta registrarProposta(Proposta proposta);
 	public boolean aceitarProposta(Long propostaId);
-	public void rejeitarProposta(Long propostaId, String textoEmail);
+	public void rejeitarProposta(Long propostaId, Long funcionarioId, String motivoRejeicao);
 }

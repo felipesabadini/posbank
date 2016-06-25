@@ -13,7 +13,6 @@ import org.junit.Test;
 
 import br.com.rp.AbstractTest;
 import br.com.rp.domain.Cliente;
-import br.com.rp.domain.Conta;
 import br.com.rp.domain.Cpf;
 import br.com.rp.domain.Email;
 import br.com.rp.domain.Proposta;
@@ -31,9 +30,9 @@ import br.com.rp.services.exception.ClienteJaAtivoTentandoRegistrarUmaNovaPropos
 public class PropostaServiceTest extends AbstractTest {
 
 	private static final String PROPOSTA_REJEITADA = "FOi MAL AI MAS FOI REJEITADA. :-/";
-	private static final String VALOR_LIMETE_CONTA = "3000";
 	private static final Long ID_PROPOSTA = 1003L;
 	private static final int QUANTIDA_PROSPOSTA_PR = 4;
+	private static final Long FUNCIONARIO_ID = 1000L;
 	@EJB
 	private PropostaService propostaService;
 	@EJB
@@ -114,7 +113,7 @@ public class PropostaServiceTest extends AbstractTest {
 	@CleanupUsingScript(phase = TestExecutionPhase.AFTER, value={"db/deveRejeitarProposta.sql"})
 	public void deveRejeitarProposta() {
 		
-		propostaService.rejeitarProposta(ID_PROPOSTA, PROPOSTA_REJEITADA);
+		propostaService.rejeitarProposta(ID_PROPOSTA, FUNCIONARIO_ID, PROPOSTA_REJEITADA);
 		
 		Proposta propostaRejeitada = propostaRepository.findById(ID_PROPOSTA);
 		

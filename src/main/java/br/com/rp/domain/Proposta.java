@@ -34,27 +34,30 @@ public class Proposta extends BaseEntity {
 	@Column(name = "rendimento")
 	private BigDecimal rendimento;
 	
-	@ManyToOne
-	@JoinColumn(name = "funcionario_id")
-	private Funcionario funcionario;
+	@Enumerated(EnumType.STRING)	
+	private TipoConta tipoConta; 
 	
 	@Column(name = "mensagem")
 	private String mensagem;
 	
+	@ManyToOne
+	@JoinColumn(name = "funcionario_id")
+	private Funcionario funcionario;
+	
 	@Column(name = "dataAvaliacao")
 	private Timestamp dataAvaliacao;
 
+	@Column(name="motivoRejeicao", nullable=true)
+	private String motivoRejeicao;
+	
 	@Enumerated(EnumType.STRING)
 	private SituacaoProposta situacao;
-	
-	@Enumerated(EnumType.STRING)	
-	private TipoConta tipoConta; 
 	
 	public Proposta() {
 		this.dataCadastro = Util.getDataHoraAtual();
 		this.situacao = SituacaoProposta.REC;
 	}
-	
+
 	public Timestamp getDataCadastro() {
 		return dataCadastro;
 	}
@@ -79,12 +82,12 @@ public class Proposta extends BaseEntity {
 		this.rendimento = rendimento;
 	}
 
-	public Funcionario getFuncionario() {
-		return funcionario;
+	public TipoConta getTipoConta() {
+		return tipoConta;
 	}
 
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
+	public void setTipoConta(TipoConta tipoConta) {
+		this.tipoConta = tipoConta;
 	}
 
 	public String getMensagem() {
@@ -95,6 +98,14 @@ public class Proposta extends BaseEntity {
 		this.mensagem = mensagem;
 	}
 
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
+
 	public Timestamp getDataAvaliacao() {
 		return dataAvaliacao;
 	}
@@ -103,19 +114,19 @@ public class Proposta extends BaseEntity {
 		this.dataAvaliacao = dataAvaliacao;
 	}
 
+	public String getMotivoRejeicao() {
+		return motivoRejeicao;
+	}
+
+	public void setMotivoRejeicao(String motivoRejeicao) {
+		this.motivoRejeicao = motivoRejeicao;
+	}
+
 	public SituacaoProposta getSituacao() {
 		return situacao;
 	}
 
 	public void setSituacao(SituacaoProposta situacao) {
 		this.situacao = situacao;
-	}
-
-	public TipoConta getTipoConta() {
-		return tipoConta;
-	}
-
-	public void setTipoConta(TipoConta tipoConta) {
-		this.tipoConta = tipoConta;
 	}
 }
