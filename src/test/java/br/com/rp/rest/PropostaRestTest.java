@@ -30,6 +30,7 @@ import br.com.rp.repository.ClienteRepository;
 import br.com.rp.repository.ContaRepository;
 import br.com.rp.repository.FuncionarioRepository;
 import br.com.rp.repository.PropostaRepository;
+import br.com.rp.seguranca.Token;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @CleanupUsingScript(value = "db/propostaRest_delete.sql", phase = TestExecutionPhase.AFTER)
@@ -78,7 +79,7 @@ public class PropostaRestTest extends AbstractTest {
 	public void testeB_consegueRecuperarPropostaRecebidaPorEstado() {
 		Client client = ClientBuilder.newClient();
 		WebTarget target = client.target(URL + "/lista/PR");
-		Response response = target.request().get();
+		Response response = target.request().header("token", Token.GERENTE_DE_CONTAS).get();
 		Assert.assertEquals(Integer.valueOf(200), Integer.valueOf(response.getStatus()));
 		List<Proposta> lstProposta = ((List<Proposta>) response.readEntity(List.class));
 		Assert.assertEquals(4, lstProposta.size());
@@ -91,9 +92,10 @@ public class PropostaRestTest extends AbstractTest {
 		Assert.assertNotNull(proposta);
 		Assert.assertEquals(proposta.getSituacao(), SituacaoProposta.REC);
 		
-		Client client = ClientBuilder.newClient();
+		Client client = ClientBuilder.newClient();						
 		WebTarget target = client.target(URL + "/aceitar/" + proposta.getId());
-		Response response = target.request().post(null);
+		
+		Response response = target.request().header("token", Token.GERENTE_DE_CONTAS).post(null);
 		Assert.assertEquals(Integer.valueOf(200), Integer.valueOf(response.getStatus()));
 		
 		proposta = propostaRepository.findById(PROPOSTA_ID);
@@ -115,11 +117,19 @@ public class PropostaRestTest extends AbstractTest {
 		
 		Client client = ClientBuilder.newClient();
 		WebTarget target = client.target(URL + "/rejeitar");
-		Response response = target.request().post(Entity.json(proposta));
+		Response response = target.request().header("token", Token.GERENTE_DE_CONTAS).post(Entity.json(proposta));
 		Assert.assertEquals(Integer.valueOf(200), Integer.valueOf(response.getStatus()));
 		
 		proposta = propostaRepository.findById(PROPOSTA_ID);
 		Assert.assertNotNull(proposta);
 		Assert.assertEquals(proposta.getSituacao(), SituacaoProposta.REG);
 	}
+	
+//	@Test(expected = AcessoNaoPermitidoException.class)
+//	@UsingDataSet({ "db/cliente_lista.xml", "db/proposta_lista.xml" })
+//	public void testeE_deveLancarUmaException() {
+//		Client client = ClientBuilder.newClient();
+//		WebTarget target = client.target(URL + "/lista/PR");
+//		Response response = target.request().header("token", Token.GERENTE_DE_OPERACOES).get();
+//	}	
 }

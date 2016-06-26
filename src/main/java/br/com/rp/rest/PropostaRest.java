@@ -3,6 +3,7 @@ package br.com.rp.rest;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.interceptor.Interceptors;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
@@ -12,8 +13,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import br.com.rp.domain.Cargo;
 import br.com.rp.domain.Proposta;
+import br.com.rp.seguranca.InterceptorProposta;
+import br.com.rp.seguranca.Token;
 import br.com.rp.services.PropostaService;
 
 @Path("/propostas")
@@ -31,20 +33,23 @@ public class PropostaRest {
 	
 	@GET
 	@Path(value="/lista/{estado}")
-	public List<Proposta> procurarProposta(@PathParam(value="estado") String estado){
+	@Interceptors(value = InterceptorProposta.class)
+	public List<Proposta> procurarProposta(@HeaderParam(value = "token") Token token, @PathParam(value="estado") String estado){
 		return propostaService.pesquisarPropostasPorEstado(estado.toUpperCase());
 	}
 	
 	@POST
 	@Path(value="/aceitar/{id}")
-	public Response aceitarProposta(@HeaderParam(value = "cargo") Cargo cargo, @PathParam("id") Long id){
+	@Interceptors(value = InterceptorProposta.class)
+	public Response aceitarProposta(@HeaderParam(value = "token") Token token, @PathParam("id") Long id){		 
 		propostaService.aceitarProposta(id);
 		return Response.status(Status.OK).build();
 	}
 	
 	@POST
 	@Path(value="/rejeitar")
-	public Response recusarProposta(Proposta proposta){
+	@Interceptors(value = InterceptorProposta.class)
+	public Response recusarProposta(@HeaderParam(value = "token") Token token, Proposta proposta) {
 		propostaService.rejeitarProposta(proposta.getId(), proposta.getFuncionario().getId(), proposta.getMotivoRejeicao());
 		return Response.status(Status.OK).build();
 	}

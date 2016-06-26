@@ -45,6 +45,9 @@ public class Movimentacao extends BaseEntity {
 	@Column(name="numero_conta_destino", nullable=true)
 	private Long numeroContaDestino;
 
+	@Column(name="cmc7", nullable=true)
+	private String cmc7;
+	
 	public Conta getConta() {
 		return conta;
 	}
@@ -107,5 +110,13 @@ public class Movimentacao extends BaseEntity {
 
 	public void setNumeroContaDestino(Long numeroContaDestino) {
 		this.numeroContaDestino = numeroContaDestino;
+	}
+
+	public String getCmc7() {
+		return cmc7;
+	}
+
+	public void setCmc7(String cmc7) {
+		this.cmc7 = cmc7;
 	}
 }
