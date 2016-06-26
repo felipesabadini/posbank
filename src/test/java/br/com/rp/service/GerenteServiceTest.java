@@ -77,6 +77,7 @@ public class GerenteServiceTest extends AbstractTest{
 	}
 
 	@Test
+	@UsingDataSet({"db/configuracao.xml"})
 	public void deveAlterarHorarioConfiguracao(){
 		
 		Date horaInicialTransacao = Util.setTime(7, 0);
