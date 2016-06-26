@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-	<cliente id="100" nome="Cliente 01" nascimento="2016-08-01 12:12:12" cpf="38803672303" endereco="RUA X" numero="123" bairro="VILA" cidade="MARINGA" uf="PR" situacao="INATIVO" email="douglas-da.silva.santos@hotmail.com"/>
+	<cliente id="100" nome="Cliente 01" nascimento="2016-08-01 12:12:12" cpf="38803672303" endereco="RUA X" numero="123" bairro="VILA" cidade="MARINGA" uf="PR" situacao="INATIVO" email="williammaximo@hotmail.com.br"/>
 	<cliente id="101" nome="Cliente 02" nascimento="2016-08-01 12:12:12" cpf="13245678998" endereco="RUA Y" numero="321" bairro="JARDIM" cidade="APUCARANA" uf="PR" situacao="INATIVO" email="douglas-da.silva.santos@hotmail.com"/>
 	<cliente id="102" nome="Cliente 03" nascimento="2016-08-01 12:12:12" cpf="13245678998" endereco="RUA Y" numero="321" bairro="JARDIM" cidade="APUCARANA" uf="PR" situacao="INATIVO" email="douglas-da.silva.santos@hotmail.com"/>
 	<cliente id="103" nome="Cliente 04" nascimento="2016-08-01 12:12:12" cpf="13245678998" endereco="RUA Y" numero="321" bairro="JARDIM" cidade="APUCARANA" uf="PR" situacao="INATIVO" email="douglas-da.silva.santos@hotmail.com"/>
