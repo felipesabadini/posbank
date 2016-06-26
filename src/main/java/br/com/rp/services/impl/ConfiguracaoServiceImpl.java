@@ -18,7 +18,6 @@ import br.com.rp.util.Util;
 
 @Singleton
 @Startup
-@DependsOn("ConfiguracaoRepository")
 public class ConfiguracaoServiceImpl implements ConfiguracaoService{
 
 	private static final long CONFIGURA_ID = 1L;
