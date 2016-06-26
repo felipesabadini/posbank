@@ -35,9 +35,19 @@ public class LogMovimentacao extends BaseEntity {
 	@Enumerated(EnumType.STRING)
 	private TipoOperacao tipoOperacao;
 	
-	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE})
-	@JoinColumn(name="conta_destino_id", nullable=true)
-	private Conta contaDestino;
+//	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE})
+//	@JoinColumn(name="conta_destino_id", nullable=true)
+//	private Conta contaDestino;
+	
+	@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST})
+	@JoinColumn(name="pagamento_id")
+	private Pagamento pagamento;
+	
+	@Column(name="codigo_banco", nullable=true)
+	private String codigoBanco;
+	
+	@Column(name="numero_conta_destino", nullable=true)
+	private Long numeroContaDestino;	
 
 	public Conta getConta() {
 		return conta;
@@ -79,11 +89,35 @@ public class LogMovimentacao extends BaseEntity {
 		this.tipoOperacao = tipoOperacao;
 	}
 
-	public Conta getContaDestino() {
-		return contaDestino;
+//	public Conta getContaDestino() {
+//		return contaDestino;
+//	}
+//
+//	public void setContaDestino(Conta contaDestino) {
+//		this.contaDestino = contaDestino;
+//	}
+
+	public Pagamento getPagamento() {
+		return pagamento;
 	}
 
-	public void setContaDestino(Conta contaDestino) {
-		this.contaDestino = contaDestino;
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
+	}
+
+	public String getCodigoBanco() {
+		return codigoBanco;
+	}
+
+	public void setCodigoBanco(String codigoBanco) {
+		this.codigoBanco = codigoBanco;
+	}
+
+	public Long getNumeroContaDestino() {
+		return numeroContaDestino;
+	}
+
+	public void setNumeroContaDestino(Long numeroContaDestino) {
+		this.numeroContaDestino = numeroContaDestino;
 	}	
 }

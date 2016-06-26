@@ -14,6 +14,7 @@ import br.com.rp.domain.TipoOperacao;
 import br.com.rp.repository.ContaRepository;
 import br.com.rp.repository.MovimentacaoRepository;
 import br.com.rp.repository.PagamentoRepository;
+import br.com.rp.services.LogMovimentacaoService;
 import br.com.rp.services.MovimentacaoResumoService;
 import br.com.rp.services.MovimentacaoService;
 import br.com.rp.services.exception.SaldoInsuficienteException;
@@ -30,7 +31,9 @@ public class MovimentacaoServiceImpl implements MovimentacaoService {
 	@EJB
 	private MovimentacaoResumoService movimentacaoResumoService;
 	@EJB
-	private PagamentoRepository pagamentoRepository;
+	private PagamentoRepository pagamentoRepository;	
+	@EJB
+	private LogMovimentacaoService logMovimentacaoService;
 
 	public List<Movimentacao> consultarMovimentacaoPorContaId(Long contaId) {
 		return movimentacaoRepository.consultarMovimentacaoPorContaId(contaId);
@@ -66,9 +69,9 @@ public class MovimentacaoServiceImpl implements MovimentacaoService {
 		movimentacao.setNumeroContaDestino(numeroContaDestino);
 		movimentacao.setCmc7(cmc7);
 
-		movimentacaoRepository.save(movimentacao);
-		
+		movimentacaoRepository.save(movimentacao);		
 		movimentacaoResumoService.registrarMovimentacaoResumo(movimentacao);
+		logMovimentacaoService.registrarLogMovimentacao(contaId, valor, tipoOperacao, tipoMovimentacao, numeroContaDestino, codigoBanco, movimentacao.getPagamento());
 	}
 
 	private void validarSaldo(Conta conta, BigDecimal valor){
