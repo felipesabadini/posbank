@@ -18,7 +18,6 @@ import br.com.rp.util.Util;
 
 @Singleton
 @Startup
-@DependsOn("ConfiguracaoRepository")
 public class ConfiguracaoServiceImpl implements ConfiguracaoService{
 
 	private static final long CONFIGURA_ID = 1L;
@@ -29,7 +28,7 @@ public class ConfiguracaoServiceImpl implements ConfiguracaoService{
 	private Date horaInicialTransacao = Util.setTime(HORA_INICIAL, MINUTO_INICIAL);
 	private Date horaFinalTransacao = Util.setTime(HORA_FINAL, MINUTO_FINAL);
 	
-	Configuracao configuracao;	
+	Configuracao configuracao = new Configuracao();	
 	
 	@EJB
 	ConfiguracaoRepository dao; 
