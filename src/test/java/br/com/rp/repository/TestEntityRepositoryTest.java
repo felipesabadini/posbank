@@ -26,7 +26,7 @@ public class TestEntityRepositoryTest extends AbstractTest {
 		repository.save(t);
 
 		List<Log> log = logRepository.getAll();
-		Assert.assertEquals(1, log.size());
+		Assert.assertEquals(2, log.size());
 	}
 
 	@Test
