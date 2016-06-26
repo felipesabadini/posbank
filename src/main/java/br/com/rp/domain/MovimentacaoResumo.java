@@ -21,8 +21,14 @@ public class MovimentacaoResumo extends BaseEntity implements Serializable {
 	@Column(name="enviado_bacen", nullable=false)
 	private Boolean enviadoBacen;
 	
+	@Column(name="erro_enviar_bacen")
+	private Boolean erroEnviarBacen;
+	
 	@Column(name="enviado_eua")
 	private Boolean enviadoEUA;
+	
+	@Column(name="erro_enviar_eua")
+	private Boolean erroEnviarEUA;
 	
 	public Movimentacao getMovimentacao() {
 		return movimentacao;
@@ -41,5 +47,17 @@ public class MovimentacaoResumo extends BaseEntity implements Serializable {
 	}
 	public void setEnviadoEUA(Boolean enviadoEUA) {
 		this.enviadoEUA = enviadoEUA;
+	}
+	public Boolean getErroEnviarBacen() {
+		return erroEnviarBacen;
+	}
+	public void setErroEnviarBacen(Boolean erroEnviarBacen) {
+		this.erroEnviarBacen = erroEnviarBacen;
+	}
+	public Boolean getErroEnviarEUA() {
+		return erroEnviarEUA;
+	}
+	public void setErroEnviarEUA(Boolean erroEnviarEUA) {
+		this.erroEnviarEUA = erroEnviarEUA;
 	}
 }

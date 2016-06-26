@@ -15,6 +15,7 @@ import org.junit.runner.RunWith;
 
 import br.com.rp.domain.Log;
 import br.com.rp.dto.MovimentacaoDTO;
+import br.com.rp.integration.MessageSender;
 import br.com.rp.repository.LogRepositoryTest;
 import br.com.rp.repository.PropostaRepository;
 import br.com.rp.repository.PropostaRepositoryTest;
@@ -90,6 +91,7 @@ public abstract class AbstractTest {
 				.addPackages(false, MovimentacaoDTO.class.getPackage())
 				.addPackages(false, Util.class.getPackage())
 				.addPackages(false, InterceptorMovimentacaoClienteEGerenteDeContas.class.getPackage())
+				.addPackages(false, MessageSender.class.getPackage())
 				.addAsResource("test-persistence.xml", "META-INF/persistence.xml")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml").addAsWebInfResource("cesumar-ds.xml")
 				.addAsLibraries(deps);

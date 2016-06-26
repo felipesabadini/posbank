@@ -20,6 +20,18 @@ public class MovimentacaoResumoRepositoryImpl extends AbstractRepositoryImpl<Mov
 		Query query = em.createQuery("select m from MovimentacaoResumo m where m.enviadoBacen = false", MovimentacaoResumo.class);
 		return query.getResultList();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<MovimentacaoResumo> consultarMovimentacaoResumoNaoEnviadoBacen(Integer registroInicial, Integer limite) {
+		Query query = em.createQuery("select m from MovimentacaoResumo m where m.enviadoBacen = false", MovimentacaoResumo.class);
+		query.setFirstResult(registroInicial);
+		if (limite != null){
+			query.setMaxResults(limite);
+		}
+		
+		return query.getResultList();
+	}
+
 
 	@SuppressWarnings("unchecked")
 	public List<MovimentacaoResumo> consultarMovimentacaoResumoEnviadoBacen() {
@@ -31,6 +43,18 @@ public class MovimentacaoResumoRepositoryImpl extends AbstractRepositoryImpl<Mov
 	public List<MovimentacaoResumo> consultarMovimentacaoResumoEnviadoBacenNaoEnviadoEUA() {
 		Query query = em.createQuery("select m from MovimentacaoResumo m where m.enviadoBacen = true and m.enviadoEUA = false", MovimentacaoResumo.class);
 		return query.getResultList();
+	}
+
+	public Integer consultarQuantidadeMovimentacaoResumoNaoEnviadoBacen() {
+		Query query = em.createQuery("select count(m) from MovimentacaoResumo m where m.enviadoBacen = false");
+		Object result = query.getSingleResult();
+		return Integer.parseInt(result.toString());
+	}
+
+	public Integer consultarQuantidadeMovimentacaoResumoEnviadoBacenNaoEnviadoEUA() {
+		Query query = em.createQuery("select count(m) from MovimentacaoResumo m where m.enviadoBacen = true and m.enviadoEUA = false");
+		Object result = query.getSingleResult();
+		return Integer.parseInt(result.toString());
 	}
 	
 }

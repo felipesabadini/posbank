@@ -73,4 +73,22 @@ public class MovimentacaoResumoRepositoryTest extends AbstractTest {
 		MovimentacaoResumo movimentacaoResumo = dao.findById(MOVIMENTACAO_RESUMO_TESTE_ID);
 		Assert.assertNotNull(movimentacaoResumo);
 	}
+	
+	@Test
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/movimentacao.xml", "db/movimentacao_resumo.xml"})
+	public void testeF_consegueConsultarQuantidadeMovimentacaoResumoNaoEnviadoBacen(){
+		Integer quantidade = dao.consultarQuantidadeMovimentacaoResumoNaoEnviadoBacen();
+		Assert.assertTrue(quantidade.compareTo(1) == 0);
+	}
+	
+	@Test
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/movimentacao.xml", "db/movimentacao_resumo.xml"})
+	public void testeG_consegueConsultarQuantidadeMovimentacaoResumoEnviadoBacenNaoEnviadoEUA(){
+		MovimentacaoResumo movimentacaoResumo = dao.findById(MOVIMENTACAO_RESUMO_TESTE_ID);
+		movimentacaoResumo.setEnviadoBacen(true);
+		dao.save(movimentacaoResumo);
+		
+		Integer quantidade = dao.consultarQuantidadeMovimentacaoResumoEnviadoBacenNaoEnviadoEUA();
+		Assert.assertTrue(quantidade.compareTo(1) == 0);
+	}
 }

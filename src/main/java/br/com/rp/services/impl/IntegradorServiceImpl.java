@@ -1,8 +1,8 @@
 
 package br.com.rp.services.impl;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 
@@ -16,15 +16,12 @@ public class IntegradorServiceImpl implements IntegradorService {
 	@EJB
 	private MovimentacaoResumoService movimentacaoResumoService;
 	
-	@PostConstruct
-	private void init(){
-		// ...
-	}
-	
+	@Schedule(minute="*/5")
 	public void enviarMovimentacaoBancoCentral() {
 		movimentacaoResumoService.enviarFilaBacen();
 	}
 
+	@Schedule(hour="22")
 	public void enviarMovimentacaoEUA() {
 		movimentacaoResumoService.enviarFilaEUA();
 	}
