@@ -1,3 +1,6 @@
+delete from despesa;
+delete from fatura_cartao;
+delete from cartao;
 delete from log_movimentacao;
 delete from movimentacao_resumo;
 delete from movimentacao;

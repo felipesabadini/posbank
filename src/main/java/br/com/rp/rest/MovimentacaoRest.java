@@ -7,6 +7,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
@@ -26,12 +27,14 @@ public class MovimentacaoRest {
 	
 	@GET
 	@Path("/despesas/{cartaoId}")
+	@Produces("application/json")
 	public List<Despesa> consultarDespesasPorCartao(@PathParam("cartaoId") Long cartaoId){
 		return despesaService.consultarDespesasPorCartaoId(cartaoId);
 	}
 	
 	@GET
-	@Path("/movimentacao/{contaId}")
+	@Path("/movimentacoes/{contaId}")
+	@Produces("application/json")
 	public List<Movimentacao> consultarMovimentacaoBancariaPorConta(@PathParam("contaId") Long contaId){
 		return service.consultarMovimentacaoPorContaId(contaId);
 	}

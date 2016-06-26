@@ -40,7 +40,9 @@ public class MovimentacaoServiceImpl implements MovimentacaoService {
 	}
 
 	public void realizarPagamento(Long contaId, Long pagamentoId) {
-		Conta conta = contaRepository.findById(contaId);
+		logMovimentacaoService.registrarPagamento(contaId, pagamentoId);
+		
+		Conta conta = contaRepository.findById(contaId);		
 		Pagamento pagamento = pagamentoRepository.findById(pagamentoId);
 		validarSaldo(conta, pagamento.getValor());
 		
@@ -71,7 +73,6 @@ public class MovimentacaoServiceImpl implements MovimentacaoService {
 
 		movimentacaoRepository.save(movimentacao);		
 		movimentacaoResumoService.registrarMovimentacaoResumo(movimentacao);
-		logMovimentacaoService.registrarLogMovimentacao(contaId, valor, tipoOperacao, tipoMovimentacao, numeroContaDestino, codigoBanco, movimentacao.getPagamento());
 	}
 
 	private void validarSaldo(Conta conta, BigDecimal valor){
@@ -81,6 +82,7 @@ public class MovimentacaoServiceImpl implements MovimentacaoService {
 	}
 
 	public void realizarTransferencia(Long contaId, BigDecimal valor, String codigoBanco, Long numeroConta) {
+		logMovimentacaoService.registrarTransferenciaOutrosBancos(contaId, valor, codigoBanco, numeroConta);
 		Conta contaOrigem = contaRepository.findById(contaId);
 		
 		validarSaldo(contaOrigem, valor);
@@ -90,8 +92,14 @@ public class MovimentacaoServiceImpl implements MovimentacaoService {
 		registrarMovimentacao(contaId, valor, TipoOperacao.TRANSFERENCIA, TipoMovimentacao.DEBITO, null, codigoBanco, numeroConta, null);
 	}
 
+	public void realizarDeposito(Long contaId, BigDecimal valor, String cmc7) {
+		logMovimentacaoService.registrarDeposito(contaId, valor, cmc7);
+		registrarMovimentacao(contaId, valor, TipoOperacao.DEPOSITO, TipoMovimentacao.CREDITO, null, null, null, cmc7);
+	}
 	
 	public void realizarTransferenciaEntreContasVBank(Long contaId, BigDecimal valor, Long contaDestinoId) {
+		logMovimentacaoService.registrarTransferenciaEntreContasVBank(contaId, valor, contaDestinoId);
+		
 		Conta contaOrigem = contaRepository.findById(contaId);
 		Conta contaDestino = contaRepository.findById(contaDestinoId);
 		
@@ -104,9 +112,5 @@ public class MovimentacaoServiceImpl implements MovimentacaoService {
 		contaDestino.setSaldo(contaDestino.getSaldo().add(valor));
 		contaRepository.save(contaDestino);
 		registrarMovimentacao(contaDestinoId, valor, TipoOperacao.TRANSFERENCIA, TipoMovimentacao.CREDITO, null, null, null, null);
-	}
-
-	public void realizarDeposito(Long contaId, BigDecimal valor, String cmc7) {
-		registrarMovimentacao(contaId, valor, TipoOperacao.DEPOSITO, TipoMovimentacao.CREDITO, null, null, null, cmc7);
 	}
 }
