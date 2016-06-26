@@ -67,7 +67,6 @@
 				<scope>test</scope>
 				<version>2.2.0-alpha-2</version>
 			</dependency>
-			<!-- arquillian -->	
 		</dependencies>
 	</dependencyManagement>
 

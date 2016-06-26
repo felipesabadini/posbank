@@ -24,6 +24,7 @@ import br.com.rp.repository.impl.PropostaRepositoryImpl;
 import br.com.rp.repository.service.LogServiceTest;
 import br.com.rp.rest.LogRest;
 import br.com.rp.rest.LogRestTest;
+import br.com.rp.seguranca.InterceptorMovimentacaoClienteEGerenteDeContas;
 import br.com.rp.service.ClienteServiceTest;
 import br.com.rp.service.FuncionarioServiceTest;
 import br.com.rp.service.GerenteServiceTest;
@@ -88,6 +89,7 @@ public abstract class AbstractTest {
 				.addPackages(false, LogRestTest.class.getPackage())
 				.addPackages(false, MovimentacaoDTO.class.getPackage())
 				.addPackages(false, Util.class.getPackage())
+				.addPackages(false, InterceptorMovimentacaoClienteEGerenteDeContas.class.getPackage())
 				.addAsResource("test-persistence.xml", "META-INF/persistence.xml")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml").addAsWebInfResource("cesumar-ds.xml")
 				.addAsLibraries(deps);
