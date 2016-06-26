@@ -56,7 +56,7 @@ public class AgendamentoServiceImpl implements AgendamentoService {
 		List<Agendamento> agendamentos = this.agendamentoRepository.encontrarAgendamentosPara(data);
 		
 		agendamentos.forEach(ag -> {			
-			this.movimentacaoService.realizarSaque(ag.getConta().getId(), ag.getPagamento().getValor());
+			movimentacaoService.realizarPagamento(ag.getConta().getId(), ag.getPagamento().getId());
 			ag.setPago(Boolean.TRUE);
 			this.agendamentoRepository.save(ag);
 		});

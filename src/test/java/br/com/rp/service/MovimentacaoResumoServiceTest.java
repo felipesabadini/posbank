@@ -39,7 +39,7 @@ public class MovimentacaoResumoServiceTest extends AbstractTest {
 	@Test
 	@UsingDataSet({"db/cliente.xml", "db/conta.xml"})
 	public void testeA_consegueRegistarMovimentacaoResumoAoSalvarMovimentacao(){
-		movimentacaoService.realizarSaque(CONTA_ID, new BigDecimal("1000.00"));
+		movimentacaoService.realizarTransferencia(CONTA_ID, new BigDecimal("250.00"), "012-A", 1234567L);
 		
 		List<MovimentacaoResumo> lstMovimentacaoResumo = service.consultarMovimentacaoResumoNaoEnviadoBacen();
 		Assert.assertTrue(lstMovimentacaoResumo.size() == 1);

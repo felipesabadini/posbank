@@ -14,6 +14,7 @@ import br.com.rp.domain.TipoOperacao;
 import br.com.rp.repository.ContaRepository;
 import br.com.rp.repository.MovimentacaoRepository;
 import br.com.rp.repository.PagamentoRepository;
+import br.com.rp.services.LogMovimentacaoService;
 import br.com.rp.services.MovimentacaoResumoService;
 import br.com.rp.services.MovimentacaoService;
 import br.com.rp.services.exception.SaldoInsuficienteException;
@@ -30,53 +31,23 @@ public class MovimentacaoServiceImpl implements MovimentacaoService {
 	@EJB
 	private MovimentacaoResumoService movimentacaoResumoService;
 	@EJB
-	private PagamentoRepository pagamentoRepository;
+	private PagamentoRepository pagamentoRepository;	
+	@EJB
+	private LogMovimentacaoService logMovimentacaoService;
 
 	public List<Movimentacao> consultarMovimentacaoPorContaId(Long contaId) {
 		return movimentacaoRepository.consultarMovimentacaoPorContaId(contaId);
 	}
 
-	public void realizarTransferenciaOutrosBancos(Long contaId, BigDecimal valor, String codigoBanco, Long numeroConta) {
-		Conta contaOrigem = contaRepository.findById(contaId);
-		
-		validarSaldo(contaOrigem, valor);
-
-		contaOrigem.setSaldo(contaOrigem.getSaldo().subtract(valor));
-		contaRepository.save(contaOrigem);
-		registrarMovimentacao(contaId, valor, TipoOperacao.TRANSFERENCIA, TipoMovimentacao.DEBITO, null, codigoBanco, numeroConta);
-	}
-
-	
-	public void realizarTransferenciaEntreContasVBank(Long contaId, BigDecimal valor, Long contaDestinoId) {
-		Conta contaOrigem = contaRepository.findById(contaId);
-		Conta contaDestino = contaRepository.findById(contaDestinoId);
-		
-		validarSaldo(contaOrigem, valor);
-
-		contaOrigem.setSaldo(contaOrigem.getSaldo().subtract(valor));
-		contaRepository.save(contaOrigem);
-		registrarMovimentacao(contaId, valor, TipoOperacao.TRANSFERENCIA, TipoMovimentacao.DEBITO, null, Constantes.CODIGO_BANCO_VBANK, contaDestino.getNumero());
-
-		contaDestino.setSaldo(contaDestino.getSaldo().add(valor));
-		contaRepository.save(contaDestino);
-		registrarMovimentacao(contaDestinoId, valor, TipoOperacao.TRANSFERENCIA, TipoMovimentacao.CREDITO, null, null, null);
-	}
-	
-	public void realizarSaque(Long contaId, BigDecimal valor){
-		Conta conta = contaRepository.findById(contaId);
-		validarSaldo(conta, valor);
-		
-		processoParaDebitarValorDaConta(conta, valor);
-		registrarMovimentacao(contaId, valor, TipoOperacao.SAQUE, TipoMovimentacao.DEBITO, null, null, null);
-	}
-	
 	public void realizarPagamento(Long contaId, Long pagamentoId) {
-		Conta conta = contaRepository.findById(contaId);
+		logMovimentacaoService.registrarPagamento(contaId, pagamentoId);
+		
+		Conta conta = contaRepository.findById(contaId);		
 		Pagamento pagamento = pagamentoRepository.findById(pagamentoId);
 		validarSaldo(conta, pagamento.getValor());
 		
 		processoParaDebitarValorDaConta(conta, pagamento.getValor());
-		registrarMovimentacao(contaId, pagamento.getValor(), TipoOperacao.PAGAMENTO, TipoMovimentacao.DEBITO, pagamentoId, null, null);
+		registrarMovimentacao(contaId, pagamento.getValor(), TipoOperacao.PAGAMENTO, TipoMovimentacao.DEBITO, pagamentoId, null, null, null);
 	}	
 
 	private void processoParaDebitarValorDaConta(Conta conta, BigDecimal valor) {
@@ -84,7 +55,7 @@ public class MovimentacaoServiceImpl implements MovimentacaoService {
 		contaRepository.save(conta);		
 	}
 	
-	private void registrarMovimentacao(Long contaId, BigDecimal valor, TipoOperacao tipoOperacao, TipoMovimentacao tipoMovimentacao, Long pagamentoId, String codigoBanco, Long numeroContaDestino) {
+	private void registrarMovimentacao(Long contaId, BigDecimal valor, TipoOperacao tipoOperacao, TipoMovimentacao tipoMovimentacao, Long pagamentoId, String codigoBanco, Long numeroContaDestino, String cmc7) {
 		Conta conta = contaRepository.findById(contaId);
 
 		Movimentacao movimentacao = new Movimentacao();
@@ -98,9 +69,9 @@ public class MovimentacaoServiceImpl implements MovimentacaoService {
 		}
 		movimentacao.setCodigoBanco(codigoBanco);
 		movimentacao.setNumeroContaDestino(numeroContaDestino);
+		movimentacao.setCmc7(cmc7);
 
-		movimentacaoRepository.save(movimentacao);
-		
+		movimentacaoRepository.save(movimentacao);		
 		movimentacaoResumoService.registrarMovimentacaoResumo(movimentacao);
 	}
 
@@ -108,5 +79,38 @@ public class MovimentacaoServiceImpl implements MovimentacaoService {
 		if (conta.getSaldo().compareTo(valor) < 0){
 			throw new SaldoInsuficienteException();
 		}
+	}
+
+	public void realizarTransferencia(Long contaId, BigDecimal valor, String codigoBanco, Long numeroConta) {
+		logMovimentacaoService.registrarTransferenciaOutrosBancos(contaId, valor, codigoBanco, numeroConta);
+		Conta contaOrigem = contaRepository.findById(contaId);
+		
+		validarSaldo(contaOrigem, valor);
+
+		contaOrigem.setSaldo(contaOrigem.getSaldo().subtract(valor));
+		contaRepository.save(contaOrigem);
+		registrarMovimentacao(contaId, valor, TipoOperacao.TRANSFERENCIA, TipoMovimentacao.DEBITO, null, codigoBanco, numeroConta, null);
+	}
+
+	public void realizarDeposito(Long contaId, BigDecimal valor, String cmc7) {
+		logMovimentacaoService.registrarDeposito(contaId, valor, cmc7);
+		registrarMovimentacao(contaId, valor, TipoOperacao.DEPOSITO, TipoMovimentacao.CREDITO, null, null, null, cmc7);
+	}
+	
+	public void realizarTransferenciaEntreContasVBank(Long contaId, BigDecimal valor, Long contaDestinoId) {
+		logMovimentacaoService.registrarTransferenciaEntreContasVBank(contaId, valor, contaDestinoId);
+		
+		Conta contaOrigem = contaRepository.findById(contaId);
+		Conta contaDestino = contaRepository.findById(contaDestinoId);
+		
+		validarSaldo(contaOrigem, valor);
+
+		contaOrigem.setSaldo(contaOrigem.getSaldo().subtract(valor));
+		contaRepository.save(contaOrigem);
+		registrarMovimentacao(contaId, valor, TipoOperacao.TRANSFERENCIA, TipoMovimentacao.DEBITO, null, Constantes.CODIGO_BANCO_VBANK, contaDestino.getNumero(), null);
+
+		contaDestino.setSaldo(contaDestino.getSaldo().add(valor));
+		contaRepository.save(contaDestino);
+		registrarMovimentacao(contaDestinoId, valor, TipoOperacao.TRANSFERENCIA, TipoMovimentacao.CREDITO, null, null, null, null);
 	}
 }
