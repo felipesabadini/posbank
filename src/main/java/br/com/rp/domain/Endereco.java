@@ -1,10 +1,13 @@
 package br.com.rp.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+@SuppressWarnings("serial")
 @Embeddable
-public class Endereco {
+public class Endereco implements Serializable {
 	
 	@Column(name="endereco", length=100)
 	private String endereco;

@@ -14,4 +14,8 @@ public interface MovimentacaoResumoService {
 	public List<MovimentacaoResumo> consultarMovimentacaoResumoEnviadoBacen();
 	
 	public List<MovimentacaoResumo> consultarMovimentacaoResumoEnviadoBacenNaoEnviadoEUA();
+	
+	public void enviarFilaBacen();
+	
+	public void enviarFilaEUA();
 }
