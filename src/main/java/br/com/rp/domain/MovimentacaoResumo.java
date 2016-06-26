@@ -1,5 +1,7 @@
 package br.com.rp.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +12,7 @@ import javax.persistence.Table;
 @SuppressWarnings("serial")
 @Entity
 @Table(name="movimentacao_resumo")
-public class MovimentacaoResumo extends BaseEntity {
+public class MovimentacaoResumo extends BaseEntity implements Serializable {
 	
 	@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST})
 	@JoinColumn(name="movimentacao_id", nullable=false)

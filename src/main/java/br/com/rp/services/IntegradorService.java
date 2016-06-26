@@ -4,4 +4,5 @@ public interface IntegradorService {
 	
 	public void enviarMovimentacaoBancoCentral();
 
+	public void enviarMovimentacaoEUA();
 }

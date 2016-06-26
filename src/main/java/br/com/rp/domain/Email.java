@@ -1,9 +1,12 @@
 package br.com.rp.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Embeddable;
 
+@SuppressWarnings("serial")
 @Embeddable
-public class Email {
+public class Email implements Serializable {
 	private String value;
 	
 	public Email() {}

@@ -1,9 +1,12 @@
 package br.com.rp.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Embeddable;
 
+@SuppressWarnings("serial")
 @Embeddable
-public class Cpf {
+public class Cpf implements Serializable {
 	
 	private String value;
 	
