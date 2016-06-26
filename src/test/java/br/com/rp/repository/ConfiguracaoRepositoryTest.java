@@ -21,7 +21,7 @@ public class ConfiguracaoRepositoryTest extends AbstractTest {
 	private ConfiguracaoRepository dao;
 	
 	@Test
-	@UsingDataSet({"db/banco.xml"})
+	@UsingDataSet({"db/configuracao.xml"})
 	public void testeA_consegueSalvarERecuperarConfiguracaoBancoDados(){
 		Configuracao config = new Configuracao();
 		config.setId(CONFIGURACAO_ID);

@@ -32,7 +32,7 @@ public class FaturaCartaoRepositoryTest extends AbstractTest {
 	private CartaoRepository cartaoRepository;
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/cartao.xml"}) 
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/cartao.xml"}) 
 	public void testeA_deveInserirUmaNovaDespesa(){
 		Cartao cartao = cartaoRepository.findById(CARTAO_ID);
 		Calendar calendar = Calendar.getInstance();
@@ -51,7 +51,7 @@ public class FaturaCartaoRepositoryTest extends AbstractTest {
 	
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/cartao.xml" , "db/faturaCartao.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/cartao.xml" , "db/faturaCartao.xml"})
 	public void testeB_deveAtualizarUmRegistro(){
 		FaturaCartao faturaCartao = dao.findById(FATURA_CARTAO_ID);
 		Assert.assertNotNull(faturaCartao);
@@ -67,14 +67,14 @@ public class FaturaCartaoRepositoryTest extends AbstractTest {
 	
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/cartao.xml" , "db/faturaCartao.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/cartao.xml" , "db/faturaCartao.xml"})
 	public void testeC_deveRemoverUmRegistro(){
 		dao.remove(FATURA_CARTAO_ID);
 		Assert.assertEquals(0, dao.getAll().size());
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/cartao.xml" , "db/faturaCartao.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/cartao.xml" , "db/faturaCartao.xml"})
 	public void testeD_consegueRecuperarRegistro(){
 		FaturaCartao faturaCartao = dao.findById(FATURA_CARTAO_ID);
 		Assert.assertNotNull(faturaCartao);

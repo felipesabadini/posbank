@@ -33,7 +33,7 @@ public class AgendamentoRepositoryTest extends AbstractTest {
 	private ContaRepository daoConta;
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml"})
 	public void testeA_consegueInserirNoBanco(){
 		Conta conta = daoConta.findById(CONTA_TESTE_ID);
 		Assert.assertNotNull(conta);
@@ -56,7 +56,7 @@ public class AgendamentoRepositoryTest extends AbstractTest {
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/pagamento.xml",  "db/agendamento.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/pagamento.xml",  "db/agendamento.xml"})
 	public void testeB_consegueAtualizarRegistro(){
 		Agendamento agendamento = dao.findById(AGENDAMENTO_TESTE_ID);
 		Assert.assertNotNull(agendamento);	
@@ -69,14 +69,14 @@ public class AgendamentoRepositoryTest extends AbstractTest {
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/pagamento.xml", "db/agendamento.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/pagamento.xml", "db/agendamento.xml"})
 	public void testeC_consegueDeletarRegistro(){
 		dao.remove(AGENDAMENTO_TESTE_ID);
 		Assert.assertEquals(0, dao.getAll().size());
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/pagamento.xml", "db/agendamento.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/pagamento.xml", "db/agendamento.xml"})
 	public void testeD_consegueRecuperarRegistro(){
 		Agendamento agendamento = dao.findById(AGENDAMENTO_TESTE_ID);
 		Assert.assertNotNull(agendamento);

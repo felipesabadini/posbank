@@ -37,7 +37,7 @@ public class MovimentacaoResumoServiceTest extends AbstractTest {
 	private MovimentacaoService movimentacaoService;
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml"})
 	public void testeA_consegueRegistarMovimentacaoResumoAoSalvarMovimentacao(){
 		movimentacaoService.realizarTransferencia(CONTA_ID, new BigDecimal("250.00"), "012-A", 1234567L);
 		
@@ -46,7 +46,7 @@ public class MovimentacaoResumoServiceTest extends AbstractTest {
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/movimentacao_lista.xml", "db/movimentacaoResumo_lista.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/movimentacao_lista.xml", "db/movimentacaoResumo_lista.xml"})
 	public void testeB_consegueRecuperarMovimentacaoResumoNaoEnviadaBacen(){
 		List<MovimentacaoResumo> lstMovimentacaoResumo = service.consultarMovimentacaoResumoNaoEnviadoBacen();
 		
@@ -54,7 +54,7 @@ public class MovimentacaoResumoServiceTest extends AbstractTest {
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/movimentacao_lista.xml", "db/movimentacaoResumo_lista.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/movimentacao_lista.xml", "db/movimentacaoResumo_lista.xml"})
 	public void testeC_consegueRecuperarMovimentacaoResumoEnviadaBacen(){
 		List<MovimentacaoResumo> lstMovimentacaoResumo = service.consultarMovimentacaoResumoEnviadoBacen();
 		
@@ -62,7 +62,7 @@ public class MovimentacaoResumoServiceTest extends AbstractTest {
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/movimentacao_lista.xml", "db/movimentacaoResumo_lista.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/movimentacao_lista.xml", "db/movimentacaoResumo_lista.xml"})
 	public void testeD_consegueRecuperarMovimentacaoResumoEnviadaBacenNaoEnviadoEUA(){
 		List<MovimentacaoResumo> lstMovimentacaoResumo = service.consultarMovimentacaoResumoEnviadoBacenNaoEnviadoEUA();
 		

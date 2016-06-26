@@ -52,7 +52,7 @@ public class MovimentacaoRepositoryTest extends AbstractTest {
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/movimentacao.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/movimentacao.xml"})
 	public void testeB_consegueAtualizarRegistro(){
 		Movimentacao movimentacao = dao.findById(MOVIMENTACAO_TESTE_ID);
 		Assert.assertNotNull(movimentacao);	
@@ -66,14 +66,14 @@ public class MovimentacaoRepositoryTest extends AbstractTest {
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/movimentacao.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/movimentacao.xml"})
 	public void testeC_consegueDeletarRegistro(){
 		dao.remove(MOVIMENTACAO_TESTE_ID);
 		Assert.assertEquals(0, dao.getAll().size());
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/movimentacao.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/movimentacao.xml"})
 	public void testeD_consegueRecuperarRegistro(){
 		Movimentacao movimentacao = dao.findById(MOVIMENTACAO_TESTE_ID);
 		Assert.assertNotNull(movimentacao);
