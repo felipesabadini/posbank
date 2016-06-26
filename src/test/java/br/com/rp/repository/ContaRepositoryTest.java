@@ -13,7 +13,6 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import br.com.rp.AbstractTest;
-import br.com.rp.domain.Agencia;
 import br.com.rp.domain.Cliente;
 import br.com.rp.domain.Conta;
 import br.com.rp.domain.TipoConta;
@@ -69,7 +68,7 @@ public class ContaRepositoryTest extends AbstractTest {
 	}
 	
 	@Test
-	@UsingDataSet({"db/conta.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml"})
 	public void testeD_consegueRecuperarRegistro(){
 		Conta conta = dao.findById(CONTA_TESTE_ID);
 		Assert.assertNotNull(conta);

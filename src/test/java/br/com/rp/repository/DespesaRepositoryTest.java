@@ -35,7 +35,7 @@ public class DespesaRepositoryTest extends AbstractTest {
 	private CartaoRepository cartaoRepository;
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/cartao.xml" , "db/despesa.xml"}) 
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/cartao.xml" , "db/despesa.xml"}) 
 	public void testeA_deveInserirUmaNovaDespesa(){
 		Cartao cartao = cartaoRepository.findById(CARTAO_TESTE_ID);
 		
@@ -51,7 +51,7 @@ public class DespesaRepositoryTest extends AbstractTest {
 	
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/cartao.xml" , "db/despesa.xml" })
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/cartao.xml" , "db/despesa.xml" })
 	public void testeB_deveAtualizarUmaDespesa(){
 		Despesa despesa = this.dao.findById(DESPESA_CARTAO_TESTE_ID);
 		Assert.assertNotNull(despesa);
@@ -67,21 +67,21 @@ public class DespesaRepositoryTest extends AbstractTest {
 	
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/cartao.xml" , "db/despesa.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/cartao.xml" , "db/despesa.xml"})
 	public void testeC_deveRemoverUmaDespesa(){
 		dao.remove(DESPESA_CARTAO_TESTE_ID);
 		Assert.assertEquals(0, dao.getAll().size());
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/cartao.xml" , "db/despesa.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/cartao.xml" , "db/despesa.xml"})
 	public void testeD_consegueRecuperarRegistro(){
 		Despesa despesa = dao.findById(DESPESA_CARTAO_TESTE_ID);
 		Assert.assertNotNull(despesa);
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/cartao.xml" , "db/despesa_lista.xml"}) 
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/cartao.xml" , "db/despesa_lista.xml"}) 
 	public void testeE_consegueRetornarTotalDespesaCartaoPorDataInformada(){
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(Calendar.MONTH, Calendar.JUNE);

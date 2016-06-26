@@ -33,7 +33,7 @@ public class LogMovimentacaoRepositoryTest extends AbstractTest {
 	private ContaRepository contaDAO;
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml"})
 	public void testeA_consegueInserirNoBanco(){
 		Conta conta = contaDAO.findById(CONTA_TESTE_ID);
 		Assert.assertNotNull(conta);
@@ -51,7 +51,7 @@ public class LogMovimentacaoRepositoryTest extends AbstractTest {
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/logmovimentacao.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/logmovimentacao.xml"})
 	public void testeB_consegueAtualizarRegistro(){
 		LogMovimentacao logMovimentacao = dao.findById(LOGMOVIMENTACAO_TESTE_ID);
 		Assert.assertNotNull(logMovimentacao);	
@@ -65,14 +65,14 @@ public class LogMovimentacaoRepositoryTest extends AbstractTest {
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/logmovimentacao.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/logmovimentacao.xml"})
 	public void testeC_consegueDeletarRegistro(){
 		dao.remove(LOGMOVIMENTACAO_TESTE_ID);
 		Assert.assertEquals(0, dao.getAll().size());
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/logmovimentacao.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/logmovimentacao.xml"})
 	public void testeD_consegueRecuperarRegistro(){
 		LogMovimentacao logMovimentacao = dao.findById(LOGMOVIMENTACAO_TESTE_ID);
 		Assert.assertNotNull(logMovimentacao);

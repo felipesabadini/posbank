@@ -39,8 +39,6 @@ public class AgendamentoRestTest extends AbstractTest {
 	
 	@Test
 	@UsingDataSet({ 
-		"db/banco.xml", 
-		"db/agencia.xml", 
 		"db/cliente.xml", 
 		"db/conta.xml"
 		})
@@ -71,8 +69,7 @@ public class AgendamentoRestTest extends AbstractTest {
 	}
 	
 	@Test
-	@UsingDataSet({ "db/banco.xml", 
-		"db/agencia.xml", 
+	@UsingDataSet({  
 		"db/cliente.xml", 
 		"db/conta.xml", 
 		"db/pagamento.xml",

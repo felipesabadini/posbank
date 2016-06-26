@@ -35,7 +35,7 @@ public class MovimentacaoServiceTest extends AbstractTest {
 	private ContaRepository contaRepository;
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/movimentacao_lista.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/movimentacao_lista.xml"})
 	public void testeA_consegueRetornarListaMovimentacoesPorConta(){
 		List<Movimentacao> lstMovimentacao = service.consultarMovimentacaoPorContaId(CONTA_ORIGEM_ID);
 		
@@ -50,7 +50,7 @@ public class MovimentacaoServiceTest extends AbstractTest {
 	}
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/movimentacao_lista.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/movimentacao_lista.xml"})
 	public void testeC_deveConseguirRealizarTransferenciaEntreContasVBANK(){
 		service.realizarTransferenciaEntreContasVBank(CONTA_ORIGEM_ID, new BigDecimal("1000.00"), CONTA_DESTINO_ID);
 		

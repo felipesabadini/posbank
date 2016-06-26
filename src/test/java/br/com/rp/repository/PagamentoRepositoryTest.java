@@ -26,7 +26,7 @@ public class PagamentoRepositoryTest extends AbstractTest {
 	private ContaRepository contaRepository;	
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml"})
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml"})
 	public void deveSalvarUmPagamento() {
 		Conta conta = this.contaRepository.findById(1000L);
 		Pagamento pagamento = new Pagamento();

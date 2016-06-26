@@ -33,7 +33,7 @@ public class DespesaServiceTest extends AbstractTest {
 	private CartaoRepository cartaoRepository;
 	
 	@Test
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/cartao.xml" , "db/despesa_lista.xml"}) 
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/cartao.xml" , "db/despesa_lista.xml"}) 
 	public void testeA_consegueRetornarDespesasPorCartao(){
 		List<Despesa> lstDespesa = despesaService.consultarDespesasPorCartaoId(CARTAO_ID);
 		
@@ -41,7 +41,7 @@ public class DespesaServiceTest extends AbstractTest {
 	}
 	
 	@Test(expected=LimiteCartaoInsuficienteException.class)
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/cartao.xml"}) 
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/cartao.xml"}) 
 	public void testeB_DeveLevantarExcessaoSemLimite(){
 		Cartao cartao = cartaoRepository.findById(CARTAO_ID);
 		cartao.setLimite(new BigDecimal("1000"));
@@ -56,7 +56,7 @@ public class DespesaServiceTest extends AbstractTest {
 	}
 
 	@Test()
-	@UsingDataSet({"db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/cartao.xml"}) 
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/cartao.xml"}) 
 	public void testeC_DeveRegistrarDespesa(){
 		Cartao cartao = cartaoRepository.findById(CARTAO_ID);
 		cartao.setLimite(new BigDecimal("1000"));

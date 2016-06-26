@@ -13,7 +13,6 @@ import br.com.rp.domain.Conta;
 import br.com.rp.domain.Proposta;
 import br.com.rp.domain.SituacaoCliente;
 import br.com.rp.domain.SituacaoProposta;
-import br.com.rp.repository.AgenciaRepository;
 import br.com.rp.repository.ClienteRepository;
 import br.com.rp.repository.ContaRepository;
 import br.com.rp.repository.FuncionarioRepository;
@@ -44,9 +43,6 @@ public class PropostaServiceImpl implements PropostaService {
 	
 	@EJB
 	private ContaRepository contaRepository;
-	
-	@EJB
-	private AgenciaRepository agenciaRepository;
 	
 	@EJB
 	private FuncionarioRepository funcionarioRepository;

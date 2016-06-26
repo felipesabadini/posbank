@@ -33,7 +33,7 @@ public class AgendamentoServiceTest extends AbstractTest {
 	private ContaRepository contaRepository;
 	
 	@Test
-	@UsingDataSet({ "db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml", "db/pagamento.xml",
+	@UsingDataSet({ "db/cliente.xml", "db/conta.xml", "db/pagamento.xml",
 			"db/agendamento.xml" })
 	public void deveCancelarUmAgendamento() {
 		Boolean result = this.agendamentoService.cancelarPagamentoPorID(AGENDAMENTO_TESTE_ID);
@@ -41,7 +41,7 @@ public class AgendamentoServiceTest extends AbstractTest {
 	}
 
 	@Test
-	@UsingDataSet({ "db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml" })
+	@UsingDataSet({ "db/cliente.xml", "db/conta.xml" })
 	public void deveRegistrarUmAgendamento() {
 		Date data = Util.getDataAtual();
 		Conta conta = this.contaRepository.findById(1000L);
@@ -61,7 +61,7 @@ public class AgendamentoServiceTest extends AbstractTest {
 	}
 
 	@Test
-	@UsingDataSet({ "db/banco.xml", "db/agencia.xml", "db/cliente.xml", "db/conta.xml" })
+	@UsingDataSet({ "db/cliente.xml", "db/conta.xml" })
 	public void deveRecusarUmAgendamento() {
 		Conta conta = this.contaRepository.findById(1000L);
 		Pagamento pagamento = new Pagamento();
@@ -79,8 +79,7 @@ public class AgendamentoServiceTest extends AbstractTest {
 	}
 
 	@Test
-	@UsingDataSet({ "db/banco.xml", 
-			"db/agencia.xml", 
+	@UsingDataSet({  
 			"db/cliente.xml", 
 			"db/conta.xml", 
 			"db/pagamento.xml",
