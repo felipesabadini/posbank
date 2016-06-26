@@ -19,6 +19,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import br.com.rp.AbstractTest;
+import br.com.rp.domain.Conta;
 import br.com.rp.domain.Despesa;
 import br.com.rp.dto.MovimentacaoDTO;
 import br.com.rp.repository.CartaoRepository;
@@ -114,5 +115,16 @@ public class MovimentacaoRestTest extends AbstractTest {
 		Assert.assertEquals(Integer.valueOf(200), Integer.valueOf(response.getStatus()));
 		List<Despesa> lstDespesa = ((List<Despesa>) response.readEntity(List.class));
 		Assert.assertEquals(5, lstDespesa.size());
+	}
+	
+	@Test
+	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/cartao.xml", "db/movimentacao_lista.xml"})
+	public void testeF_consegueConsultarMovimentacaoPorConta() {
+		Client client = ClientBuilder.newClient();
+		WebTarget target = client.target(URL + "/movimentacoes/" + CONTA_ID);
+		Response response = target.request().header("token", Token.CLIENTE).get();
+		Assert.assertEquals(Integer.valueOf(200), Integer.valueOf(response.getStatus()));
+		List<Conta> lstConta = ((List<Conta>) response.readEntity(List.class));
+		Assert.assertEquals(5, lstConta.size());
 	}
 }
