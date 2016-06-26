@@ -5,7 +5,7 @@ import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
 
 @Interceptor
-public class InterceptorAgendamento {
+public class InterceptorDespesa {
 
 	@AroundInvoke
 	public Object verificarPermissao(InvocationContext context) throws Exception {
