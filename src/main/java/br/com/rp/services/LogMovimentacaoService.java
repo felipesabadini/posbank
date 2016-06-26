@@ -8,6 +8,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 
 import br.com.rp.domain.LogMovimentacao;
+import br.com.rp.domain.Pagamento;
 import br.com.rp.domain.TipoMovimentacao;
 import br.com.rp.domain.TipoOperacao;
 import br.com.rp.repository.ContaRepository;
@@ -23,20 +24,20 @@ public class LogMovimentacaoService {
 	@EJB
 	ContaRepository contaRepository;
 	
-	public void registrarTransferencia(Long contaId, BigDecimal valor, Long contaDestinoId){
-		registrarLogMovimentacao(contaId, valor, TipoOperacao.TRANSFERENCIA, TipoMovimentacao.DEBITO, contaDestinoId);
+	public void registrarTransferencia(Long contaId, BigDecimal valor, Long contaDestinoId, String codigoDoBanco){
+		registrarLogMovimentacao(contaId, valor, TipoOperacao.TRANSFERENCIA, TipoMovimentacao.DEBITO, contaDestinoId, codigoDoBanco, null);
 	}
 	
 	public void registrarSaque(Long contaId, BigDecimal valor){
-		registrarLogMovimentacao(contaId, valor, TipoOperacao.SAQUE, TipoMovimentacao.DEBITO, null);
+		registrarLogMovimentacao(contaId, valor, TipoOperacao.SAQUE, TipoMovimentacao.DEBITO, null, null, null);
 	}
 	
-	public void registrarPagamento(Long contaId, BigDecimal valor){
-		registrarLogMovimentacao(contaId, valor, TipoOperacao.PAGAMENTO, TipoMovimentacao.DEBITO, null);
+	public void registrarPagamento(Long contaId, BigDecimal valor, Pagamento pagamento){
+		registrarLogMovimentacao(contaId, valor, TipoOperacao.PAGAMENTO, TipoMovimentacao.DEBITO, null, null, pagamento);
 	}	
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-	private void registrarLogMovimentacao(Long contaId, BigDecimal valor, TipoOperacao tipoOperacao, TipoMovimentacao tipoMovimentacao, Long contaDestinoId){
+	public void registrarLogMovimentacao(Long contaId, BigDecimal valor, TipoOperacao tipoOperacao, TipoMovimentacao tipoMovimentacao, Long contaDestinoId, String codigoDoBanco, Pagamento pagamento){
 		try {
 			LogMovimentacao logMovimentacao = new LogMovimentacao();
 			logMovimentacao.setConta(contaRepository.findById(contaId));
@@ -44,9 +45,12 @@ public class LogMovimentacaoService {
 			logMovimentacao.setTipoMovimentacao(tipoMovimentacao);
 			logMovimentacao.setTipoOperacao(tipoOperacao);
 			logMovimentacao.setValor(valor);
-			if (contaDestinoId != null){
-				logMovimentacao.setContaDestino(contaRepository.findById(contaDestinoId));
-			}
+			logMovimentacao.setPagamento(pagamento);
+			logMovimentacao.setNumeroContaDestino(contaDestinoId);
+			logMovimentacao.setCodigoBanco(codigoDoBanco);
+//			if (contaDestinoId != null){
+//				logMovimentacao.setContaDestino(contaRepository.findById(contaDestinoId));
+//			}
 			
 			repository.save(logMovimentacao);
 		} catch (Exception e) {
