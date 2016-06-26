@@ -9,6 +9,7 @@ import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
@@ -30,13 +31,15 @@ public class MovimentacaoRest {
 	
 	@GET
 	@Path("/despesas/{cartaoId}")
+	@Produces("application/json")
 	@Interceptors(value = InterceptorMovimentacaoClienteEGerenteDeContas.class)
 	public List<Despesa> consultarDespesasPorCartao(@HeaderParam(value = "token") Token token, @PathParam("cartaoId") Long cartaoId){
 		return despesaService.consultarDespesasPorCartaoId(cartaoId);
 	}
 	
 	@GET
-	@Path("/movimentacao/{contaId}")
+	@Path("/movimentacoes/{contaId}")
+	@Produces("application/json")
 	@Interceptors(value = InterceptorMovimentacaoClienteEGerenteDeContas.class)
 	public List<Movimentacao> consultarMovimentacaoBancariaPorConta(@HeaderParam(value = "token") Token token, @PathParam("contaId") Long contaId){
 		return service.consultarMovimentacaoPorContaId(contaId);
@@ -73,4 +76,5 @@ public class MovimentacaoRest {
 		service.realizarDeposito(movimentacao.getContaId(), movimentacao.getValor(), movimentacao.getCmc7());
 		return Response.status(Status.OK).build();
 	}
+
 }

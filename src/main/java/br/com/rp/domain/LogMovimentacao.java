@@ -35,11 +35,7 @@ public class LogMovimentacao extends BaseEntity {
 	@Enumerated(EnumType.STRING)
 	private TipoOperacao tipoOperacao;
 	
-//	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE})
-//	@JoinColumn(name="conta_destino_id", nullable=true)
-//	private Conta contaDestino;
-	
-	@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST})
+	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name="pagamento_id")
 	private Pagamento pagamento;
 	
@@ -47,7 +43,10 @@ public class LogMovimentacao extends BaseEntity {
 	private String codigoBanco;
 	
 	@Column(name="numero_conta_destino", nullable=true)
-	private Long numeroContaDestino;	
+	private Long numeroContaDestino;
+	
+	@Column(name="cmc7", nullable=true)
+	private String cmc7;
 
 	public Conta getConta() {
 		return conta;
@@ -88,15 +87,7 @@ public class LogMovimentacao extends BaseEntity {
 	public void setTipoOperacao(TipoOperacao tipoOperacao) {
 		this.tipoOperacao = tipoOperacao;
 	}
-
-//	public Conta getContaDestino() {
-//		return contaDestino;
-//	}
-//
-//	public void setContaDestino(Conta contaDestino) {
-//		this.contaDestino = contaDestino;
-//	}
-
+	
 	public Pagamento getPagamento() {
 		return pagamento;
 	}
@@ -119,5 +110,13 @@ public class LogMovimentacao extends BaseEntity {
 
 	public void setNumeroContaDestino(Long numeroContaDestino) {
 		this.numeroContaDestino = numeroContaDestino;
+	}
+
+	public String getCmc7() {
+		return cmc7;
+	}
+
+	public void setCmc7(String cmc7) {
+		this.cmc7 = cmc7;
 	}	
 }

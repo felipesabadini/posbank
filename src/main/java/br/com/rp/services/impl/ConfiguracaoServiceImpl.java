@@ -3,7 +3,6 @@ package br.com.rp.services.impl;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.DependsOn;
 import javax.ejb.EJB;
 import javax.ejb.Lock;
 import javax.ejb.LockType;

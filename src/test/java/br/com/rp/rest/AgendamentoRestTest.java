@@ -23,6 +23,7 @@ import br.com.rp.domain.Pagamento;
 import br.com.rp.domain.Tipo;
 import br.com.rp.repository.ContaRepository;
 import br.com.rp.repository.PagamentoRepository;
+import br.com.rp.seguranca.Token;
 import br.com.rp.util.Util;
 
 @CleanupUsingScript(phase = TestExecutionPhase.AFTER, value = { "db/agendamento_delete.sql" })
@@ -64,7 +65,7 @@ public class AgendamentoRestTest extends AbstractTest {
 		Client client = ClientBuilder.newClient();
 		WebTarget target = client.target(URL);
 
-		Response response = target.request().post(Entity.json(agendamento));
+		Response response = target.request().header("token", Token.CLIENTE).post(Entity.json(agendamento));
 		Assert.assertEquals(Integer.valueOf(201), Integer.valueOf(response.getStatus()));		
 		Agendamento result = response.readEntity(Agendamento.class);
 		Assert.assertNotNull(result.getId());		
@@ -81,7 +82,7 @@ public class AgendamentoRestTest extends AbstractTest {
 		Client client = ClientBuilder.newClient();
 		WebTarget target = client.target(URL);
 		Long id = 1000L;
-		Response response = target.request().put(Entity.json(id));
+		Response response = target.request().header("token", Token.CLIENTE).put(Entity.json(id));
 		Assert.assertEquals(Integer.valueOf(200), Integer.valueOf(response.getStatus()));
 	}
 }
