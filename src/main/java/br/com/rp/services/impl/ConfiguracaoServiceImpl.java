@@ -28,7 +28,7 @@ public class ConfiguracaoServiceImpl implements ConfiguracaoService{
 	private Date horaInicialTransacao = Util.setTime(HORA_INICIAL, MINUTO_INICIAL);
 	private Date horaFinalTransacao = Util.setTime(HORA_FINAL, MINUTO_FINAL);
 	
-	Configuracao configuracao;	
+	Configuracao configuracao = new Configuracao();	
 	
 	@EJB
 	ConfiguracaoRepository dao; 

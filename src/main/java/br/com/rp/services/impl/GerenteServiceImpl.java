@@ -22,8 +22,6 @@ public class GerenteServiceImpl implements GerenteService{
 	@EJB
 	ConfiguracaoService configuracaoService;
 	
-	
-//	procurar como usar o singleton
 	@Override
 	public List<Proposta> visualizarPropostasPorEstado(Cargo cargo, String estado) {
 		if (cargo != Cargo.GERENTE) {
