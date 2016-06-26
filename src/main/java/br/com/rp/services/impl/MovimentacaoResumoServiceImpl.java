@@ -2,37 +2,21 @@ package br.com.rp.services.impl;
 
 import java.util.List;
 
-import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
-import javax.jms.Destination;
-import javax.jms.JMSConnectionFactory;
-import javax.jms.JMSContext;
-import javax.jms.JMSException;
-import javax.jms.JMSProducer;
-import javax.jms.ObjectMessage;
 
 import br.com.rp.domain.Movimentacao;
 import br.com.rp.domain.MovimentacaoResumo;
+import br.com.rp.integration.MessageSender;
 import br.com.rp.repository.MovimentacaoResumoRepository;
 import br.com.rp.services.MovimentacaoResumoService;
 
 @Stateless
 public class MovimentacaoResumoServiceImpl implements MovimentacaoResumoService {
-	
 	@EJB
 	private MovimentacaoResumoRepository repository;
-	
-	@Inject
-	@JMSConnectionFactory("java:jboss/DefaultJMSConnectionFactory")
-	private JMSContext context;
-	
-	@Resource(name="java:/jms/queue/EnvioBacen")
-	private Destination destinationBacen;
-	
-	@Resource(name="java:/jms/queue/EnvioEUA")
-	private Destination destinationEUA;
+	@EJB
+	private MessageSender messageSender;
 	
 	public void registrarMovimentacaoResumo(Movimentacao movimentacao){
 		MovimentacaoResumo movimentacaoResumo = new MovimentacaoResumo();
@@ -56,30 +40,16 @@ public class MovimentacaoResumoServiceImpl implements MovimentacaoResumoService 
 	}
 
 	public void enviarFilaBacen() {
-		List<MovimentacaoResumo> lstMovimentacaoResumo = consultarMovimentacaoResumoNaoEnviadoBacen();
-		for (MovimentacaoResumo movimentacaoResumo : lstMovimentacaoResumo) {
-			ObjectMessage om = context.createObjectMessage();
-			try {
-				om.setObject(movimentacaoResumo);
-				JMSProducer producer = context.createProducer();
-				producer.send(destinationBacen, om);
-			} catch (JMSException e) {
-				e.printStackTrace();
-			}
-		}
+		List<MovimentacaoResumo> lstMovimentacaoResumo = repository.consultarMovimentacaoResumoNaoEnviadoBacen();
+		lstMovimentacaoResumo.forEach(movimentacaoResumo -> {
+			messageSender.realizarIntegracaoBACEN(movimentacaoResumo);
+		});
 	}
 	
 	public void enviarFilaEUA() {
-		List<MovimentacaoResumo> lstMovimentacaoResumo = consultarMovimentacaoResumoEnviadoBacenNaoEnviadoEUA();
-		for (MovimentacaoResumo movimentacaoResumo : lstMovimentacaoResumo) {
-			ObjectMessage om = context.createObjectMessage();
-			try {
-				om.setObject(movimentacaoResumo);
-				JMSProducer producer = context.createProducer();
-				producer.send(destinationEUA, om);
-			} catch (JMSException e) {
-				e.printStackTrace();
-			}
-		}
+		List<MovimentacaoResumo> lstMovimentacaoResumo = repository.consultarMovimentacaoResumoEnviadoBacenNaoEnviadoEUA(); 
+		lstMovimentacaoResumo.forEach(movimentacaoResumo -> {
+			messageSender.realizarIntegracaoEUA(movimentacaoResumo);
+		});
 	}
 }
