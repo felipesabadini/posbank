@@ -62,6 +62,7 @@ public class ContaRepositoryTest extends AbstractTest {
 	
 	@Test
 	@UsingDataSet({"db/conta.xml"})
+	@CleanupUsingScript(phase = TestExecutionPhase.AFTER, value={"db/testeC_consegueDeletarRegistro.sql"})
 	public void testeC_consegueDeletarRegistro(){
 		dao.remove(CONTA_TESTE_ID);
 		Assert.assertEquals(1, dao.getAll().size());
@@ -69,6 +70,7 @@ public class ContaRepositoryTest extends AbstractTest {
 	
 	@Test
 	@UsingDataSet({"db/cliente.xml", "db/conta.xml"})
+	@CleanupUsingScript(phase = TestExecutionPhase.AFTER, value={"db/testeD_consegueRecuperarRegistro.sql"})
 	public void testeD_consegueRecuperarRegistro(){
 		Conta conta = dao.findById(CONTA_TESTE_ID);
 		Assert.assertNotNull(conta);
