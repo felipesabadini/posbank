@@ -47,11 +47,10 @@ public class ClienteServiceTest extends AbstractTest {
 	
 	
 	
-	//Tede de atualização de dados
+	//Teste de atualização de dados
 	@Test
 	@UsingDataSet("db/cliente.xml")
 	public void testaAtualizacaoDeDados() {
-		Cliente cliente = new Cliente();
 		Email email = new Email("douglas@test.com");
 		Endereco endereco = new Endereco();
 		endereco.setBairro("Jardim Longe");
@@ -61,14 +60,12 @@ public class ClienteServiceTest extends AbstractTest {
 		endereco.setUf("PR");
 		Cpf cpf = new Cpf("13245678998");
 		
-		cliente.setId(101L);
-		cliente.setEmail(email);
-		cliente.setEndereco(endereco);
-		cliente.setCpf(cpf);
+		Cliente clienteBanco = this.clienteServiceImpl.buscarClientePorCpf(cpf);
 		
-		Cliente clienteBanco = this.clienteServiceImpl.buscarClientePorCpf(cpf);		
+		clienteBanco.setEmail(email);
+		clienteBanco.setEndereco(endereco);
 		
-		Assert.assertEquals(clienteServiceImpl.atualizarDados(cliente), true);
+		Assert.assertEquals(clienteServiceImpl.atualizarDados(clienteBanco), true);
 		
 		
 		System.out.println("\n\n\n\n\n Douglas");
@@ -78,5 +75,5 @@ public class ClienteServiceTest extends AbstractTest {
 		Assert.assertEquals(clienteBanco.getCpf().toString(), cpf.toString());
 		
 	}	
-	//Tede de atualização de dados
+	//Teste de atualização de dados
 }
