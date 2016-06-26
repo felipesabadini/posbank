@@ -79,11 +79,14 @@ public class AgendamentoServiceTest extends AbstractTest {
 	}
 
 	@Test
-	@UsingDataSet({  
+	@UsingDataSet({
 			"db/cliente.xml", 
-			"db/conta.xml", 
+			"db/conta.xml",
 			"db/pagamento.xml",
+			"db/movimentacao.xml",
+			"db/movimentacao_resumo.xml",
 			"db/agendamento.xml" })
+	@CleanupUsingScript(phase = TestExecutionPhase.AFTER, value={"db/devePagarPagamentosAgendados.sql"})
 	public void devePagarPagamentosAgendados() {
 		this.agendamentoService.processarPagamentosAgendadosPara(new Calendar.Builder().setDate(2016, 5, 18).build().getTime());
 		List<Agendamento> agendamentos = this.agendamentoService.encontrarAgendamentosPagos();
