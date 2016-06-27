@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.interceptor.Interceptors;
 
 import br.com.rp.domain.Conta;
 import br.com.rp.domain.Movimentacao;
@@ -14,6 +15,7 @@ import br.com.rp.domain.TipoOperacao;
 import br.com.rp.repository.ContaRepository;
 import br.com.rp.repository.MovimentacaoRepository;
 import br.com.rp.repository.PagamentoRepository;
+import br.com.rp.seguranca.InterceptorMovimentacao;
 import br.com.rp.services.LogMovimentacaoService;
 import br.com.rp.services.MovimentacaoResumoService;
 import br.com.rp.services.MovimentacaoService;
@@ -34,11 +36,12 @@ public class MovimentacaoServiceImpl implements MovimentacaoService {
 	private PagamentoRepository pagamentoRepository;	
 	@EJB
 	private LogMovimentacaoService logMovimentacaoService;
-
+	
 	public List<Movimentacao> consultarMovimentacaoPorContaId(Long contaId) {
 		return movimentacaoRepository.consultarMovimentacaoPorContaId(contaId);
 	}
 
+	@Interceptors(value=InterceptorMovimentacao.class)
 	public void realizarPagamento(Long contaId, Long pagamentoId) {
 		logMovimentacaoService.registrarPagamento(contaId, pagamentoId);
 		
@@ -81,6 +84,7 @@ public class MovimentacaoServiceImpl implements MovimentacaoService {
 		}
 	}
 
+	@Interceptors(value=InterceptorMovimentacao.class)
 	public void realizarTransferencia(Long contaId, BigDecimal valor, String codigoBanco, Long numeroConta) {
 		logMovimentacaoService.registrarTransferenciaOutrosBancos(contaId, valor, codigoBanco, numeroConta);
 		Conta contaOrigem = contaRepository.findById(contaId);
@@ -92,11 +96,13 @@ public class MovimentacaoServiceImpl implements MovimentacaoService {
 		registrarMovimentacao(contaId, valor, TipoOperacao.TRANSFERENCIA, TipoMovimentacao.DEBITO, null, codigoBanco, numeroConta, null);
 	}
 
+	@Interceptors(value=InterceptorMovimentacao.class)
 	public void realizarDeposito(Long contaId, BigDecimal valor, String cmc7) {
 		logMovimentacaoService.registrarDeposito(contaId, valor, cmc7);
 		registrarMovimentacao(contaId, valor, TipoOperacao.DEPOSITO, TipoMovimentacao.CREDITO, null, null, null, cmc7);
 	}
 	
+	@Interceptors(value=InterceptorMovimentacao.class)
 	public void realizarTransferenciaEntreContasVBank(Long contaId, BigDecimal valor, Long contaDestinoId) {
 		logMovimentacaoService.registrarTransferenciaEntreContasVBank(contaId, valor, contaDestinoId);
 		

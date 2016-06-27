@@ -15,8 +15,10 @@ import org.junit.runners.MethodSorters;
 
 import br.com.rp.AbstractTest;
 import br.com.rp.domain.MovimentacaoResumo;
+import br.com.rp.services.ConfiguracaoService;
 import br.com.rp.services.MovimentacaoResumoService;
 import br.com.rp.services.MovimentacaoService;
+import br.com.rp.util.Util;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @CleanupUsingScript(phase = TestExecutionPhase.AFTER, value={"db/movimentacaoService_delete.sql"})
@@ -36,9 +38,14 @@ public class MovimentacaoResumoServiceTest extends AbstractTest {
 	@EJB
 	private MovimentacaoService movimentacaoService;
 	
+	@EJB
+	ConfiguracaoService configuracaoService;
+	
 	@Test
 	@UsingDataSet({"db/cliente.xml", "db/conta.xml"})
 	public void testeA_consegueRegistarMovimentacaoResumoAoSalvarMovimentacao(){
+		configuracaoService.definirHorarioTransacaoBancaria(Util.setTime(0, 0), Util.setTime(23, 59));
+		
 		movimentacaoService.realizarTransferencia(CONTA_ID, new BigDecimal("250.00"), "012-A", 1234567L);
 		
 		List<MovimentacaoResumo> lstMovimentacaoResumo = service.consultarMovimentacaoResumoNaoEnviadoBacen();

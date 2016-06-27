@@ -48,12 +48,12 @@ public abstract class AbstractTest {
 	protected EntityManager em;
 
 	/*@Before
-	public void setup() {
+	protected void setup() {
 
 	}
 
 	@After
-	public void tearDown() {
+	protected void tearDown() {
 		
 	}*/
 

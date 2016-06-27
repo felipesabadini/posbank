@@ -12,7 +12,7 @@ import javax.ejb.Startup;
 import br.com.rp.domain.Configuracao;
 import br.com.rp.repository.ConfiguracaoRepository;
 import br.com.rp.services.ConfiguracaoService;
-import br.com.rp.services.exception.horarioInfornadoNaoPermitido;
+import br.com.rp.services.exception.HorarioInfornadoNaoPermitidoException;
 import br.com.rp.util.Util;
 
 @Singleton
@@ -22,7 +22,7 @@ public class ConfiguracaoServiceImpl implements ConfiguracaoService{
 	private static final long CONFIGURA_ID = 1L;
 	private static final int MINUTO_INICIAL = 0;
 	private static final int HORA_INICIAL = 6;
-	private static final int MINUTO_FINAL = 0;
+	private static final int MINUTO_FINAL = 30;
 	private static final int HORA_FINAL = 21;
 	private Date horaInicialTransacao = Util.setTime(HORA_INICIAL, MINUTO_INICIAL);
 	private Date horaFinalTransacao = Util.setTime(HORA_FINAL, MINUTO_FINAL);
@@ -50,10 +50,13 @@ public class ConfiguracaoServiceImpl implements ConfiguracaoService{
 	
 	@Lock(LockType.WRITE)
 	public void definirHorarioTransacaoBancaria(Date horaInicialTransacao, Date horaFinalTransacao){
-		if (horaInicialTransacao.before(this.horaInicialTransacao) || horaInicialTransacao.after(this.horaFinalTransacao)) {
-			throw new horarioInfornadoNaoPermitido("Horário informado, não permito.\nO horário deve estar entre 06:00 e 21:00");
+		if (horaInicialTransacao.after(horaFinalTransacao)) {
+			throw new HorarioInfornadoNaoPermitidoException("A hora inicial não pode ser posterior à hora final!");
 		}
 
+		this.horaInicialTransacao = horaInicialTransacao;
+		this.horaFinalTransacao = horaFinalTransacao;
+		
 		configuracao.setHoraInicialTransacao(horaInicialTransacao);
 		configuracao.setHoraFinalTransacao(horaFinalTransacao);
 		

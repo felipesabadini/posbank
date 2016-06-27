@@ -10,7 +10,6 @@ import br.com.rp.AbstractTest;
 import br.com.rp.domain.MovimentacaoResumo;
 import br.com.rp.repository.MovimentacaoResumoRepository;
 import br.com.rp.services.MovimentacaoResumoService;
-import br.com.rp.services.MovimentacaoService;
 
 public class IntegradorServiceTest extends AbstractTest {
 	
@@ -21,9 +20,6 @@ public class IntegradorServiceTest extends AbstractTest {
 	
 	@EJB
 	private MovimentacaoResumoRepository repository;
-	
-	@EJB
-	private MovimentacaoService movimentacaoService;
 	
 	@Test
 	@UsingDataSet({"db/cliente.xml", "db/conta.xml", "db/movimentacao.xml", "db/movimentacao_resumo.xml"})
