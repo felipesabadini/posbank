@@ -19,6 +19,7 @@ import br.com.rp.domain.Conta;
 import br.com.rp.domain.Pagamento;
 import br.com.rp.repository.ContaRepository;
 import br.com.rp.services.AgendamentoService;
+import br.com.rp.services.ConfiguracaoService;
 import br.com.rp.util.Util;
 
 @CleanupUsingScript(phase = TestExecutionPhase.AFTER, value = { "db/agendamento_delete.sql" })
@@ -31,6 +32,9 @@ public class AgendamentoServiceTest extends AbstractTest {
 
 	@EJB
 	private ContaRepository contaRepository;
+	
+	@EJB
+	private ConfiguracaoService configuracaoService;
 	
 	@Test
 	@UsingDataSet({ "db/cliente.xml", "db/conta.xml", "db/pagamento.xml",
@@ -88,6 +92,8 @@ public class AgendamentoServiceTest extends AbstractTest {
 			"db/agendamento.xml" })
 	@CleanupUsingScript(phase = TestExecutionPhase.AFTER, value={"db/devePagarPagamentosAgendados.sql"})
 	public void devePagarPagamentosAgendados() {
+		configuracaoService.definirHorarioTransacaoBancaria(Util.setTime(0, 0), Util.setTime(23, 59));
+		
 		this.agendamentoService.processarPagamentosAgendadosPara(new Calendar.Builder().setDate(2016, 5, 18).build().getTime());
 		List<Agendamento> agendamentos = this.agendamentoService.encontrarAgendamentosPagos();
 		Assert.assertEquals(agendamentos.get(0).getPago(), Boolean.TRUE);

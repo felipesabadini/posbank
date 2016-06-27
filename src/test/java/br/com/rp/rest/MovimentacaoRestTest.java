@@ -14,6 +14,7 @@ import org.jboss.arquillian.persistence.CleanupUsingScript;
 import org.jboss.arquillian.persistence.TestExecutionPhase;
 import org.jboss.arquillian.persistence.UsingDataSet;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -25,6 +26,8 @@ import br.com.rp.dto.MovimentacaoDTO;
 import br.com.rp.repository.CartaoRepository;
 import br.com.rp.repository.DespesaRepository;
 import br.com.rp.seguranca.Token;
+import br.com.rp.services.ConfiguracaoService;
+import br.com.rp.util.Util;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @CleanupUsingScript(value = "db/movimentacaoRest_delete.sql", phase = TestExecutionPhase.AFTER)
@@ -42,6 +45,14 @@ public class MovimentacaoRestTest extends AbstractTest {
 	@EJB
 	DespesaRepository despesaRepository;
 
+	@EJB
+	ConfiguracaoService configuracaoService;
+	
+	@Before
+	public void init() {
+		configuracaoService.definirHorarioTransacaoBancaria(Util.setTime(0, 0), Util.setTime(23, 59));
+	}
+	
 	@Test
 	@UsingDataSet({"db/cliente.xml", "db/conta.xml"})
 	public void testeA_consegueRealizarTransferenciaEntreContasVBank() {
