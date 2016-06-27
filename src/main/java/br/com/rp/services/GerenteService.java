@@ -11,5 +11,5 @@ public interface GerenteService {
 	public List<Proposta> visualizarPropostasPorEstado(Cargo cargo, String estado);
 	public void aceitarProposta(Cargo cargo, Long propostaId);
 	public void rejeitarProposta(Cargo cargo, Long funcionarioId, Long propostaId, String motivoRejicao);
-	public void alterarHorarioTransacao(Date horaInicialTransacao, Date horaFinalTransacao);
+	public void alterarHorarioTransacao(Cargo cargo, Date horaInicialTransacao, Date horaFinalTransacao);
 }

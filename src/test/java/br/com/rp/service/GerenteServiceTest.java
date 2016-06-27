@@ -82,7 +82,7 @@ public class GerenteServiceTest extends AbstractTest{
 		
 		Date horaInicialTransacao = Util.setTime(7, 0);
 		Date horaFinalTransacao = Util.setTime(20, 0);
-		gerenteService.alterarHorarioTransacao(horaInicialTransacao, horaFinalTransacao);
+		gerenteService.alterarHorarioTransacao(Cargo.GERENTE_SEGURANCA, horaInicialTransacao, horaFinalTransacao);
 		
 		Configuracao config = configuracaoRepository.findById(CONFIGURACAO_ID);
 		
